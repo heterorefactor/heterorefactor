@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+# Project generated files
+heterorefactor/libraries/rose-compiler/source
+heterorefactor/libraries/rose-compiler/boost
+heterorefactor/libraries/rose-compiler/build
+heterorefactor/libraries/rose-compiler/dist
