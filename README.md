@@ -50,3 +50,10 @@ sudo apt-get install git wget tar bzip2 gcc automake autoconf \
   - bubble
   - knn
   - rgb2yuv
+
+## TODOs before opensource releasing
+
+- Remove the modified Xilinx library `heterorefactor/libraries/xilinx-dummy-lib/`.
+    - This file is required for reproducing refactoring results since the original Xilinx library cannot be parsed by ROSE. We removed some irrelevant code and only keep the framework for ROSE analysis.
+    - However, this dummy skeleton library contains some of Xilinx proprietary code and APIs design. These code must not be distributed without a valid license agreement with Xilinx.
+    - Therefore, while it is OK for artifacts review, we need to remove this library before releasing this repository to the public.
