@@ -1,0 +1,140 @@
+diff --git a/include/thls/tops/fp_flopoco.hpp b/include/thls/tops/fp_flopoco.hpp
+index 8144f63..6bcdd4e 100644
+--- a/include/thls/tops/fp_flopoco.hpp
++++ b/include/thls/tops/fp_flopoco.hpp
+@@ -14,6 +14,7 @@
+ 
+ #include <limits.h>
+ #include <algorithm>
++#include <array>
+ 
+ namespace thls
+ {
+diff --git a/include/thls/tops/fw_uint_on_ap_uint.hpp b/include/thls/tops/fw_uint_on_ap_uint.hpp
+index 3d5c94d..32b3929 100644
+--- a/include/thls/tops/fw_uint_on_ap_uint.hpp
++++ b/include/thls/tops/fw_uint_on_ap_uint.hpp
+@@ -10,6 +10,7 @@
+ #ifndef THLS_SYNTHESIS
+ #include <gmp.h>
+ #include <stdexcept>
++#include <string.h>
+ #endif
+ 
+ // TODO : Dispatch propertly to the correct header.
+diff --git a/include/thls/tops/policy_flopoco.hpp b/include/thls/tops/policy_flopoco.hpp
+index 649f153..63bbb10 100644
+--- a/include/thls/tops/policy_flopoco.hpp
++++ b/include/thls/tops/policy_flopoco.hpp
+@@ -51,11 +51,57 @@ namespace thls {
+             return *(double*)&x;
+         }
+         */
+-            
++
++        THLS_INLINE fp_flopoco_wrapper(const double v) {
++            *this = thls::to<fp_flopoco_wrapper<wE, wF>,
++                thls::convert_policy(0xF)>(float(v));
++        }
++
++        THLS_INLINE fp_flopoco_wrapper(const float v) {
++            *this = thls::to<fp_flopoco_wrapper<wE, wF>,
++                thls::convert_policy(0xF)>(v);
++        }
++
++        THLS_INLINE fp_flopoco_wrapper(const int v) {
++            *this = thls::to<fp_flopoco_wrapper<wE, wF>,
++                thls::convert_policy(0xF)>(float(v));
++        }
++
++        THLS_INLINE operator float() {
++            return thls::to<float, thls::convert_policy(0xF)>(*this);
++        }
++
++        THLS_INLINE friend fp_flopoco_wrapper operator*(const double a, const fp_flopoco_wrapper &b) { return b.operator*(a); }
++        THLS_INLINE friend fp_flopoco_wrapper operator*(const fp_flopoco_wrapper a, const double &b) { return a.operator*(b); }
++        THLS_INLINE friend fp_flopoco_wrapper operator*(const float a, const fp_flopoco_wrapper &b) { return b.operator*(a); }
++        THLS_INLINE friend fp_flopoco_wrapper operator*(const fp_flopoco_wrapper a, const float &b) { return a.operator*(b); }
++        THLS_INLINE friend fp_flopoco_wrapper operator*(const int a, const fp_flopoco_wrapper &b) { return b.operator*(a); }
++        THLS_INLINE friend fp_flopoco_wrapper operator*(const fp_flopoco_wrapper a, const int &b) { return a.operator*(b); }
+         THLS_INLINE fp_flopoco_wrapper operator*(const fp_flopoco_wrapper &b) const { return mul<wE, wF>(raw, b.raw); }
+ 
++        THLS_INLINE friend fp_flopoco_wrapper operator+(const double a, const fp_flopoco_wrapper &b) { return b.operator+(a); }
++        THLS_INLINE friend fp_flopoco_wrapper operator+(const fp_flopoco_wrapper a, const double &b) { return a.operator+(b); }
++        THLS_INLINE friend fp_flopoco_wrapper operator+(const float a, const fp_flopoco_wrapper &b) { return b.operator+(a); }
++        THLS_INLINE friend fp_flopoco_wrapper operator+(const fp_flopoco_wrapper a, const float &b) { return a.operator+(b); }
++        THLS_INLINE friend fp_flopoco_wrapper operator+(const int a, const fp_flopoco_wrapper &b) { return b.operator+(a); }
++        THLS_INLINE friend fp_flopoco_wrapper operator+(const fp_flopoco_wrapper a, const int &b) { return a.operator+(b); }
+         THLS_INLINE fp_flopoco_wrapper operator+(const fp_flopoco_wrapper &b) const { return add<wE, wF>(raw, b.raw); }
+ 
++        THLS_INLINE friend fp_flopoco_wrapper operator-(const double a, const fp_flopoco_wrapper &b) { return b.operator-(a); }
++        THLS_INLINE friend fp_flopoco_wrapper operator-(const fp_flopoco_wrapper a, const double &b) { return a.operator-(b); }
++        THLS_INLINE friend fp_flopoco_wrapper operator-(const float a, const fp_flopoco_wrapper &b) { return b.operator-(a); }
++        THLS_INLINE friend fp_flopoco_wrapper operator-(const fp_flopoco_wrapper a, const float &b) { return a.operator-(b); }
++        THLS_INLINE friend fp_flopoco_wrapper operator-(const int a, const fp_flopoco_wrapper &b) { return b.operator-(a); }
++        THLS_INLINE friend fp_flopoco_wrapper operator-(const fp_flopoco_wrapper a, const int &b) { return a.operator-(b); }
++        THLS_INLINE fp_flopoco_wrapper operator-(const fp_flopoco_wrapper &b) const { return *this + (-b); }
++        THLS_INLINE fp_flopoco_wrapper operator-() const { return neg<wE, wF>(raw); }
++
++        THLS_INLINE friend fp_flopoco_wrapper operator/(const double a, const fp_flopoco_wrapper &b) { return b.operator/(a); }
++        THLS_INLINE friend fp_flopoco_wrapper operator/(const fp_flopoco_wrapper a, const double &b) { return a.operator/(b); }
++        THLS_INLINE friend fp_flopoco_wrapper operator/(const float a, const fp_flopoco_wrapper &b) { return b.operator/(a); }
++        THLS_INLINE friend fp_flopoco_wrapper operator/(const fp_flopoco_wrapper a, const float &b) { return a.operator/(b); }
++        THLS_INLINE friend fp_flopoco_wrapper operator/(const int a, const fp_flopoco_wrapper &b) { return b.operator/(a); }
++        THLS_INLINE friend fp_flopoco_wrapper operator/(const fp_flopoco_wrapper a, const int &b) { return a.operator/(b); }
+         THLS_INLINE fp_flopoco_wrapper operator/(
+                 const fp_flopoco_wrapper &b) const {
+             return div<wE,wF>(raw,b.raw);
+@@ -64,9 +110,15 @@ namespace thls {
+         THLS_INLINE fp_flopoco_wrapper operator*=(const fp_flopoco_wrapper &b)
+         { raw = mul<wE,wF>(raw, b.raw); return *this; }
+ 
++        THLS_INLINE fp_flopoco_wrapper operator/=(const fp_flopoco_wrapper &b)
++        { raw = div<wE,wF>(raw, b.raw); return *this; }
++
+         THLS_INLINE fp_flopoco_wrapper operator+=(const fp_flopoco_wrapper &b)
+         { raw = add<wE,wF>(raw, b.raw); return *this; }
+ 
++        THLS_INLINE fp_flopoco_wrapper operator-=(const fp_flopoco_wrapper &b)
++        { raw = add<wE,wF>(raw, neg<wE, wF>(b.raw)); return *this; }
++
+         THLS_INLINE bool operator<(const fp_flopoco_wrapper &b) const { return less_than(raw, b.raw).to_bool(); }
+ 
+         THLS_INLINE bool operator<=(const fp_flopoco_wrapper &b) const { return less_than_equal(raw, b.raw).to_bool(); }
+@@ -232,11 +284,10 @@ struct policy_flopoco {
+ };
+ 
+ 
+-
+ template<int wE, int wF, convert_policy TPolicy>
+ struct to_impl<fp_flopoco_wrapper <wE, wF>,TPolicy,float>
+ {
+-    static THLS_INLINE fp_flopoco_wrapper <wE, wF> go(const float &src)
++    static THLS_INLINE fp_flopoco_wrapper <wE, wF> go(const float src)
+     {
+         // TODO : Is there a bug here todo with IEEE denormals?
+         static_assert( (TPolicy&(allow_overflow|allow_underflow)) || (wE>=8), "Conversion could cause under/over-flow" );
+@@ -245,8 +296,10 @@ struct to_impl<fp_flopoco_wrapper <wE, wF>,TPolicy,float>
+         fw_uint<32> bits( *(uint32_t*)&src );
+         
+         fp_ieee<8,23> ieee(bits);
++        fp_flopoco<8,23> res_ieee;
++        convert(res_ieee,ieee);
+         fp_flopoco<wE,wF> res;
+-        convert(res,ieee);
++        convert(res,res_ieee);
+         
+         return res;
+     }
+@@ -261,8 +314,10 @@ struct to_impl<float,TPolicy,fp_flopoco_wrapper <wE, wF>>
+         static_assert( (TPolicy&(allow_overflow|allow_underflow)) || (wE<=8), "Conversion could cause under/over-flow" );
+         static_assert( (TPolicy&(allow_precision_loss)) || (wF<=23), "Conversion could cause precision loss." );
+                 
++        fp_flopoco<8,23> res_ieee;
++        convert(res_ieee,src.raw);
+         fp_ieee<8,23> res;
+-        convert(res,src.raw);
++        convert(res,res_ieee);
+         
+         uint32_t bits=res.bits.to_uint64();
+         
