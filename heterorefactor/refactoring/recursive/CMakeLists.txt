@@ -42,4 +42,5 @@ target_link_libraries(heterorefactor
 
 target_compile_features(heterorefactor PRIVATE cxx_auto_type)
 target_compile_features(heterorefactor PRIVATE cxx_range_for)
+target_compile_features(heterorefactor PRIVATE cxx_lambda_init_captures)
 install(TARGETS heterorefactor DESTINATION bin)

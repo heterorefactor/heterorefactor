@@ -3,6 +3,8 @@
 #include "transform_propagator.h"
 #include "access_transformer.h"
 #include "allocate_transformer.h"
+#include "recursion_finder.h"
+#include "localvar_packer.h"
 
 #include <cassert>
 
@@ -16,11 +18,11 @@ int main(int argc, char *argv[]) {
     acc_trans.collect_access();
     alloc_trans.collect_types();
 
-    ExclusionFinder finder(project);
-    finder.run();
-    auto excluded = finder.get_excluded();
+    ExclusionFinder ex_finder(project);
+    ex_finder.run();
+    auto excluded = ex_finder.get_excluded();
     auto addressof_propagated =
-        finder.get_addressof_propagated();
+        ex_finder.get_addressof_propagated();
 
     TypeTransformer type_trans(project);
     type_trans.set_exclusion(&excluded);
@@ -37,6 +39,14 @@ int main(int argc, char *argv[]) {
     alloc_trans.set_type_transformer(&type_trans);
     alloc_trans.set_access_transformer(&acc_trans);
     alloc_trans.transform();
+
+    RecursionFinder rec_finder(project);
+    rec_finder.run();
+
+    auto target = rec_finder.get_recursion_functions();
+    LocalVarPacker packer(project);
+    packer.set_target(&target);
+    packer.run();
 
     AstTests::runAllTests(project);
     return backend(project);
