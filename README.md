@@ -6,8 +6,8 @@ Artifacts submission for ICSE 2020.
 The following packages are required to be install before building this system (listed as Ubuntu package name):
 
 ```
-sudo apt-get install git wget tar bzip2 gcc automake autoconf \
-    autotools-dev bison flex libtool libbz2-dev libpython2.7-dev ghostscript
+sudo apt-get install git wget tar bzip2 gcc automake autoconf libhpdf-dev libc6-dev \
+    autotools-dev bison flex libtool libbz2-dev libpython2.7-dev ghostscript libhpdf-dev
 ```
 
 ## Tentative folder structure scheme
