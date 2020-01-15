@@ -10,6 +10,12 @@ sudo apt-get install git wget tar bzip2 gcc automake autoconf libhpdf-dev libc6-
     autotools-dev bison flex libtool libbz2-dev libpython2.7-dev ghostscript libhpdf-dev
 ```
 
+## How to run ROSE-based refactoring
+
+```
+./heterorefactor -rose:skipfinalCompileStep -rose:o output.cpp input.cpp
+```
+
 ## Tentative folder structure scheme
 
 - heterorefactor
