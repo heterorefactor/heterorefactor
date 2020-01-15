@@ -8,3 +8,6 @@ $(mkfile_dir)/build/:
 
 refresh: $(mkfile_dir)/build/
 	cd $(mkfile_dir)/build && $(MAKE)
+
+clean:
+	-rm -rf $(mkfile_dir)/build

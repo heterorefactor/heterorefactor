@@ -10,3 +10,7 @@ $(mkfile_dir)/template-hls-float:
 
 $(mkfile_dir)/rose-compiler/dist:
 	cd $(mkfile_dir)/rose-compiler && $(MAKE) all
+
+clean:
+	-rm -rf $(mkfile_dir)/template-hls-float
+	cd $(mkfile_dir)/rose-compiler && $(MAKE) clean

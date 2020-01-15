@@ -26,3 +26,9 @@ $(mkfile_dir)/boost:
 $(mkfile_dir)/build/boost: $(mkfile_dir)/boost
 	cd $(mkfile_dir)/boost && ./bootstrap.sh --prefix=$(mkfile_dir)/build/boost
 	cd $(mkfile_dir)/boost && ./b2 -j 16 && ./b2 install
+
+clean:
+	-rm -rf $(mkfile_dir)/source
+	-rm -rf $(mkfile_dir)/boost
+	-rm -rf $(mkfile_dir)/build
+	-rm -rf $(mkfile_dir)/dist
