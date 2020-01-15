@@ -21,10 +21,6 @@ namespace ast_utils {
                 isSgGreaterOrEqualOp(node) || isSgGreaterThanOp(node) ||
                 isSgLessOrEqualOp(node) || isSgLessThanOp(node) ||
                 isSgNotOp(node)) {
-            WARN_IF(true, "stop propagation: ") <<
-                "HLS doesn't support pointer comparison between " <<
-                "native pointers (e.g. interfaces, static addresses)" <<
-                std::endl;
             return true;
         }
 

@@ -18,7 +18,7 @@ include_directories("./include/"
     ${CMAKE_SOURCE_DIR}/../../libraries/rose-compiler/dist/include
     ${CMAKE_SOURCE_DIR}/../../libraries/rose-compiler/dist/include/rose
     ${CMAKE_SOURCE_DIR}/../../libraries/rose-compiler/build/boost/include)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -g -fdata-sections -ffunction-sections -Os")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -fdata-sections -ffunction-sections -Wno-deprecated-declarations")
 
 add_executable(heterorefactor ${SRC})
 

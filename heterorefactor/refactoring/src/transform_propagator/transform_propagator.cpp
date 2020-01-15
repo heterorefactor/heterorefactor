@@ -14,6 +14,9 @@ void TransformPropagator::propagate(void) {
         SgNode *to;
         SgExpression *from;
         std::tie(to, from) = edge;
+
+        if (misc_utils::insideSystemHeader(from)) continue;
+
         INFO_IF(true, "[propagation] to ") <<
             misc_utils::debug_info(to) << std::endl;
         INFO_IF(true, "    from ") <<

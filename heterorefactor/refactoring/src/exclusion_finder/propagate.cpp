@@ -10,6 +10,7 @@ void ExclusionFinder::rule_propagate() {
 
         for (auto ref : references) {
             auto newpro = ast_utils::pointer_propagate(ref);
+
             for (auto propagated : newpro) {
                 if (m_excluded.count(propagated)) continue;
                 if (excluding->count(propagated)) continue;

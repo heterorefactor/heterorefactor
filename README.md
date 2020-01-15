@@ -7,13 +7,13 @@ The following packages are required to be install before building this system (l
 
 ```
 sudo apt-get install git wget tar bzip2 gcc automake autoconf libhpdf-dev libc6-dev \
-    autotools-dev bison flex libtool libbz2-dev libpython2.7-dev ghostscript libhpdf-dev
+    autotools-dev bison flex libtool libbz2-dev libpython2.7-dev ghostscript libhpdf-dev libmpfrc++-dev
 ```
 
 ## How to run ROSE-based refactoring
 
 ```
-./heterorefactor -rose:skipfinalCompileStep -rose:o output.cpp input.cpp
+./heterorefactor -std=c++11 -I ../../../libraries/template-hls-float/include -rose:skipfinalCompileStep -rose:o output.cpp input.cpp
 ```
 
 ## Tentative folder structure scheme
@@ -24,11 +24,8 @@ sudo apt-get install git wget tar bzip2 gcc automake autoconf libhpdf-dev libc6-
     - rose-compiler (JL: automated compilation for ROSE)
     - xilinx-dummy-lib (JL: dummy include files of Xilinx libraries optimized for ROSE)
     - template-hls-float.patch (JL: patch file for the floating point library)
-  - instrumentation
-    - recursive
-    - integer
-    - fp
   - refactoring
+  - instrumentation
     - recursive
     - integer
     - fp

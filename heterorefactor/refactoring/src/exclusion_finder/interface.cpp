@@ -28,10 +28,7 @@ void ExclusionFinder::rule_interface(void) {
         auto decl = sym->get_declaration();
         if (decl == NULL) continue;
 
-        // check is pointer type
-        if (!isSgPointerType(decl->get_type())) continue;
-
-        // exclude pointer interface
+        // exclude all interface variables
         INFO_IF(m_excluded.find(decl) == m_excluded.end(),
                 "[exclusion] rule interface: ") <<
             misc_utils::debug_info(decl) << std::endl;

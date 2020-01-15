@@ -14,5 +14,8 @@ SgType *TypeTransformer::recursive_transform_array(
     } else if (auto ptr = isSgPointerType(type)) {
         return get_transformation_of(ptr, scope);
 
+    } else if (isSgType(type)->isFloatType()) {
+        return get_transformation_fp(scope);
+
     } else return NULL;
 }
