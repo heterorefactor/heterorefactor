@@ -30,7 +30,7 @@ struct Settings {
 
 Sawyer::CommandLine::SwitchGroup commandline_switches(Settings &settings) {
     using namespace Sawyer::CommandLine;
-    SwitchGroup switches;
+    SwitchGroup switches("HeteroRefactor switches");
     switches.doc("These switches control the HeteroRefactor tool.");
     switches.insert(Switch("rec").intrinsicValue(true, settings.perform_rec)
             .doc("Enable the recursive data structures refactoring."));
@@ -51,7 +51,7 @@ commandline_processing(
     using namespace Sawyer::CommandLine;
     return Rose::CommandLine::createEmptyParserStage(purpose, description)
             .longPrefix("-")
-            .doc("synopsis", "@prop{programName} @v{switches} -u @v{output} @v{input}")
+            .doc("synopsis", "@prop{programName} [@v{gcc-switches}] [@v{hrf-switches}] -u @v{output} @v{input}")
             .with(Rose::CommandLine::genericSwitches())
             .with(commandline_switches(settings))
             .parse(argvlist).apply().unparsedArgs(true);
@@ -69,7 +69,10 @@ int main(int argc, char *argv[]) {
     if (!(settings.perform_rec ||
                 settings.perform_fp ||
                 settings.perform_int)) {
-        INFO_IF(true, "Please specify transformations to be performed.\n");
+        // Run all transformations by default
+        settings.perform_rec = true;
+        settings.perform_fp = true;
+        settings.perform_int = true;
     }
     if (settings.output_file != "") {
         argvlist.push_back("-rose:skipfinalCompileStep");
@@ -78,6 +81,11 @@ int main(int argc, char *argv[]) {
     }
 
     auto project = frontend(argvlist);
+    if (project->numberOfFiles() == 0) {
+        INFO_IF(true, "Please run with -h to see the usages.\n");
+        return 0;
+    }
+
     AstTests::runAllTests(project);
 
     AccessTransformer acc_trans(project);
