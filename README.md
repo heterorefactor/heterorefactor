@@ -13,8 +13,10 @@ sudo apt-get install git wget tar bzip2 gcc automake autoconf libhpdf-dev libc6-
 ## How to run ROSE-based refactoring
 
 ```
-./heterorefactor -std=c++11 -I ../../../libraries/template-hls-float/include -rose:skipfinalCompileStep -rose:o output.cpp input.cpp
+heterorefactor -I path/to/template-hls-float/include -u output.cpp input.cpp
 ```
+
+See `heterorefactor -h` for details.
 
 ## Tentative folder structure scheme
 
