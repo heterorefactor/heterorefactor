@@ -11,10 +11,13 @@ SgType *TypeTransformer::recursive_transform_array(
                 type, arr->get_index());
         return newarr;
 
-    } else if (auto ptr = isSgPointerType(type)) {
+    } else if (isSgPointerType(type) &&
+            m_type == misc_utils::RefactorType::rec) {
+        auto ptr = isSgPointerType(type);
         return get_transformation_of(ptr, scope);
 
-    } else if (isSgType(type)->isFloatType()) {
+    } else if (isSgType(type)->isFloatType() &&
+            m_type == misc_utils::RefactorType::fp) {
         return get_transformation_fp(scope);
 
     } else return NULL;

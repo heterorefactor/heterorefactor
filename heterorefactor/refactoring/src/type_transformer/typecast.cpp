@@ -12,13 +12,17 @@ void TypeTransformer::transform_typecast(void) {
         // could not cast to an array.
         // skip cast if not a pointer / float
         SgType *target = NULL;
-        if (isSgPointerType(cast->get_type())) {
+        if (m_type == misc_utils::RefactorType::rec &&
+                isSgPointerType(cast->get_type())) {
             target = get_transformation_of(
                     isSgPointerType(cast->get_type()),
                     SageInterface::getGlobalScope(cast));
-        } else if (isSgType(cast->get_type())->isFloatType()) {
+
+        } else if (m_type == misc_utils::RefactorType::fp &&
+                isSgType(cast->get_type())->isFloatType()) {
             target = get_transformation_fp(
                     SageInterface::getGlobalScope(cast));
+
         } else {
             continue;
         }

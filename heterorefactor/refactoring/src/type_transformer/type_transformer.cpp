@@ -1,8 +1,10 @@
 #include "type_transformer.h"
 
-TypeTransformer::TypeTransformer(SgProject* project) {
+TypeTransformer::TypeTransformer(SgProject* project,
+        misc_utils::RefactorType t) {
     m_project = project;
     m_transform_type = NULL;
+    m_type = t;
 }
 
 void TypeTransformer::set_exclusion(const std::set<SgNode *> *excluded) {
@@ -17,7 +19,8 @@ void TypeTransformer::transform(void) {
     transform_var_decl();
     transform_typecast();
 
-    transform_binary_operations();
+    if (m_type == misc_utils::RefactorType::fp)
+        transform_binary_operations();
 }
 
 SgType *TypeTransformer::get_transformation_fp(SgScopeStatement *scope) {

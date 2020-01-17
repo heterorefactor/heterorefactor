@@ -15,7 +15,7 @@
 
 class TypeTransformer {
 public:
-    TypeTransformer(SgProject* project);
+    TypeTransformer(SgProject* project, misc_utils::RefactorType t);
     void set_exclusion(const std::set<SgNode *> *excluded);
     void transform(void);
 
@@ -34,6 +34,7 @@ protected:
     SgType *recursive_transform_array(SgType *type, SgScopeStatement *scope);
 
     SgProject *m_project;
+    misc_utils::RefactorType m_type;
     SgType *m_transform_type;
     const std::set<SgNode *> *m_excluded;
 

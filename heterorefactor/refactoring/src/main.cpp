@@ -161,40 +161,67 @@ int main(int argc, char *argv[]) {
 
     AstTests::runAllTests(project);
 
-    AccessTransformer acc_trans(project);
-    AllocateTransformer alloc_trans(project);
-    acc_trans.collect_access();
-    alloc_trans.collect_types();
+    if (settings.perform_int) {
+        INFO_IF(true, "Refactoring for integer is to be implemented\n");
+    }
 
-    ExclusionFinder ex_finder(project);
-    ex_finder.run();
-    auto excluded = ex_finder.get_excluded();
-    auto addressof_propagated =
-        ex_finder.get_addressof_propagated();
+    if (settings.perform_fp) {
+        ExclusionFinder ex_finder(project,
+                misc_utils::RefactorType::fp);
+        ex_finder.run();
+        auto excluded = ex_finder.get_excluded();
+        auto addressof_propagated =
+            ex_finder.get_addressof_propagated();
 
-    TypeTransformer type_trans(project);
-    type_trans.set_exclusion(&excluded);
-    type_trans.transform();
+        TypeTransformer type_trans(project,
+                misc_utils::RefactorType::fp);
+        type_trans.set_exclusion(&excluded);
+        type_trans.transform();
 
-    TransformPropagator prop(project);
-    prop.set_addressof_propagated(
-            &addressof_propagated);
-    prop.propagate();
+        TransformPropagator prop(project);
+        prop.set_addressof_propagated(
+                &addressof_propagated);
+        prop.propagate();
+    }
 
-    acc_trans.set_type_transformer(&type_trans);
-    acc_trans.transform();
+    if (settings.perform_rec) {
+        AccessTransformer acc_trans(project);
+        AllocateTransformer alloc_trans(project);
+        acc_trans.collect_access();
+        alloc_trans.collect_types();
 
-    alloc_trans.set_type_transformer(&type_trans);
-    alloc_trans.set_access_transformer(&acc_trans);
-    alloc_trans.transform();
+        ExclusionFinder ex_finder(project,
+                misc_utils::RefactorType::rec);
+        ex_finder.run();
+        auto excluded = ex_finder.get_excluded();
+        auto addressof_propagated =
+            ex_finder.get_addressof_propagated();
 
-    RecursionFinder rec_finder(project);
-    rec_finder.run();
+        TypeTransformer type_trans(project,
+                misc_utils::RefactorType::rec);
+        type_trans.set_exclusion(&excluded);
+        type_trans.transform();
 
-    auto target = rec_finder.get_recursion_functions();
-    LocalVarPacker packer(project);
-    packer.set_target(&target);
-    packer.run();
+        TransformPropagator prop(project);
+        prop.set_addressof_propagated(
+                &addressof_propagated);
+        prop.propagate();
+
+        acc_trans.set_type_transformer(&type_trans);
+        acc_trans.transform();
+
+        alloc_trans.set_type_transformer(&type_trans);
+        alloc_trans.set_access_transformer(&acc_trans);
+        alloc_trans.transform();
+
+        RecursionFinder rec_finder(project);
+        rec_finder.run();
+
+        auto target = rec_finder.get_recursion_functions();
+        LocalVarPacker packer(project);
+        packer.set_target(&target);
+        packer.run();
+    }
 
     AstTests::runAllTests(project);
     return backend(project);

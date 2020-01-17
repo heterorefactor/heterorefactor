@@ -22,7 +22,6 @@ public:
 
 protected:
     SgProject *m_project;
-    std::set<SgNode *> m_addressof_vis;
     const std::vector<std::pair<SgNode *, SgExpression *> >
         *m_addressof_edge;
 };

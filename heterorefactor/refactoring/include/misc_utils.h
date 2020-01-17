@@ -40,4 +40,6 @@ namespace misc_utils {
     {
         return std::unique_ptr<T>(new T(std::forward<Args>(args)...));
     }
+
+    enum RefactorType { i, fp, rec };
 };

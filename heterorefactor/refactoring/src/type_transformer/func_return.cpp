@@ -12,12 +12,17 @@ void TypeTransformer::transform_func_return(void) {
         // skip function if its return type is not a pointer / float
 
         SgType *target = NULL;
-        if (isSgPointerType(func->get_type()->get_return_type())) {
+        if (m_type == misc_utils::RefactorType::rec &&
+                isSgPointerType(func->get_type()->get_return_type())) {
             target = get_transformation_of(
                     isSgPointerType(func->get_type()->get_return_type()),
                     SageInterface::getGlobalScope(func));
-        } else if (isSgType(func->get_type()->get_return_type())->isFloatType()) {
-            target = get_transformation_fp(SageInterface::getGlobalScope(func));
+
+        } else if (m_type == misc_utils::RefactorType::fp &&
+                isSgType(func->get_type()->get_return_type())->isFloatType()) {
+            target = get_transformation_fp(
+                    SageInterface::getGlobalScope(func));
+
         } else {
             continue;
         }

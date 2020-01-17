@@ -1,6 +1,8 @@
 #include "type_transformer.h"
 
 void TypeTransformer::transform_binary_operations(void) {
+    if (m_type != misc_utils::RefactorType::fp) return;
+
     for (auto i: NodeQuery::querySubTree(m_project, V_SgBinaryOp)) {
         auto op = isSgBinaryOp(i);
         if (misc_utils::insideSystemHeader(op)) continue;

@@ -14,7 +14,7 @@
 
 class ExclusionFinder {
 public:
-    ExclusionFinder(SgProject* project);
+    ExclusionFinder(SgProject* project, misc_utils::RefactorType t);
     void run(void);
     std::set<SgNode *> get_excluded(void);
     std::vector<std::pair<SgNode *, SgExpression *> >
@@ -27,6 +27,7 @@ protected:
     void rule_propagate(void);
 
     SgProject* m_project;
+    misc_utils::RefactorType m_type;
     std::set<SgNode *> m_excluded;
     std::set<SgNode *> m_addressof_vis;
     std::vector<std::pair<SgNode *, SgExpression *> >
