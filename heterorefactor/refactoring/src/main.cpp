@@ -7,8 +7,12 @@
 #include "localvar_packer.h"
 
 #include <cassert>
+#include <cstdlib>
+#include <climits>
 #include <vector>
 #include <string>
+
+#include <libgen.h>
 
 #include <CommandLine.h>
 #include <Sawyer/CommandLine.h>
@@ -51,10 +55,37 @@ commandline_processing(
     using namespace Sawyer::CommandLine;
     return Rose::CommandLine::createEmptyParserStage(purpose, description)
             .longPrefix("-")
-            .doc("synopsis", "@prop{programName} [@v{gcc-switches}] [@v{hrf-switches}] -u @v{output} @v{input}")
+            .doc("synopsis",
+                    "@prop{programName} [@v{gcc-switches}] "
+                    "[@v{hrf-switches}] -u @v{output} @v{input}")
             .with(Rose::CommandLine::genericSwitches())
             .with(commandline_switches(settings))
             .parse(argvlist).apply().unparsedArgs(true);
+}
+
+
+void add_default_parameters(std::vector<std::string> &argvlist) {
+    argvlist.push_back("-std=c++11");
+}
+
+void add_libraries(std::vector<std::string> &argvlist, char *path) {
+    char buf[PATH_MAX];
+    char *res = realpath(path, buf);
+    if (res) {
+        char *dir = dirname(res);
+        argvlist.push_back("-I");
+        argvlist.push_back(std::string() + dir +
+                "/../../../../libraries/xilinx_include");
+        argvlist.push_back("-I");
+        argvlist.push_back(std::string() + dir +
+                "/../../../../libraries/template-hls-float/include");
+    }
+}
+
+void add_output_file(std::vector<std::string> &argvlist, std::string output) {
+    argvlist.push_back("-rose:skipfinalCompileStep");
+    argvlist.push_back("-rose:o");
+    argvlist.push_back(output);
 }
 
 
@@ -65,7 +96,6 @@ int main(int argc, char *argv[]) {
     std::vector<std::string> argvlist(argv, argv+argc);
     argvlist = commandline_processing(argvlist, settings);
 
-    argvlist.push_back("-std=c++11");
     if (!(settings.perform_rec ||
                 settings.perform_fp ||
                 settings.perform_int)) {
@@ -74,10 +104,11 @@ int main(int argc, char *argv[]) {
         settings.perform_fp = true;
         settings.perform_int = true;
     }
+
+    add_default_parameters(argvlist);
+    add_libraries(argvlist, argv[0]);
     if (settings.output_file != "") {
-        argvlist.push_back("-rose:skipfinalCompileStep");
-        argvlist.push_back("-rose:o");
-        argvlist.push_back(settings.output_file);
+        add_output_file(argvlist, settings.output_file);
     }
 
     auto project = frontend(argvlist);
