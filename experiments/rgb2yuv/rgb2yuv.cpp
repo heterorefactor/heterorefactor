@@ -1,9 +1,3 @@
-#include <cstddef>
-#include "thls/tops/policy_flopoco.hpp"
-typedef thls::policy_flopoco<5,17> __fpt_policy_t;
-typedef __fpt_policy_t::value_t __fpt_t;
-// TODO: should be automatically prepended
-
 #include <ap_int.h>
 #include <hls_stream.h>
 

@@ -9,10 +9,18 @@
 #include <cassert>
 #include <cstdlib>
 #include <climits>
+#include <cstring>
 #include <vector>
 #include <string>
+#include <iostream>
+#include <fstream>
+#include <iterator>
+#include <algorithm>
 
+#include <sys/types.h>
+#include <sys/stat.h>
 #include <libgen.h>
+#include <unistd.h>
 
 #include <CommandLine.h>
 #include <Sawyer/CommandLine.h>
@@ -88,6 +96,37 @@ void add_output_file(std::vector<std::string> &argvlist, std::string output) {
     argvlist.push_back(output);
 }
 
+void prepend_preprocessing_info(std::vector<std::string> &argvlist) {
+    // TODO: we need a more decent way to identify which is the input file
+    for (auto i = argvlist.rbegin(); i != argvlist.rend(); i++) {
+        struct stat path_stat;
+        stat(i->c_str(), &path_stat);
+        if (S_ISREG(path_stat.st_mode)) {
+            char buf[PATH_MAX];
+            char *res = realpath(i->c_str(), buf);
+            char *base = basename(res);
+            char temp[PATH_MAX] = "/tmp/hetero-XXXXXX-";
+            strcat(temp, base);
+            if (mkstemps(temp, strlen(base) + 1) >= 0) {
+                // TODO: we need to remove this file after exit
+                std::ofstream newinput(temp, std::ios::binary);
+                newinput << "// === BEGIN FP SUPPORT LIBRARY ===\n";
+                newinput << "#include <cstddef>\n";
+                newinput << "#include \"thls/tops/policy_flopoco.hpp\"\n";
+                newinput << "typedef thls::policy_flopoco<5,17> __fpt_policy_t;\n";
+                newinput << "typedef __fpt_policy_t::value_t __fpt_t;\n";
+                newinput << "// === END FP SUPPORT LIBRARY ===\n";
+                std::ifstream oldinput(*i, std::ios::binary);
+                std::copy(std::istreambuf_iterator<char>(oldinput),
+                        std::istreambuf_iterator<char>(),
+                        std::ostreambuf_iterator<char>(newinput));
+                *i = temp;
+            }
+            break;
+        }
+    }
+}
+
 
 int main(int argc, char *argv[]) {
     ROSE_INITIALIZE;
@@ -105,6 +144,9 @@ int main(int argc, char *argv[]) {
         settings.perform_int = true;
     }
 
+    if (settings.perform_fp) {
+        prepend_preprocessing_info(argvlist);
+    }
     add_default_parameters(argvlist);
     add_libraries(argvlist, argv[0]);
     if (settings.output_file != "") {
@@ -112,7 +154,7 @@ int main(int argc, char *argv[]) {
     }
 
     auto project = frontend(argvlist);
-    if (project->numberOfFiles() == 0) {
+    if (project->numberOfFiles() != 1) {
         INFO_IF(true, "Please run with -h to see the usages.\n");
         return 0;
     }
