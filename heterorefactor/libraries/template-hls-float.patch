@@ -22,6 +22,25 @@ index 3d5c94d..32b3929 100644
  #endif
  
  // TODO : Dispatch propertly to the correct header.
+diff --git a/include/thls/tops/fw_uint_on_masked_uint.hpp b/include/thls/tops/fw_uint_on_masked_uint.hpp
+index a7bad98..e9a35cd 100644
+--- a/include/thls/tops/fw_uint_on_masked_uint.hpp
++++ b/include/thls/tops/fw_uint_on_masked_uint.hpp
+@@ -386,6 +386,14 @@ struct fw_uint
+         bits=o.bits;
+     }
+ 
++    THLS_INLINE explicit fw_uint(unsigned int v)
++        : bits(v)
++    {
++        assert(W>=0);
++
++        assert(bits_t(v) <= MASK()); // Must be in range
++    }
++
+     THLS_INLINE explicit fw_uint(int v)
+         : bits(v)
+     {
 diff --git a/include/thls/tops/policy_flopoco.hpp b/include/thls/tops/policy_flopoco.hpp
 index 649f153..63bbb10 100644
 --- a/include/thls/tops/policy_flopoco.hpp
