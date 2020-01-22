@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.1.0 FATAL_ERROR)
 
 file(GLOB SRC "src/*.cpp" "src/*/*.cpp")
 file(GLOB RUNTIME_ALLOC "runtime/hls-buddy-alloc.c")
+file(GLOB TRACE_ALLOC "runtime/trace-alloc.c")
 
 function(make_includable input_file output_file)
     file(READ ${input_file} content)
@@ -12,6 +13,8 @@ endfunction(make_includable)
 
 make_includable(${RUNTIME_ALLOC}
     ${CMAKE_CURRENT_BINARY_DIR}/generated/runtime_alloc.frag)
+make_includable(${TRACE_ALLOC}
+    ${CMAKE_CURRENT_BINARY_DIR}/generated/trace_alloc.frag)
 
 include_directories("./include/"
     ${CMAKE_CURRENT_BINARY_DIR}

@@ -50,7 +50,7 @@
 
 
 // __dst_alloc_size_t should has at least (ELEMENT_LOG2 + 1) bits
-typedef unsigned int __dst_alloc_size_t;
+typedef unsigned long long __dst_alloc_size_t;
 typedef unsigned char __dst_alloc_bucket_size_t;
 
 #ifdef DEBUG

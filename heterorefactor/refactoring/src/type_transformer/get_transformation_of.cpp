@@ -15,7 +15,7 @@ SgType *TypeTransformer::get_transformation_of(
         // create typedef
         auto name = "__didx" + type->get_base_type()->get_mangled().getString();
         auto def = SageBuilder::buildTypedefDeclaration_nfi(
-                name, SgTypeUnsignedInt::createType(), scope);
+                name, SgTypeUnsignedLongLong::createType(), scope);
         SageInterface::prependStatement(def, scope);
         SageInterface::attachComment(def,
                 "type " + name + " was " +

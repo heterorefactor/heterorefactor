@@ -5,10 +5,10 @@ static SgFunctionDeclaration *build_malloc_function(
         std::string name, SgScopeStatement *scope) {
     return SageBuilder::buildNondefiningFunctionDeclaration(
             "__dst_alloc_malloc" + name,
-            SgTypeUnsignedInt::createType(),
+            SgTypeUnsignedLongLong::createType(),
             SageBuilder::buildFunctionParameterList(
                 SageBuilder::buildFunctionParameterTypeList(
-                    SgTypeUnsignedInt::createType())
+                    SgTypeUnsignedLongLong::createType())
             ), scope);
 }
 
@@ -19,7 +19,7 @@ static SgFunctionDeclaration *build_free_function(
             SgTypeVoid::createType(),
             SageBuilder::buildFunctionParameterList(
                 SageBuilder::buildFunctionParameterTypeList(
-                    SgTypeUnsignedInt::createType())
+                    SgTypeUnsignedLongLong::createType())
             ), scope);
 }
 
@@ -30,7 +30,7 @@ AccessTransformer::get_storage_of(
 
     // index access could only point to index access
     auto ptr = isSgPointerType(type);
-    if (ptr) type = SgTypeUnsignedInt::createType();
+    if (ptr) type = SgTypeUnsignedLongLong::createType();
 
     // find equivalent type
     auto eqiv_type = type;
