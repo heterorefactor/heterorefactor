@@ -31,7 +31,7 @@ protected:
 
     void transform_binary_operations(void);
 
-    SgType *recursive_transform_array(SgType *type, SgScopeStatement *scope);
+    SgType *recursive_transform(SgType *type, SgScopeStatement *scope);
 
     SgProject *m_project;
     misc_utils::RefactorType m_type;

@@ -1,10 +1,10 @@
 #include "type_transformer.h"
 
-SgType *TypeTransformer::recursive_transform_array(
+SgType *TypeTransformer::recursive_transform(
         SgType *type, SgScopeStatement *scope) {
 
     if (auto arr = isSgArrayType(type)) {
-        auto type = recursive_transform_array(arr->get_base_type(), scope);
+        auto type = recursive_transform(arr->get_base_type(), scope);
         if (!type) return NULL;  // base type is not transformable
 
         auto newarr = SageBuilder::buildArrayType(

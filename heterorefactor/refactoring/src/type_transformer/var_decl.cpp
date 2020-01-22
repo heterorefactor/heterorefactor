@@ -9,7 +9,7 @@ void TypeTransformer::transform_var_decl(void) {
         if (misc_utils::insideSystemHeader(var)) continue;
 
         // try transform type
-        auto type = recursive_transform_array(
+        auto type = recursive_transform(
                 var->get_type(),
                 SageInterface::getGlobalScope(var));
 

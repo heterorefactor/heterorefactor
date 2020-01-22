@@ -11,7 +11,7 @@ void TypeTransformer::transform_func_param(void) {
             if (misc_utils::insideSystemHeader(func)) continue;
 
             // try transform type
-            auto type = recursive_transform_array(
+            auto type = recursive_transform(
                     param->get_type(),
                     SageInterface::getGlobalScope(param));
 
