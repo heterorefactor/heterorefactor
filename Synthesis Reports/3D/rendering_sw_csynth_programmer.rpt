@@ -1,0 +1,281 @@
+
+
+================================================================
+== Vivado HLS Report for 'rendering_sw'
+================================================================
+* Date:           Mon May 13 14:11:14 2019
+
+* Version:        2018.3 (Build 2405991 on Thu Dec 06 23:56:15 MST 2018)
+* Project:        3drendering
+* Solution:       solution1
+* Product family: virtexuplus
+* Target device:  xcvu9p-fsgd2104-3-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |  10.00|     6.317|        1.25|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +------+-----------+------+-----------+---------+
+    |      Latency     |     Interval     | Pipeline|
+    |  min |    max    |  min |    max    |   Type  |
+    +------+-----------+------+-----------+---------+
+    |  1301|  183602001|  1301|  183602001|   none  |
+    +------+-----------+------+-----------+---------+
+
+    + Detail: 
+        * Instance: 
+        +---------------------------+----------------+-----+---------+-----+---------+---------+
+        |                           |                |    Latency    |    Interval   | Pipeline|
+        |          Instance         |     Module     | min |   max   | min |   max   |   Type  |
+        +---------------------------+----------------+-----+---------+-----+---------+---------+
+        |grp_rasterization2_fu_239  |rasterization2  |    1|  1310702|    1|  1310702|   none  |
+        |grp_zculling_fu_259        |zculling        |    2|   328190|    2|   328190|   none  |
+        |grp_coloringFB_fu_275      |coloringFB      |    2|   197120|    2|   197120|   none  |
+        +---------------------------+----------------+-----+---------+-----+---------+---------+
+
+        * Loop: 
+        +-------------+------+-----------+--------------+-----------+-----------+------+----------+
+        |             |      Latency     |   Iteration  |  Initiation Interval  | Trip |          |
+        |  Loop Name  |  min |    max    |    Latency   |  achieved |   target  | Count| Pipelined|
+        +-------------+------+-----------+--------------+-----------+-----------+------+----------+
+        |- TRIANGLES  |  1300|  183602000| 13 ~ 1836020 |          -|          -|   100|    no    |
+        +-------------+------+-----------+--------------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+---------+---------+-----+
+|       Name      | BRAM_18K| DSP48E|    FF   |   LUT   | URAM|
++-----------------+---------+-------+---------+---------+-----+
+|DSP              |        -|      6|        -|        -|    -|
+|Expression       |        -|      -|        0|      687|    -|
+|FIFO             |        -|      -|        -|        -|    -|
+|Instance         |       60|      6|     1057|     1223|    -|
+|Memory           |        7|      -|        0|        0|    -|
+|Multiplexer      |        -|      -|        -|      329|    -|
+|Register         |        -|      -|      300|        -|    -|
++-----------------+---------+-------+---------+---------+-----+
+|Total            |       67|     12|     1357|     2239|    0|
++-----------------+---------+-------+---------+---------+-----+
+|Available        |     4320|   6840|  2364480|  1182240|  960|
++-----------------+---------+-------+---------+---------+-----+
+|Utilization (%)  |        1|   ~0  |    ~0   |    ~0   |    0|
++-----------------+---------+-------+---------+---------+-----+
+
++ Detail: 
+    * Instance: 
+    +---------------------------+----------------+---------+-------+-----+-----+
+    |          Instance         |     Module     | BRAM_18K| DSP48E|  FF | LUT |
+    +---------------------------+----------------+---------+-------+-----+-----+
+    |grp_coloringFB_fu_275      |coloringFB      |        0|      0|   74|  245|
+    |grp_rasterization2_fu_239  |rasterization2  |        0|      6|  810|  658|
+    |grp_zculling_fu_259        |zculling        |       60|      0|  173|  320|
+    +---------------------------+----------------+---------+-------+-----+-----+
+    |Total                      |                |       60|      6| 1057| 1223|
+    +---------------------------+----------------+---------+-------+-----+-----+
+
+    * DSP48: 
+    +-------------------------------------------------+---------------------------------------------+----------------+
+    |                     Instance                    |                    Module                   |   Expression   |
+    +-------------------------------------------------+---------------------------------------------+----------------+
+    |rendering_sw_am_submul_16ns_16ns_17s_32_1_1_U48  |rendering_sw_am_submul_16ns_16ns_17s_32_1_1  | (i0 - i1) * i2 |
+    |rendering_sw_am_submul_16ns_16ns_17s_32_1_1_U49  |rendering_sw_am_submul_16ns_16ns_17s_32_1_1  | (i0 - i1) * i2 |
+    |rendering_sw_mul_mul_16s_16s_16_1_1_U50          |rendering_sw_mul_mul_16s_16s_16_1_1          |     i0 * i1    |
+    |rendering_sw_mul_mul_18ns_16ns_34_1_1_U45        |rendering_sw_mul_mul_18ns_16ns_34_1_1        |     i0 * i1    |
+    |rendering_sw_mul_mul_18ns_16ns_34_1_1_U46        |rendering_sw_mul_mul_18ns_16ns_34_1_1        |     i0 * i1    |
+    |rendering_sw_mul_mul_18ns_16ns_34_1_1_U47        |rendering_sw_mul_mul_18ns_16ns_34_1_1        |     i0 * i1    |
+    +-------------------------------------------------+---------------------------------------------+----------------+
+
+    * Memory: 
+    +--------------------+-------------------------------+---------+---+----+------+-----+------+-------------+
+    |       Memory       |             Module            | BRAM_18K| FF| LUT| Words| Bits| Banks| W*Bits*Banks|
+    +--------------------+-------------------------------+---------+---+----+------+-----+------+-------------+
+    |fragment_color_V_U  |rendering_sw_fragment_color_V  |        1|  0|   0|   500|    8|     1|         4000|
+    |pixels_color_V_U    |rendering_sw_fragment_color_V  |        1|  0|   0|   500|    8|     1|         4000|
+    |fragment_x_V_U      |rendering_sw_fragment_x_V      |        1|  0|   0|   500|   16|     1|         8000|
+    |fragment_y_V_U      |rendering_sw_fragment_x_V      |        1|  0|   0|   500|   16|     1|         8000|
+    |fragment_z_V_U      |rendering_sw_fragment_x_V      |        1|  0|   0|   500|   16|     1|         8000|
+    |pixels_x_V_U        |rendering_sw_fragment_x_V      |        1|  0|   0|   500|   16|     1|         8000|
+    |pixels_y_V_U        |rendering_sw_fragment_x_V      |        1|  0|   0|   500|   16|     1|         8000|
+    +--------------------+-------------------------------+---------+---+----+------+-----+------+-------------+
+    |Total               |                               |        7|  0|   0|  3500|   96|     7|        48000|
+    +--------------------+-------------------------------+---------+---+----+------+-----+------+-------------+
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +--------------------------------+----------+-------+---+----+------------+------------+
+    |          Variable Name         | Operation| DSP48E| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +--------------------------------+----------+-------+---+----+------------+------------+
+    |i_fu_293_p2                     |     +    |      0|  0|  15|           7|           1|
+    |tmp2_fu_351_p2                  |     +    |      0|  0|  16|          16|          16|
+    |triangle_2ds_z_V_fu_357_p2      |     +    |      0|  0|  16|          16|          16|
+    |cw_fu_407_p2                    |     -    |      0|  0|  39|          32|          32|
+    |max_index_V_i_fu_715_p1         |     -    |      0|  0|  23|          16|          16|
+    |max_min_V_4_i_fu_607_p2         |     -    |      0|  0|  23|          16|          16|
+    |ret_V_1_fu_379_p2               |     -    |      0|  0|  24|          17|          17|
+    |ret_V_3_fu_397_p2               |     -    |      0|  0|  24|          17|          17|
+    |exitcond_fu_287_p2              |   icmp   |      0|  0|  11|           7|           6|
+    |flag_fu_411_p2                  |   icmp   |      0|  0|  20|          32|          32|
+    |tmp_28_i1_i_fu_549_p2           |   icmp   |      0|  0|  13|          16|          16|
+    |tmp_28_i_i_fu_473_p2            |   icmp   |      0|  0|  13|          16|          16|
+    |tmp_29_i1_i_fu_587_p2           |   icmp   |      0|  0|  13|          16|          16|
+    |tmp_29_i_i_fu_511_p2            |   icmp   |      0|  0|  13|          16|          16|
+    |tmp_i1_i_9_fu_493_p2            |   icmp   |      0|  0|  13|          16|          16|
+    |tmp_i1_i_fu_461_p2              |   icmp   |      0|  0|  13|          16|          16|
+    |tmp_i2_i_10_fu_531_p2           |   icmp   |      0|  0|  13|          16|          16|
+    |tmp_i2_i_fu_499_p2              |   icmp   |      0|  0|  13|          16|          16|
+    |tmp_i3_i_11_fu_569_p2           |   icmp   |      0|  0|  13|          16|          16|
+    |tmp_i3_i_fu_537_p2              |   icmp   |      0|  0|  13|          16|          16|
+    |tmp_i4_i_fu_575_p2              |   icmp   |      0|  0|  13|          16|          16|
+    |tmp_i9_i_fu_455_p2              |   icmp   |      0|  0|  13|          16|          16|
+    |agg_result_V_i1_i_fu_523_p3     |  select  |      0|  0|  16|           1|          16|
+    |agg_result_V_i2_i_fu_561_p3     |  select  |      0|  0|  16|           1|          16|
+    |agg_result_V_i3_i_fu_599_p3     |  select  |      0|  0|  16|           1|          16|
+    |agg_result_V_i_i_fu_485_p3      |  select  |      0|  0|  16|           1|          16|
+    |in0_V_in2_V_i1_i_fu_504_p3      |  select  |      0|  0|  16|           1|          16|
+    |in0_V_in2_V_i2_i_fu_542_p3      |  select  |      0|  0|  16|           1|          16|
+    |in0_V_in2_V_i3_i_fu_580_p3      |  select  |      0|  0|  16|           1|          16|
+    |in0_V_in2_V_i_i_fu_466_p3       |  select  |      0|  0|  16|           1|          16|
+    |in1_V_in2_V_i1_i_fu_516_p3      |  select  |      0|  0|  16|           1|          16|
+    |in1_V_in2_V_i2_i_fu_554_p3      |  select  |      0|  0|  16|           1|          16|
+    |in1_V_in2_V_i3_i_fu_592_p3      |  select  |      0|  0|  16|           1|          16|
+    |in1_V_in2_V_i_i_fu_478_p3       |  select  |      0|  0|  16|           1|          16|
+    |max_index_0_V_fu_635_p3         |  select  |      0|  0|  16|           1|          16|
+    |max_min_0_V_fu_642_p3           |  select  |      0|  0|  16|           1|          16|
+    |max_min_2_V_fu_619_p3           |  select  |      0|  0|  16|           1|          16|
+    |max_min_4_V_fu_627_p3           |  select  |      0|  0|  16|           1|          16|
+    |triangle_2d_x0_V_tri_fu_445_p3  |  select  |      0|  0|  16|           1|          16|
+    |triangle_2d_x1_V_tri_fu_435_p3  |  select  |      0|  0|  16|           1|          16|
+    |triangle_2d_y0_V_tri_fu_450_p3  |  select  |      0|  0|  16|           1|          16|
+    |triangle_2d_y1_V_tri_fu_440_p3  |  select  |      0|  0|  16|           1|          16|
+    +--------------------------------+----------+-------+---+----+------------+------------+
+    |Total                           |          |      0|  0| 687|         388|         681|
+    +--------------------------------+----------+-------+---+----+------------+------------+
+
+    * Multiplexer: 
+    +---------------------------+----+-----------+-----+-----------+
+    |            Name           | LUT| Input Size| Bits| Total Bits|
+    +---------------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm                  |  47|         10|    1|         10|
+    |fragment_color_V_address0  |  15|          3|    9|         27|
+    |fragment_color_V_ce0       |  15|          3|    1|          3|
+    |fragment_color_V_we0       |   9|          2|    1|          2|
+    |fragment_x_V_address0      |  15|          3|    9|         27|
+    |fragment_x_V_ce0           |  15|          3|    1|          3|
+    |fragment_x_V_we0           |   9|          2|    1|          2|
+    |fragment_y_V_address0      |  15|          3|    9|         27|
+    |fragment_y_V_ce0           |  15|          3|    1|          3|
+    |fragment_y_V_we0           |   9|          2|    1|          2|
+    |fragment_z_V_address0      |  15|          3|    9|         27|
+    |fragment_z_V_ce0           |  15|          3|    1|          3|
+    |fragment_z_V_we0           |   9|          2|    1|          2|
+    |pixels_color_V_address0    |  15|          3|    9|         27|
+    |pixels_color_V_ce0         |  15|          3|    1|          3|
+    |pixels_color_V_we0         |   9|          2|    1|          2|
+    |pixels_x_V_address0        |  15|          3|    9|         27|
+    |pixels_x_V_ce0             |  15|          3|    1|          3|
+    |pixels_x_V_we0             |   9|          2|    1|          2|
+    |pixels_y_V_address0        |  15|          3|    9|         27|
+    |pixels_y_V_ce0             |  15|          3|    1|          3|
+    |pixels_y_V_we0             |   9|          2|    1|          2|
+    |val_assign_reg_227         |   9|          2|    7|         14|
+    +---------------------------+----+-----------+-----+-----------+
+    |Total                      | 329|         68|   85|        248|
+    +---------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +----------------------------------------+----+----+-----+-----------+
+    |                  Name                  | FF | LUT| Bits| Const Bits|
+    +----------------------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                               |   9|   0|    9|          0|
+    |flag_reg_858                            |   1|   0|    1|          0|
+    |grp_coloringFB_fu_275_ap_start_reg      |   1|   0|    1|          0|
+    |grp_rasterization2_fu_239_ap_start_reg  |   1|   0|    1|          0|
+    |grp_zculling_fu_259_ap_start_reg        |   1|   0|    1|          0|
+    |i_reg_749                               |   7|   0|    7|          0|
+    |max_index_0_V_read_s_fu_78              |  16|   0|   16|          0|
+    |max_index_0_V_reg_885                   |  16|   0|   16|          0|
+    |max_min_0_V_read_as_fu_66               |  16|   0|   16|          0|
+    |max_min_0_V_reg_890                     |  16|   0|   16|          0|
+    |max_min_2_V_read_as_fu_70               |  16|   0|   16|          0|
+    |max_min_2_V_reg_875                     |  16|   0|   16|          0|
+    |max_min_4_V_read_as_fu_74               |  16|   0|   16|          0|
+    |max_min_4_V_reg_880                     |  16|   0|   16|          0|
+    |size_fragment_V_reg_895                 |  16|   0|   16|          0|
+    |tmp_4_reg_867                           |   1|   0|    1|          0|
+    |tmp_5_reg_900                           |  16|   0|   16|          0|
+    |triangle_2ds_x0_V_reg_799               |  16|   0|   16|          0|
+    |triangle_2ds_x1_V_reg_813               |  16|   0|   16|          0|
+    |triangle_2ds_x2_V_reg_827               |  16|   0|   16|          0|
+    |triangle_2ds_y0_V_reg_806               |  16|   0|   16|          0|
+    |triangle_2ds_y1_V_reg_820               |  16|   0|   16|          0|
+    |triangle_2ds_y2_V_reg_840               |  16|   0|   16|          0|
+    |triangle_2ds_z_V_reg_853                |  16|   0|   16|          0|
+    |val_assign_reg_227                      |   7|   0|    7|          0|
+    +----------------------------------------+----+----+-----+-----------+
+    |Total                                   | 300|   0|  300|          0|
+    +----------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++----------------------------+-----+-----+------------+-------------------+--------------+
+|          RTL Ports         | Dir | Bits|  Protocol  |   Source Object   |    C Type    |
++----------------------------+-----+-----+------------+-------------------+--------------+
+|ap_clk                      |  in |    1| ap_ctrl_hs |    rendering_sw   | return value |
+|ap_rst                      |  in |    1| ap_ctrl_hs |    rendering_sw   | return value |
+|ap_start                    |  in |    1| ap_ctrl_hs |    rendering_sw   | return value |
+|ap_done                     | out |    1| ap_ctrl_hs |    rendering_sw   | return value |
+|ap_idle                     | out |    1| ap_ctrl_hs |    rendering_sw   | return value |
+|ap_ready                    | out |    1| ap_ctrl_hs |    rendering_sw   | return value |
+|triangle_3ds_x0_V_address0  | out |    7|  ap_memory | triangle_3ds_x0_V |     array    |
+|triangle_3ds_x0_V_ce0       | out |    1|  ap_memory | triangle_3ds_x0_V |     array    |
+|triangle_3ds_x0_V_q0        |  in |   16|  ap_memory | triangle_3ds_x0_V |     array    |
+|triangle_3ds_y0_V_address0  | out |    7|  ap_memory | triangle_3ds_y0_V |     array    |
+|triangle_3ds_y0_V_ce0       | out |    1|  ap_memory | triangle_3ds_y0_V |     array    |
+|triangle_3ds_y0_V_q0        |  in |   16|  ap_memory | triangle_3ds_y0_V |     array    |
+|triangle_3ds_z0_V_address0  | out |    7|  ap_memory | triangle_3ds_z0_V |     array    |
+|triangle_3ds_z0_V_ce0       | out |    1|  ap_memory | triangle_3ds_z0_V |     array    |
+|triangle_3ds_z0_V_q0        |  in |   16|  ap_memory | triangle_3ds_z0_V |     array    |
+|triangle_3ds_x1_V_address0  | out |    7|  ap_memory | triangle_3ds_x1_V |     array    |
+|triangle_3ds_x1_V_ce0       | out |    1|  ap_memory | triangle_3ds_x1_V |     array    |
+|triangle_3ds_x1_V_q0        |  in |   16|  ap_memory | triangle_3ds_x1_V |     array    |
+|triangle_3ds_y1_V_address0  | out |    7|  ap_memory | triangle_3ds_y1_V |     array    |
+|triangle_3ds_y1_V_ce0       | out |    1|  ap_memory | triangle_3ds_y1_V |     array    |
+|triangle_3ds_y1_V_q0        |  in |   16|  ap_memory | triangle_3ds_y1_V |     array    |
+|triangle_3ds_z1_V_address0  | out |    7|  ap_memory | triangle_3ds_z1_V |     array    |
+|triangle_3ds_z1_V_ce0       | out |    1|  ap_memory | triangle_3ds_z1_V |     array    |
+|triangle_3ds_z1_V_q0        |  in |   16|  ap_memory | triangle_3ds_z1_V |     array    |
+|triangle_3ds_x2_V_address0  | out |    7|  ap_memory | triangle_3ds_x2_V |     array    |
+|triangle_3ds_x2_V_ce0       | out |    1|  ap_memory | triangle_3ds_x2_V |     array    |
+|triangle_3ds_x2_V_q0        |  in |   16|  ap_memory | triangle_3ds_x2_V |     array    |
+|triangle_3ds_y2_V_address0  | out |    7|  ap_memory | triangle_3ds_y2_V |     array    |
+|triangle_3ds_y2_V_ce0       | out |    1|  ap_memory | triangle_3ds_y2_V |     array    |
+|triangle_3ds_y2_V_q0        |  in |   16|  ap_memory | triangle_3ds_y2_V |     array    |
+|triangle_3ds_z2_V_address0  | out |    7|  ap_memory | triangle_3ds_z2_V |     array    |
+|triangle_3ds_z2_V_ce0       | out |    1|  ap_memory | triangle_3ds_z2_V |     array    |
+|triangle_3ds_z2_V_q0        |  in |   16|  ap_memory | triangle_3ds_z2_V |     array    |
+|output_V_address0           | out |   16|  ap_memory |      output_V     |     array    |
+|output_V_ce0                | out |    1|  ap_memory |      output_V     |     array    |
+|output_V_we0                | out |    1|  ap_memory |      output_V     |     array    |
+|output_V_d0                 | out |   16|  ap_memory |      output_V     |     array    |
++----------------------------+-----+-----+------------+-------------------+--------------+
+
