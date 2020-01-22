@@ -25,6 +25,7 @@ protected:
     void rule_addressof(void);
     void rule_array(void);
     void rule_propagate(void);
+    void rule_pointer_cast(void);
 
     SgProject* m_project;
     misc_utils::RefactorType m_type;

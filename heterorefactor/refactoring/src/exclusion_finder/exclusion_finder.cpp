@@ -9,6 +9,7 @@ ExclusionFinder::ExclusionFinder(SgProject* project,
 void ExclusionFinder::run(void) {
     switch (m_type) {
     case misc_utils::RefactorType::fp:
+        rule_pointer_cast();
         rule_addressof();
         rule_interface();
         break;

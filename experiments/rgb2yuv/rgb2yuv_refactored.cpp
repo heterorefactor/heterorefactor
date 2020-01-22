@@ -1,8 +1,8 @@
 // === BEGIN FP SUPPORT LIBRARY ===
 #include <cstddef>
 #include "thls/tops/policy_flopoco.hpp"
-typedef thls::policy_flopoco< 5 , 17 > __fpt_policy_t;
-typedef thls::policy_flopoco< 5,17> ::value_t __fpt_t;
+typedef thls::policy_flopoco< 8 , 17 > __fpt_policy_t;
+typedef thls::policy_flopoco< 8,17> ::value_t __fpt_t;
 // === END FP SUPPORT LIBRARY ===
 #include <ap_int.h>
 #include <hls_stream.h>
@@ -83,7 +83,7 @@ void rgb2yuv(class ap_int< 512 > *r,class ap_int< 512 > *g,class ap_int< 512 > *
     for (int j = 0; j < 16; j++) {
       
 #pragma HLS unroll
-      float y = output_y[j] . read(); // TODO: fix me
+      float y = output_y[j] . read();
       float u = output_u[j] . read();
       float v = output_v[j] . read();
       yy((32 * (j + 1) - 1),(32 * j)) =  *((int *)(&y));
