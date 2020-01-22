@@ -35,7 +35,7 @@ static const char* description =
 
 struct Settings {
     bool perform_rec = false;
-    bool perform_fp = false;
+    int  perform_fp_fraction_bits = 0;
     bool perform_int = false;
     std::string output_file = "";
 };
@@ -46,7 +46,9 @@ Sawyer::CommandLine::SwitchGroup commandline_switches(Settings &settings) {
     switches.doc("These switches control the HeteroRefactor tool.");
     switches.insert(Switch("rec").intrinsicValue(true, settings.perform_rec)
             .doc("Enable the recursive data structures refactoring."));
-    switches.insert(Switch("fp").intrinsicValue(true, settings.perform_fp)
+    switches.insert(Switch("fp")
+            .argument("fraction_bits",
+                anyParser(settings.perform_fp_fraction_bits))
             .doc("Enable the floating point numbers refactoring."));
     switches.insert(Switch("int").intrinsicValue(true, settings.perform_int)
             .doc("Enable the integer bitwidth refactoring."));
@@ -96,7 +98,8 @@ void add_output_file(std::vector<std::string> &argvlist, std::string output) {
     argvlist.push_back(output);
 }
 
-void prepend_preprocessing_info(std::vector<std::string> &argvlist) {
+void prepend_preprocessing_info(std::vector<std::string> &argvlist,
+        std::string str) {
     // TODO: we need a more decent way to identify which is the input file
     for (auto i = argvlist.rbegin(); i != argvlist.rend(); i++) {
         struct stat path_stat;
@@ -110,12 +113,7 @@ void prepend_preprocessing_info(std::vector<std::string> &argvlist) {
             if (mkstemps(temp, strlen(base) + 1) >= 0) {
                 // TODO: we need to remove this file after exit
                 std::ofstream newinput(temp, std::ios::binary);
-                newinput << "// === BEGIN FP SUPPORT LIBRARY ===\n";
-                newinput << "#include <cstddef>\n";
-                newinput << "#include \"thls/tops/policy_flopoco.hpp\"\n";
-                newinput << "typedef thls::policy_flopoco<5,17> __fpt_policy_t;\n";
-                newinput << "typedef __fpt_policy_t::value_t __fpt_t;\n";
-                newinput << "// === END FP SUPPORT LIBRARY ===\n";
+                newinput << str;
                 std::ifstream oldinput(*i, std::ios::binary);
                 std::copy(std::istreambuf_iterator<char>(oldinput),
                         std::istreambuf_iterator<char>(),
@@ -136,16 +134,25 @@ int main(int argc, char *argv[]) {
     argvlist = commandline_processing(argvlist, settings);
 
     if (!(settings.perform_rec ||
-                settings.perform_fp ||
+                settings.perform_fp_fraction_bits ||
                 settings.perform_int)) {
         // Run all transformations by default
         settings.perform_rec = true;
-        settings.perform_fp = true;
+        settings.perform_fp_fraction_bits = 23;
         settings.perform_int = true;
     }
 
-    if (settings.perform_fp) {
-        prepend_preprocessing_info(argvlist);
+    if (settings.perform_fp_fraction_bits) {
+        prepend_preprocessing_info(argvlist,
+                std::string() +
+                "// === BEGIN FP SUPPORT LIBRARY ===\n"
+                "#include <cstddef>\n"
+                "#include \"thls/tops/policy_flopoco.hpp\"\n"
+                "typedef thls::policy_flopoco<8," +
+                    std::to_string(settings.perform_fp_fraction_bits) +
+                "> __fpt_policy_t;\n"
+                "typedef __fpt_policy_t::value_t __fpt_t;\n"
+                "// === END FP SUPPORT LIBRARY ===\n");
     }
     add_default_parameters(argvlist);
     add_libraries(argvlist, argv[0]);
@@ -165,7 +172,7 @@ int main(int argc, char *argv[]) {
         INFO_IF(true, "Refactoring for integer is to be implemented\n");
     }
 
-    if (settings.perform_fp) {
+    if (settings.perform_fp_fraction_bits) {
         ExclusionFinder ex_finder(project,
                 misc_utils::RefactorType::fp);
         ex_finder.run();
