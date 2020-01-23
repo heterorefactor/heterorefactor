@@ -85,6 +85,11 @@ AccessTransformer::get_storage_of(
             if (decl->isForward() && decl->get_definingDeclaration())
                 decl = decl->get_definingDeclaration();
             loc = SageInterface::getNextStatement(decl);
+        } else if (auto file = isSgVariableSymbol(
+                    SageInterface::lookupSymbolInParentScopes(
+                    "__dst_file", scope))) {
+            loc = SageInterface::getNextStatement(file
+                    ->get_declaration()->get_declaration());
         } else {
             loc = SageInterface::getFirstStatement(scope);
         }

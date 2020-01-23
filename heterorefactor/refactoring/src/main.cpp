@@ -5,6 +5,7 @@
 #include "allocate_transformer.h"
 #include "recursion_finder.h"
 #include "localvar_packer.h"
+#include "stack_tracker.h"
 
 #include <cassert>
 #include <cstdlib>
@@ -172,7 +173,7 @@ int main(int argc, char *argv[]) {
                 "const char *__dst_filename = \"" +
                     settings.perform_rec_instrument_file
                 + "\";\n"
-                "unsigned long long __dst_file = 0;"
+                "unsigned long long __dst_file = 0;\n"
                 "// === END REC INSTRUMENT LIBRARY ===\n");
     }
 
@@ -253,9 +254,15 @@ int main(int argc, char *argv[]) {
         rec_finder.run();
 
         auto target = rec_finder.get_recursion_functions();
-        LocalVarPacker packer(project);
-        packer.set_target(&target);
-        packer.run();
+        if (settings.perform_rec_instrument_file != "") {
+            StackTracker tracker(project);
+            tracker.set_target(&target);
+            tracker.run();
+        } else {
+            LocalVarPacker packer(project);
+            packer.set_target(&target);
+            packer.run();
+        }
     }
 
     AstTests::runAllTests(project);

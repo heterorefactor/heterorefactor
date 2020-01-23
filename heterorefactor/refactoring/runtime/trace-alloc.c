@@ -19,6 +19,7 @@
 #define PPCAT(A,B) PPCAT_NX(A,B)
 #define MALLOC PPCAT(__dst_alloc_malloc, ACCESS_NAME)
 #define FREE PPCAT(__dst_alloc_free, ACCESS_NAME)
+#define MEM_TYPE PPCAT(__dst_alloc_list, ACCESS_NAME)
 // END LOCAL NAMES
 
 #define MAX_ALLOC_ELEMENT (1 << ELEMENT_LOG2)
@@ -66,7 +67,7 @@ void FREE(__dst_alloc_size_t ptr) {
     fprintf((FILE *)__dst_file,
             "[__DST_ALLOC] free " XSTR(ACCESS_NAME)
             " %llu\n", request);
-    fflush(__dst_file);
+    fflush((FILE *)__dst_file);
     free(ACCESS_NAME + ptr);
 }
 
