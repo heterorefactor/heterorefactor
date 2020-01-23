@@ -19,7 +19,7 @@ void StackTracker::track_call_return(SgFunctionDeclaration *func) {
             "__dst_file = (unsigned long long)fopen(__dst_filename, \"w\"); }"
         "fprintf((FILE *)__dst_file, \"[__REC_RECUR] ";
     std::string temp2 =
-        "\");"
+        "\\n\");"
         "fflush((FILE *)__dst_file);";
 
     // function entry
