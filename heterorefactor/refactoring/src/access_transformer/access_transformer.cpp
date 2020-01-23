@@ -3,6 +3,7 @@
 AccessTransformer::AccessTransformer(SgProject* project) {
     m_project = project;
     m_type_trans = NULL;
+    m_is_instrument = false;
     m_list_base_decl = SageBuilder::buildClassDeclaration_nfi(
             "__dst_alloc_list_base_t", SgClassDeclaration::e_struct,
             m_project->get_globalScopeAcrossFiles(),
@@ -16,6 +17,10 @@ AccessTransformer::AccessTransformer(SgProject* project) {
             "next", SgTypeUnsignedInt::createType(), NULL, list_base_def);
     list_base_def->append_member(list_prev);
     list_base_def->append_member(list_next);
+}
+
+void AccessTransformer::set_is_instrument(void) {
+    m_is_instrument = true;
 }
 
 void AccessTransformer::set_type_transformer(TypeTransformer *type_trans) {

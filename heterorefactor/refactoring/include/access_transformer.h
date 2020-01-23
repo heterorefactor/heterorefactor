@@ -24,6 +24,7 @@ public:
 
     AccessTransformer(SgProject* project);
     void set_type_transformer(TypeTransformer *type_trans);
+    void set_is_instrument(void);
     void collect_access(void);
     void transform(void);
 
@@ -42,6 +43,7 @@ protected:
     SgProject *m_project;
     TypeTransformer *m_type_trans;
     SgClassDeclaration *m_list_base_decl;
+    bool m_is_instrument;
 
     std::map<SgExpression *, SgPointerType *> m_original_type;
     std::map<SgType *, SgInitializedName *> m_storage;

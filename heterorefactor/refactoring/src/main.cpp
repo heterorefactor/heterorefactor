@@ -37,6 +37,7 @@ struct Settings {
     bool perform_rec = false;
     int  perform_fp_fraction_bits = 0;
     bool perform_int = false;
+    std::string perform_rec_instrument_file = "";
     std::string output_file = "";
 };
 
@@ -46,6 +47,11 @@ Sawyer::CommandLine::SwitchGroup commandline_switches(Settings &settings) {
     switches.doc("These switches control the HeteroRefactor tool.");
     switches.insert(Switch("rec").intrinsicValue(true, settings.perform_rec)
             .doc("Enable the recursive data structures refactoring."));
+    switches.insert(Switch("instrument")
+            .argument("profile_output",
+                anyParser(settings.perform_rec_instrument_file))
+            .doc("Refactor the program for recursive data structures "
+                "instrumentation."));
     switches.insert(Switch("fp")
             .argument("fraction_bits",
                 anyParser(settings.perform_fp_fraction_bits))
@@ -134,7 +140,8 @@ int main(int argc, char *argv[]) {
     argvlist = commandline_processing(argvlist, settings);
 
     if (!(settings.perform_rec ||
-                settings.perform_fp_fraction_bits ||
+                settings.perform_rec_instrument_file == "" ||
+                settings.perform_fp_fraction_bits == 0 ||
                 settings.perform_int)) {
         // Run all transformations by default
         settings.perform_rec = true;
@@ -154,6 +161,21 @@ int main(int argc, char *argv[]) {
                 "typedef __fpt_policy_t::value_t __fpt_t;\n"
                 "// === END FP SUPPORT LIBRARY ===\n");
     }
+
+    if (settings.perform_rec ||
+            settings.perform_rec_instrument_file != "") {
+        prepend_preprocessing_info(argvlist,
+                std::string() +
+                "// === BEGIN REC INSTRUMENT LIBRARY ===\n"
+                "#include <stdio.h>\n"
+                "#include <stdlib.h>\n"
+                "const char *__dst_filename = \"" +
+                    settings.perform_rec_instrument_file
+                + "\";\n"
+                "unsigned long long __dst_file = 0;"
+                "// === END REC INSTRUMENT LIBRARY ===\n");
+    }
+
     add_default_parameters(argvlist);
     add_libraries(argvlist, argv[0]);
     if (settings.output_file != "") {
@@ -191,9 +213,15 @@ int main(int argc, char *argv[]) {
         prop.propagate();
     }
 
-    if (settings.perform_rec) {
+    if (settings.perform_rec ||
+            settings.perform_rec_instrument_file != "") {
         AccessTransformer acc_trans(project);
         AllocateTransformer alloc_trans(project);
+
+        if (settings.perform_rec_instrument_file != "") {
+            acc_trans.set_is_instrument();
+        }
+
         acc_trans.collect_access();
         alloc_trans.collect_types();
 

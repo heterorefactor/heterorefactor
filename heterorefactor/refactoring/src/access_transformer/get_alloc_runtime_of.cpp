@@ -10,7 +10,10 @@ std::string AccessTransformer::get_alloc_runtime_of(
     char tmpin[] = "/tmp/dst_tempin_XXXXXX";
     ::close(::mkstemp(tmpin));
     std::ofstream infile(tmpin);
-    infile << resource::runtime_alloc;
+    if (m_is_instrument)
+        infile << resource::trace_alloc;
+    else
+        infile << resource::runtime_alloc;
     infile.close();
 
     char tmpout[] = "/tmp/dst_tempout_XXXXXX";

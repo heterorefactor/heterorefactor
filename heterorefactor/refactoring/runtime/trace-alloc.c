@@ -39,17 +39,18 @@ struct MEM_TYPE ACCESS_NAME[MAX_ALLOC_ELEMENT + 1];
 #include <stdio.h>
 #include <stdlib.h>
 const char *__dst_filename = "/tmp/hetero-profile.trace";
-FILE *__dst_file = NULL;
+unsigned long long __dst_file = 0;
 #endif
 
 __dst_alloc_size_t MALLOC(__dst_alloc_size_t request) {
     if (!__dst_file) {
-        __dst_file = fopen(__dst_filename, "w");
+        __dst_file = (unsigned long long)fopen(__dst_filename, "w");
     }
     request = request / sizeof(ACCESS_TYPE);
-    fprintf(__dst_file, "[__DST_ALLOC] malloc " XSTR(ACCESS_NAME)
+    fprintf((FILE *)__dst_file,
+            "[__DST_ALLOC] malloc " XSTR(ACCESS_NAME)
             " %llu\n", request);
-    fflush(__dst_file);
+    fflush((FILE *)__dst_file);
     MEM_TYPE *allocated = (MEM_TYPE *)malloc(
             request * sizeof(ACCESS_TYPE));
     allocated[0]._link.prev = request;
@@ -59,10 +60,11 @@ __dst_alloc_size_t MALLOC(__dst_alloc_size_t request) {
 void FREE(__dst_alloc_size_t ptr) {
     if (ptr == 0) return;
     if (!__dst_file) {
-        __dst_file = fopen(__dst_filename, "w");
+        __dst_file = (unsigned long long)fopen(__dst_filename, "w");
     }
     __dst_alloc_size_t request = ACCESS_NAME[ptr]._link.prev;
-    fprintf(__dst_file, "[__DST_ALLOC] free " XSTR(ACCESS_NAME)
+    fprintf((FILE *)__dst_file,
+            "[__DST_ALLOC] free " XSTR(ACCESS_NAME)
             " %llu\n", request);
     fflush(__dst_file);
     free(ACCESS_NAME + ptr);
