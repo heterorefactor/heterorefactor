@@ -32,7 +32,23 @@ void StackTracker::track_call_return(SgFunctionDeclaration *func) {
     // transform all return
     for (auto i : NodeQuery::querySubTree(func, V_SgReturnStmt)) {
         auto ret = isSgReturnStmt(i);
-        SageInterface::attachArbitraryText(ret, temp + "ret " +
+        if (!isSgTypeVoid(func->get_type()->get_return_type())) {
+            auto name = SageInterface::generateUniqueVariableName(
+                    SageInterface::getScope(ret));
+            auto var = SageBuilder::buildVariableDeclaration(name,
+                    func->get_type()->get_return_type(),
+                    SageBuilder::buildAssignInitializer(
+                        isSgExpression(SageInterface::deepCopyNode(
+                                ret->get_expression())),
+                        func->get_type()->get_return_type()),
+                    SageInterface::getScope(ret));
+            SageInterface::insertStatementBefore(ret, var);
+            ret->set_expression(SageBuilder::buildVarRefExp(var));
+        }
+        auto empty_stmt = SageBuilder::buildExprStatement(
+            SageBuilder::buildIntVal(0));
+        SageInterface::insertStatementBefore(ret, empty_stmt);
+        SageInterface::attachArbitraryText(empty_stmt, temp + "ret " +
                 func->get_mangled_name().getString() + temp2);
     }
 
