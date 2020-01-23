@@ -1,5 +1,15 @@
 #include "type_transformer.h"
 
+SgType *TypeTransformer::recursive_transform_i(
+        SgType *type, SgScopeStatement *scope, SgName var_name) {
+
+    if (isSgType(type)->isIntegerType() &&
+            m_type == misc_utils::RefactorType::i) {
+        return get_transformation_i(scope, var_name);
+    }
+
+}
+
 SgType *TypeTransformer::recursive_transform(
         SgType *type, SgScopeStatement *scope) {
 

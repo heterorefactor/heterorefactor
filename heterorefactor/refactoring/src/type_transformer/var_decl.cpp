@@ -9,9 +9,17 @@ void TypeTransformer::transform_var_decl(void) {
         if (misc_utils::insideSystemHeader(var)) continue;
 
         // try transform type
-        auto type = recursive_transform(
+        SgType  *type;
+
+        if (isSgType(var->get_type())->isIntegerType()) {
+            type = recursive_transform_i(
+                var->get_type(),
+                SageInterface::getGlobalScope(var),var->get_name());
+        } else{
+            type = recursive_transform(
                 var->get_type(),
                 SageInterface::getGlobalScope(var));
+        }
 
         // skip var if not transformed
         if (!type) continue;

@@ -11,6 +11,10 @@ void TypeTransformer::set_exclusion(const std::set<SgNode *> *excluded) {
     m_excluded = excluded;
 }
 
+void TypeTransformer::set_varmap(std::map<std::string, std::string> var_name_to_type) {
+    var_name_to_type_map = var_name_to_type;
+}
+
 void TypeTransformer::transform(void) {
     transform_func_return();
     transform_func_param();
@@ -27,6 +31,17 @@ SgType *TypeTransformer::get_transformation_fp(SgScopeStatement *scope) {
     if (!m_transform_type) {
         m_transform_type = SageInterface::lookupTypedefSymbolInParentScopes(
             "__fpt_t", scope)->get_type();
+    }
+    return m_transform_type;
+}
+
+SgType *TypeTransformer::get_transformation_i(SgScopeStatement *scope, SgName var_name) {
+    if (!m_transform_type) {
+        if (var_name_to_type_map.find(var_name.getString()) != var_name_to_type_map.end()){
+            m_transform_type = SageBuilder::buildLongType(); // TODO: need to build ap_uint type from map
+        } else{
+            m_transform_type = SageBuilder::buildIntType();
+        }
     }
     return m_transform_type;
 }

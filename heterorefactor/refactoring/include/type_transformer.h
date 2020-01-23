@@ -17,9 +17,11 @@ class TypeTransformer {
 public:
     TypeTransformer(SgProject* project, misc_utils::RefactorType t);
     void set_exclusion(const std::set<SgNode *> *excluded);
+    void set_varmap(std::map<std::string, std::string>);
     void transform(void);
 
     SgType *get_transformation_fp(SgScopeStatement *scope);
+    SgType *get_transformation_i(SgScopeStatement *scope, SgName var_name);
     SgType *get_transformation_of(SgPointerType *type,
             SgScopeStatement *scope = NULL);
 
@@ -32,6 +34,7 @@ protected:
     void transform_binary_operations(void);
 
     SgType *recursive_transform(SgType *type, SgScopeStatement *scope);
+    SgType *recursive_transform_i(SgType *type, SgScopeStatement *scope, SgName var_name);
 
     SgProject *m_project;
     misc_utils::RefactorType m_type;
@@ -39,4 +42,5 @@ protected:
     const std::set<SgNode *> *m_excluded;
 
     std::map<SgPointerType *, SgType *> m_mapping_to_index;
+    std::map<std::string, std::string> var_name_to_type_map;
 };

@@ -17,6 +17,8 @@
 #include <fstream>
 #include <iterator>
 #include <algorithm>
+#include <map>
+#include <sstream>
 
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -39,6 +41,7 @@ struct Settings {
     int  perform_fp_fraction_bits = 0;
     bool perform_int = false;
     std::string perform_rec_instrument_file = "";
+    std::string bit_file = "";
     std::string output_file = "";
 };
 
@@ -59,6 +62,9 @@ Sawyer::CommandLine::SwitchGroup commandline_switches(Settings &settings) {
             .doc("Enable the floating point numbers refactoring."));
     switches.insert(Switch("int").intrinsicValue(true, settings.perform_int)
             .doc("Enable the integer bitwidth refactoring."));
+    switches.insert(Switch("bitfile", 'f')
+            .argument("string", anyParser(settings.bit_file))
+            .doc("File with bitwidth for each variable"));
     switches.insert(Switch("output", 'u')
             .argument("string", anyParser(settings.output_file))
             .doc("Output path for refactored program."));
@@ -150,6 +156,19 @@ int main(int argc, char *argv[]) {
         settings.perform_int = true;
     }
 
+    std::map<std::string,std::string> variable_type_map;
+    if (settings.perform_int){
+        std::ifstream inp_file(settings.bit_file);
+        std::string s;
+        while( std::getline(inp_file,s) ) {
+            std::istringstream splitSentence(s);
+            std::string var_name, var_type;
+            splitSentence >> var_name;
+            splitSentence >> var_type;
+            variable_type_map.insert(std::map<std::string,std::string>::value_type(var_name, var_type));
+        }
+    }
+
     if (settings.perform_fp_fraction_bits) {
         prepend_preprocessing_info(argvlist,
                 std::string() +
@@ -177,6 +196,12 @@ int main(int argc, char *argv[]) {
                 "// === END REC INSTRUMENT LIBRARY ===\n");
     }
 
+    if (settings.perform_int) {
+        prepend_preprocessing_info(argvlist,
+                std::string() +
+                "// === BEGIN INT SUPPORT LIBRARY ===\n"
+                "// === END INT SUPPORT LIBRARY ===\n");
+    }
     add_default_parameters(argvlist);
     add_libraries(argvlist, argv[0]);
     if (settings.output_file != "") {
@@ -192,7 +217,24 @@ int main(int argc, char *argv[]) {
     AstTests::runAllTests(project);
 
     if (settings.perform_int) {
-        INFO_IF(true, "Refactoring for integer is to be implemented\n");
+        ExclusionFinder ex_finder(project,
+                misc_utils::RefactorType::i);
+        ex_finder.run();
+        auto excluded = ex_finder.get_excluded();
+        auto addressof_propagated =
+            ex_finder.get_addressof_propagated();
+
+        TypeTransformer type_trans(project,
+                misc_utils::RefactorType::i);
+        type_trans.set_exclusion(&excluded);
+        type_trans.set_varmap(variable_type_map);
+        type_trans.transform();
+
+        TransformPropagator prop(project);
+        prop.set_addressof_propagated(
+                &addressof_propagated);
+        prop.propagate();
+
     }
 
     if (settings.perform_fp_fraction_bits) {
