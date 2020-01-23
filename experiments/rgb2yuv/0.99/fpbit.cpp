@@ -5,7 +5,7 @@
 int main()
 {
 	double rate = 0;
-	int size = 2064;
+	int size = 2976;
 	float ar[size];
 	float apr[size];
 	float m;	
@@ -44,7 +44,7 @@ int main()
 	}
 	printf("passed: %d\n", pass);
         	
-	if(pass < size*0.95)
+	if(pass < size*0.99)
 	{
 		printf("Verification failed.\n");
 		return 0;
