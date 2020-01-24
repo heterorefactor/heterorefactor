@@ -51,7 +51,8 @@ $(addprefix $(mkfile_dir)/rpt/original_run_time_, $(addsuffix .txt, $(testdata))
 		$(mkfile_dir)/tmp/original_output_$(@_size).txt ; \
 
 $(addprefix $(mkfile_dir)/refactored/kernel_device_, $(addsuffix .cpp, $(testdata))): \
-		$(mkfile_dir)/src/kernel.cpp invariant
+		$(mkfile_dir)/src/kernel.cpp \
+        $(addprefix $(mkfile_dir)/invariant/invariant_, $(addsuffix .ivr, $(testdata)))
 	mkdir -p $(mkfile_dir)/rpt
 	mkdir -p $(mkfile_dir)/refactored
 	$(eval @_base := $(basename $(notdir $@)))
