@@ -166,5 +166,9 @@ heterorefactor/libraries/rose-compiler/boost
 heterorefactor/libraries/rose-compiler/build
 heterorefactor/libraries/rose-compiler/dist
 heterorefactor/libraries/template-hls-float
-.ti
-.log
+*.ti
+*.log
+obj
+bin
+bit
+tmp
