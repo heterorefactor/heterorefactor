@@ -6,6 +6,7 @@
 #include "recursion_finder.h"
 #include "localvar_packer.h"
 #include "stack_tracker.h"
+#include "recursive_invariant_parser.h"
 
 #include <cassert>
 #include <cstdlib>
@@ -40,7 +41,8 @@ struct Settings {
     bool perform_rec = false;
     int  perform_fp_fraction_bits = 0;
     bool perform_int = false;
-    std::string perform_rec_instrument_file = "";
+    std::string perform_instrument4rec_outputfile = "";
+    std::string rec_invariant_file = "";
     std::string bit_file = "";
     std::string output_file = "";
 };
@@ -53,7 +55,7 @@ Sawyer::CommandLine::SwitchGroup commandline_switches(Settings &settings) {
             .doc("Enable the recursive data structures refactoring."));
     switches.insert(Switch("instrument")
             .argument("profile_output",
-                anyParser(settings.perform_rec_instrument_file))
+                anyParser(settings.perform_instrument4rec_outputfile))
             .doc("Refactor the program for recursive data structures "
                 "instrumentation."));
     switches.insert(Switch("fp")
@@ -62,7 +64,10 @@ Sawyer::CommandLine::SwitchGroup commandline_switches(Settings &settings) {
             .doc("Enable the floating point numbers refactoring."));
     switches.insert(Switch("int").intrinsicValue(true, settings.perform_int)
             .doc("Enable the integer bitwidth refactoring."));
-    switches.insert(Switch("bitfile", 'f')
+    switches.insert(Switch("recfile")
+            .argument("string", anyParser(settings.rec_invariant_file))
+            .doc("File with invariant for recursive data structures."));
+    switches.insert(Switch("bitfile")
             .argument("string", anyParser(settings.bit_file))
             .doc("File with bitwidth for each variable"));
     switches.insert(Switch("output", 'u')
@@ -147,7 +152,7 @@ int main(int argc, char *argv[]) {
     argvlist = commandline_processing(argvlist, settings);
 
     if (!(settings.perform_rec ||
-                settings.perform_rec_instrument_file == "" ||
+                settings.perform_instrument4rec_outputfile == "" ||
                 settings.perform_fp_fraction_bits == 0 ||
                 settings.perform_int)) {
         // Run all transformations by default
@@ -157,7 +162,7 @@ int main(int argc, char *argv[]) {
     }
 
     std::map<std::string,std::string> variable_type_map;
-    if (settings.perform_int){
+    if (settings.bit_file != "") {
         std::ifstream inp_file(settings.bit_file);
         std::string s;
         while( std::getline(inp_file,s) ) {
@@ -183,17 +188,17 @@ int main(int argc, char *argv[]) {
     }
 
     if (settings.perform_rec ||
-            settings.perform_rec_instrument_file != "") {
+            settings.perform_instrument4rec_outputfile != "") {
         prepend_preprocessing_info(argvlist,
                 std::string() +
-                "// === BEGIN REC INSTRUMENT LIBRARY ===\n"
+                "// === BEGIN REC SUPPORT LIBRARY ===\n"
                 "#include <stdio.h>\n"
                 "#include <stdlib.h>\n"
                 "const char *__dst_filename = \"" +
-                    settings.perform_rec_instrument_file
+                    settings.perform_instrument4rec_outputfile
                 + "\";\n"
                 "unsigned long long __dst_file = 0;\n"
-                "// === END REC INSTRUMENT LIBRARY ===\n");
+                "// === END REC SUPPORT LIBRARY ===\n");
     }
 
     if (settings.perform_int) {
@@ -257,13 +262,15 @@ int main(int argc, char *argv[]) {
     }
 
     if (settings.perform_rec ||
-            settings.perform_rec_instrument_file != "") {
+            settings.perform_instrument4rec_outputfile != "") {
         AccessTransformer acc_trans(project);
         AllocateTransformer alloc_trans(project);
 
-        if (settings.perform_rec_instrument_file != "") {
+        if (settings.perform_instrument4rec_outputfile != "") {
             acc_trans.set_is_instrument();
         }
+
+        RecursiveInvariantParser parser(settings.rec_invariant_file);
 
         acc_trans.collect_access();
         alloc_trans.collect_types();
@@ -286,6 +293,7 @@ int main(int argc, char *argv[]) {
         prop.propagate();
 
         acc_trans.set_type_transformer(&type_trans);
+        acc_trans.set_type_size(parser.get_type_size_mapping());
         acc_trans.transform();
 
         alloc_trans.set_type_transformer(&type_trans);
@@ -296,12 +304,13 @@ int main(int argc, char *argv[]) {
         rec_finder.run();
 
         auto target = rec_finder.get_recursion_functions();
-        if (settings.perform_rec_instrument_file != "") {
+        if (settings.perform_instrument4rec_outputfile != "") {
             StackTracker tracker(project);
             tracker.set_target(&target);
             tracker.run();
         } else {
             LocalVarPacker packer(project);
+            packer.set_func_depth(parser.get_func_depth_mapping());
             packer.set_target(&target);
             packer.run();
         }

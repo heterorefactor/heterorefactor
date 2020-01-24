@@ -27,6 +27,10 @@ void AccessTransformer::set_type_transformer(TypeTransformer *type_trans) {
     m_type_trans = type_trans;
 }
 
+void AccessTransformer::set_type_size(std::map<std::string, int> mapping) {
+    m_type_size_mapping = mapping;
+}
+
 void AccessTransformer::collect_access(void) {
     for (auto node : NodeQuery::querySubTree(m_project, V_SgExpression)) {
         auto exp = isSgExpression(node);

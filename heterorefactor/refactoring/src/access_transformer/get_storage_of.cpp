@@ -42,8 +42,15 @@ AccessTransformer::get_storage_of(
 
     if (!m_storage.count(eqiv_type)) {
         // Build storage name and freelist type name
-        std::string name = "__dmem" + type->get_mangled().getString();
+        std::string mangled_name = type->get_mangled().getString();
+        std::string name = "__dmem" + mangled_name;
         std::string freelist_name = "__dst_alloc_list" + name;
+
+        int struct_size = 10; // default size if no invariant availible
+        if (m_type_size_mapping.find(name) !=
+                m_type_size_mapping.end()) {
+            struct_size = m_type_size_mapping[name];
+        }
 
         // Build freelist union structure
         auto freelist_decl = SageBuilder::buildClassDeclaration_nfi(
@@ -61,7 +68,7 @@ AccessTransformer::get_storage_of(
         freelist_def->append_member(freelist_data);
 
         auto array_type = SageBuilder::buildArrayType(freelist_decl->get_type(),
-            SageBuilder::buildUnsignedIntVal(1 << 10)); // TODO
+            SageBuilder::buildUnsignedIntVal(1 << struct_size));
         auto var = SageBuilder::buildInitializedName(name, array_type);
         var->set_scope(scope);
         m_storage[eqiv_type] = var;
@@ -71,7 +78,7 @@ AccessTransformer::get_storage_of(
         auto mem_decl = SageBuilder::buildVariableDeclaration(
                 name, array_type, NULL, scope);
         auto runtime_code = get_alloc_runtime_of(
-                name, type->unparseToString(), 10); // TODO
+                name, type->unparseToString(), struct_size);
 
         auto malloc_func = build_malloc_function(name, scope);
         auto free_func = build_free_function(name, scope);

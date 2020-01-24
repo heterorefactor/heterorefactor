@@ -9,6 +9,10 @@ void LocalVarPacker::set_target(std::set<SgFunctionDeclaration *> *target) {
     m_target = target;
 }
 
+void LocalVarPacker::set_func_depth(std::map<std::string, int> mapping) {
+    m_func_depth_mapping = mapping;
+}
+
 void LocalVarPacker::run(void) {
     for (auto func : *m_target)
         pack_function(func);
@@ -87,12 +91,18 @@ void LocalVarPacker::declare_packed_name(SgFunctionDeclaration *func) {
     auto packed_type = m_func_info[func].packed_type;
     SageInterface::insertStatementBefore(func, packed_type);
 
+    std::string mangled_name = func->get_mangled_name().getString();
+    int recur_size = 10;  // default value if no invariant available
+    if (m_func_depth_mapping.find(mangled_name) !=
+            m_func_depth_mapping.end()) {
+        recur_size = m_func_depth_mapping[mangled_name];
+    }
+
     // Build and insert packed stack array
     auto packed_array = SageBuilder::buildArrayType(
             SageBuilder::buildVolatileType(packed_type->get_type()),
-        SageBuilder::buildUnsignedIntVal(1 << 10)); // TODO
-    auto packed_name = "__rect_packed_var_" +
-        func->get_mangled_name().getString();
+        SageBuilder::buildUnsignedIntVal(1 << recur_size));
+    auto packed_name = "__rect_packed_var_" + mangled_name;
     auto packed_decl = SageBuilder::buildVariableDeclaration(
             packed_name, packed_array, NULL, func_scope);
     auto packed_var = packed_decl->get_decl_item(packed_name);
@@ -103,8 +113,7 @@ void LocalVarPacker::declare_packed_name(SgFunctionDeclaration *func) {
     m_func_info[func].last_entry_line = packed_decl;
 
     // Build and insert stack top
-    auto stack_top_name = "__rect_packed_top_" +
-        func->get_mangled_name().getString();
+    auto stack_top_name = "__rect_packed_top_" + mangled_name;
     auto stack_top_decl = SageBuilder::buildVariableDeclaration(
             stack_top_name,
             SageBuilder::buildVolatileType(SgTypeUnsignedInt::createType()),

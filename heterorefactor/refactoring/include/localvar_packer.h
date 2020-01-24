@@ -20,6 +20,7 @@ class LocalVarPacker {
 public:
     LocalVarPacker(SgProject* project);
     void set_target(std::set<SgFunctionDeclaration *> *target);
+    void set_func_depth(std::map<std::string, int> mapping);
     void run(void);
 
 protected:
@@ -44,6 +45,7 @@ protected:
     std::set<SgFunctionDeclaration *> *m_target;
     std::map<SgFunctionDeclaration *, function_info_t>
         m_func_info;
+    std::map<std::string, int> m_func_depth_mapping;
     int m_uid_counter;
 
     void pack_function(SgFunctionDeclaration *func);

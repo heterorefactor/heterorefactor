@@ -14,14 +14,14 @@ Then you can compile your program to use `instrument.cpp` in place of `kernel.cp
 By running the program as you will do with your old kernel file, a profile file
 `path/to/profile_file` will be generated with all traces of your kernel.
 
-To generate invariance from instrumentation profile file, run the following command:
+To generate invariant from instrumentation profile file, run the following command:
 
 ```
-awk -f path/to/generate_invariance.awk path/to/profile_file > path/to/invariance
+awk -f path/to/generate_invariant.awk path/to/profile_file > path/to/invariant
 ```
 
-After these steps, you can refactor your program with the invariance file:
+After these steps, you can refactor your program with the invariant file:
 
 ```
-path/to/heterorefactor -rec path/to/invariance -u refactored.cpp kernel.cpp
+path/to/heterorefactor -rec -recfile path/to/invariant -u refactored.cpp kernel.cpp
 ```

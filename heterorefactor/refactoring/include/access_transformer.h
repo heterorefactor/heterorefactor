@@ -24,6 +24,7 @@ public:
 
     AccessTransformer(SgProject* project);
     void set_type_transformer(TypeTransformer *type_trans);
+    void set_type_size(std::map<std::string, int> mapping);
     void set_is_instrument(void);
     void collect_access(void);
     void transform(void);
@@ -48,4 +49,5 @@ protected:
     std::map<SgExpression *, SgPointerType *> m_original_type;
     std::map<SgType *, SgInitializedName *> m_storage;
     std::map<SgType *, AccessTool> m_access_tool;
+    std::map<std::string, int> m_type_size_mapping;
 };
