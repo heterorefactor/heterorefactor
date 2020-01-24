@@ -18,7 +18,7 @@ int main(int argc, char** argv) {
     std::cin >> query;
     query += '%';
 
-    bool fallback = false;
+    int fallback = 0;
     std::vector<char> substrings_buffer(substrings.begin(), substrings.end());
     std::vector<char> query_buffer(query.begin(), query.end());
     int worst_case_matches = query.size() * substring_count;

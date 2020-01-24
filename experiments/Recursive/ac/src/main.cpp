@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include "kernel.h"
+#include <sys/time.h>
 
 #include "CLWorld.h"
 #include "CLKernel.h"
@@ -32,7 +33,7 @@ int main(int argc, char** argv) {
     std::vector<int> substring_indexes(worst_case_matches);
     std::vector<int> query_indexes(worst_case_matches);
 
-    bool fallback = false;
+    int *fallback = new int[1];
 
     CLWorld world = CLWorld(TARGET_DEVICE, CL_DEVICE_TYPE_ACCELERATOR);
     world.addProgram(kernelFile);
@@ -50,7 +51,10 @@ int main(int argc, char** argv) {
             substring_indexes.size(), CL_MEM_WRITE_ONLY);
     CLMemObj query_indexes_mem((void*)query_indexes.data(), sizeof(int),
             query_indexes.size(), CL_MEM_WRITE_ONLY);
-    CLMemObj fallback_mem((void*)&fallback, sizeof(bool), 1, CL_MEM_WRITE_ONLY);
+    CLMemObj fallback_mem((void*)fallback, sizeof(int), 1, CL_MEM_WRITE_ONLY);
+
+    struct timeval start, end;
+    gettimeofday(&start, 0);
 
     world.addMemObj(substrings_size_mem);
     world.addMemObj(substrings_buffer_mem);
@@ -76,16 +80,26 @@ int main(int argc, char** argv) {
 
     world.readMemObj(5);
 
-    if (fallback) {
+    if (fallback[0]) {
+        struct timeval start, end;
+        gettimeofday(&start, 0);
         std::cout << "INFO: falling back!" << std::endl;
         AhoCorasick_search(&substrings_size,
                 substrings_buffer.data(), query_buffer.data(),
                 substring_indexes.data(), query_indexes.data(),
-                &fallback);
+                fallback);
+        gettimeofday(&end, 0);
+        long long elapsed = (end.tv_sec - start.tv_sec) * 1000000LL + end.tv_usec - start.tv_usec;
+        fprintf(stderr, "%lld,", elapsed);
     } else {
         world.readMemObj(3);
         world.readMemObj(4);
     }
+
+    gettimeofday(&end, 0);
+    long long elapsed = (end.tv_sec - start.tv_sec) * 1000000LL + end.tv_usec - start.tv_usec;
+
+    fprintf(stderr, "%lld\n", elapsed);
 
     world.releaseWorld();
 

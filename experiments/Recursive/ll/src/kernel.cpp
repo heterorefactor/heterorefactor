@@ -82,7 +82,7 @@ NODE *sort_list(NODE *head) {
 }
 
 extern "C" {
-void process_top(int n, int *input, int *output, bool *fallback) {
+void process_top(int n, int *input, int *output, int *fallback) {
 #pragma HLS INTERFACE m_axi port=input offset=slave bundle=gmem
 #pragma HLS INTERFACE m_axi port=output offset=slave bundle=gmem
 #pragma HLS INTERFACE m_axi port=fallback offset=slave bundle=gmem

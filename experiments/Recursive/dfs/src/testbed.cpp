@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 extern "C" {
-void process_top(int n, int *input, int *output, bool *fallback);
+void process_top(int n, int *input, int *output, int *fallback);
 };
 
 int main(int argc, char** argv) {
@@ -14,7 +14,7 @@ int main(int argc, char** argv) {
         scanf("%d", &input[i]);
     }
 
-    bool fallback;
+    int fallback = 0;
     process_top(n, input, results, &fallback);
 
     if (fallback) {

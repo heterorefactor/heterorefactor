@@ -131,7 +131,7 @@ int rear = - 1;
 bool g_fallback = false;
 extern "C" {
 
-void process_top(int n,int *input,int *output,bool *fallback)
+void process_top(int n,int *input,int *output,int *fallback)
 {
   
 #pragma HLS INTERFACE m_axi port=input offset=slave bundle=gmem

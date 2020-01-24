@@ -9,13 +9,13 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <CL/opencl.h>
+#include <time.h>
+#include <sys/time.h>
 
-#define DATA_SIZE 7
-
-int values[] ={40,20,10,30,60,70,80};
+int values[1000000];
 
 extern "C" {
-void process_top(int n, int *input, int *output, bool *fallback);
+void process_top(int n, int *input, int *output, int *fallback);
 };
 
 int
@@ -44,6 +44,11 @@ load_file_to_memory(const char *filename, char **result)
 
 int main(int argc, char** argv)
 {
+    int DATA_SIZE = atoi(argv[2]);
+    srand(time(NULL));
+    for (int i = 0; i < DATA_SIZE; i++) {
+        values[i] = rand();
+    }
 #if defined(SDX_PLATFORM) && !defined(TARGET_DEVICE)
   #define STR_VALUE(arg)      #arg
   #define GET_STRING(name) STR_VALUE(name)
@@ -233,7 +238,7 @@ int main(int argc, char** argv)
     //
     input_a = clCreateBuffer(context,  CL_MEM_READ_ONLY,  sizeof(int) * DATA_SIZE, NULL, NULL);
     output = clCreateBuffer(context, CL_MEM_WRITE_ONLY, sizeof(int) * DATA_SIZE, NULL, NULL);
-    fallback = clCreateBuffer(context, CL_MEM_WRITE_ONLY, sizeof(bool), NULL, NULL);
+    fallback = clCreateBuffer(context, CL_MEM_WRITE_ONLY, sizeof(int), NULL, NULL);
     if (!input_a || !output || !fallback)
         {
             printf("Error: Failed to allocate device memory!\n");
@@ -266,6 +271,9 @@ int main(int argc, char** argv)
             return EXIT_FAILURE;
         }
 
+    struct timeval start, end;
+
+    gettimeofday(&start, 0);
     err = clEnqueueTask(commands, device_kernel, 0, NULL, NULL);
     if (err)
         {
@@ -273,6 +281,19 @@ int main(int argc, char** argv)
             printf("Test failed\n");
             return EXIT_FAILURE;
         }
+
+    cl_event readevent2;
+    int *device_fallback = new int[1];
+    err = clEnqueueReadBuffer( commands, fallback, CL_TRUE, 0, sizeof(int), device_fallback, 0, NULL, &readevent2 );
+    if (err != CL_SUCCESS)
+        {
+            printf("Error: Failed to read fallback info! %d\n", err);
+            printf("Test failed\n");
+            return EXIT_FAILURE;
+        }
+    clWaitForEvents(1, &readevent2);
+
+    if (device_fallback[0]) printf("INFO: fallback to host\n");
 
     // Read back the results from the device to verify the output
     //
@@ -284,34 +305,21 @@ int main(int argc, char** argv)
             printf("Test failed\n");
             return EXIT_FAILURE;
         }
-    
-    bool device_fallback = false;
-    err = clEnqueueReadBuffer( commands, fallback, CL_TRUE, 0, sizeof(bool), &device_fallback, 0, NULL, &readevent );
-    if (err != CL_SUCCESS)
-        {
-            printf("Error: Failed to read fallback info! %d\n", err);
-            printf("Test failed\n");
-            return EXIT_FAILURE;
-        }
-    if (device_fallback) printf("INFO: fallback to host");
-
     clWaitForEvents(1, &readevent);
+    gettimeofday(&end, 0);
+    long long elapsed = (end.tv_sec - start.tv_sec) * 1000000LL + end.tv_usec - start.tv_usec;
 
-    bool ignore;
+    int ignore;
+    gettimeofday(&start, 0);
     process_top(DATA_SIZE, input, host_results, &ignore);
-    printf("\n\nOutput from host: ");
+    gettimeofday(&end, 0);
+    long long elapsed_h = (end.tv_sec - start.tv_sec) * 1000000LL + end.tv_usec - start.tv_usec;
     for (i=0;i< DATA_SIZE;i++) {
-        if (host_results[i] == -1) putchar('\n');
-        else printf("%d\t",host_results[i]);
+        if (host_results[i] != device_results[i] && !device_fallback[0]) {
+            printf("(%d,%d,%d)",i,host_results[i],device_results[i]);
+        }
     }
-    printf("\noutput end\n\n");
-
-    printf("\n\nOutput from device: ");
-    for (i=0;i< DATA_SIZE;i++) {
-        if (device_results[i] == -1) putchar('\n');
-        else printf("%d\t",device_results[i]);
-    }
-    printf("\noutput end\n\n");
+    fprintf(stderr, "%d,%lld,%lld,%d\n", DATA_SIZE, elapsed, elapsed_h,device_fallback[0]);
 
     // Shutdown and cleanup
     //

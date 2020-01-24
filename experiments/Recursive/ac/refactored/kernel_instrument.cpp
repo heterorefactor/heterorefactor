@@ -214,7 +214,7 @@ if (!__dst_file) { __dst_file = (unsigned long long)fopen(__dst_filename, "w"); 
     return __temp0__;
   }
    else {
-    ch >= 'a' && ch <= 'z'?(static_cast < void  >  (0)) : __assert_fail("ch >= 'a' && ch <= 'z'","hetero-fqIsHr-kernel.cpp",53,__PRETTY_FUNCTION__);
+    ch >= 'a' && ch <= 'z'?(static_cast < void  >  (0)) : __assert_fail("ch >= 'a' && ch <= 'z'","hetero-jpgqmL-kernel.cpp",53,__PRETTY_FUNCTION__);
     int idx = ch - 'a';
     if (!(&(__dmemclass_node + root + 0U - 1U) -> _data) -> next[idx]) {
       (&(__dmemclass_node + root + 0U - 1U) -> _data) -> next[idx] = new_node();
@@ -273,7 +273,7 @@ void query_AhoCorasick(__didxclass_node root,char *query,int *substring_indexes,
     char ch = query[offset];
     if (ch == '%') 
       break; 
-    ch >= 'a' && ch <= 'z'?(static_cast < void  >  (0)) : __assert_fail("ch >= 'a' && ch <= 'z'","hetero-fqIsHr-kernel.cpp",108,__PRETTY_FUNCTION__);
+    ch >= 'a' && ch <= 'z'?(static_cast < void  >  (0)) : __assert_fail("ch >= 'a' && ch <= 'z'","hetero-jpgqmL-kernel.cpp",108,__PRETTY_FUNCTION__);
     int idx = ch - 'a';
 // follow fail link if not matched in curr
     while(!(&(__dmemclass_node + curr + 0U - 1U) -> _data) -> next[idx] && curr != root)
@@ -325,7 +325,7 @@ extern "C" {
  *   query_indexes: an output array, the corresponding indexes in query.
  */
 
-void AhoCorasick_search(int *substring_length_p,char *substrings,char *query,int *substring_indexes,int *query_indexes,bool *fallback)
+void AhoCorasick_search(int *substring_length_p,char *substrings,char *query,int *substring_indexes,int *query_indexes,int *fallback)
 {
   
 #pragma HLS INTERFACE m_axi port=substring_length_p offset=slave bundle=gmem

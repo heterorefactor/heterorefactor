@@ -151,7 +151,7 @@ extern "C" {
  */
 void AhoCorasick_search(
         int *substring_length_p, char *substrings, char *query,
-        int *substring_indexes, int *query_indexes, bool *fallback) {
+        int *substring_indexes, int *query_indexes, int *fallback) {
 #pragma HLS INTERFACE m_axi port=substring_length_p offset=slave bundle=gmem
 #pragma HLS INTERFACE m_axi port=substrings offset=slave bundle=gmem
 #pragma HLS INTERFACE m_axi port=query offset=slave bundle=gmem

@@ -293,7 +293,7 @@ int rear = - 1;
 bool g_fallback = false;
 extern "C" {
 
-void process_top(int n,int *input,int *output,bool *fallback)
+void process_top(int n,int *input,int *output,int *fallback)
 {
   
 #pragma HLS INTERFACE m_axi port=input offset=slave bundle=gmem
@@ -352,7 +352,7 @@ struct __rect_packed_type_L5447R__L5448R
 
 void insert(__didxL105R newitem,__didxL105R root)
 {
-  volatile struct __rect_packed_type_L5447R__L5448R __rect_packed_var_L5447R__L5448R[64U];
+  volatile struct __rect_packed_type_L5447R__L5448R __rect_packed_var_L5447R__L5448R[32U];
   volatile unsigned int __rect_packed_top_L5447R__L5448R = 0U;
   __rect_packed_var_L5447R__L5448R[0 + __rect_packed_top_L5447R__L5448R] . _location = 1U;
   __rect_packed_var_L5447R__L5448R[0 + __rect_packed_top_L5447R__L5448R] . local0 = newitem;
@@ -373,7 +373,7 @@ void insert(__didxL105R newitem,__didxL105R root)
     if ((&(__dmemL105R + __rect_packed_var_L5447R__L5448R[0 + __rect_packed_top_L5447R__L5448R] . local1 + 0U - 1U) -> _data) -> right == 0L) 
       (&(__dmemL105R + __rect_packed_var_L5447R__L5448R[0 + __rect_packed_top_L5447R__L5448R] . local1 + 0U - 1U) -> _data) -> right = __rect_packed_var_L5447R__L5448R[0 + __rect_packed_top_L5447R__L5448R] . local0;
      else {
-      if (__rect_packed_top_L5447R__L5448R + 1U == 64U) {;
+      if (__rect_packed_top_L5447R__L5448R + 1U == 32U) {;
 g_fallback = true;
         return ;
       }
@@ -392,7 +392,7 @@ g_fallback = true;
     if ((&(__dmemL105R + __rect_packed_var_L5447R__L5448R[0 + __rect_packed_top_L5447R__L5448R] . local1 + 0U - 1U) -> _data) -> left == 0L) 
       (&(__dmemL105R + __rect_packed_var_L5447R__L5448R[0 + __rect_packed_top_L5447R__L5448R] . local1 + 0U - 1U) -> _data) -> left = __rect_packed_var_L5447R__L5448R[0 + __rect_packed_top_L5447R__L5448R] . local0;
      else {
-      if (__rect_packed_top_L5447R__L5448R + 1U == 64U) {;
+      if (__rect_packed_top_L5447R__L5448R + 1U == 32U) {;
 g_fallback = true;
         return ;
       }
@@ -419,7 +419,7 @@ struct __rect_packed_type_L5449R__L5450R
 
 void dfs_traverse(__didxL105R root)
 {
-  volatile struct __rect_packed_type_L5449R__L5450R __rect_packed_var_L5449R__L5450R[64U];
+  volatile struct __rect_packed_type_L5449R__L5450R __rect_packed_var_L5449R__L5450R[32U];
   volatile unsigned int __rect_packed_top_L5449R__L5450R = 0U;
   __rect_packed_var_L5449R__L5450R[0 + __rect_packed_top_L5449R__L5450R] . _location = 1U;
   __rect_packed_var_L5449R__L5450R[0 + __rect_packed_top_L5449R__L5450R] . local0 = root;
@@ -436,7 +436,7 @@ void dfs_traverse(__didxL105R root)
     goto __rect_func_L3_L5449R__L5450R;
   __rect_func_L1_L5449R__L5450R:
   if ((&(__dmemL105R + __rect_packed_var_L5449R__L5450R[0 + __rect_packed_top_L5449R__L5450R] . local0 + 0U - 1U) -> _data) -> left != 0L) {
-    if (__rect_packed_top_L5449R__L5450R + 1U == 64U) {;
+    if (__rect_packed_top_L5449R__L5450R + 1U == 32U) {;
 g_fallback = true;
       return ;
     }
@@ -450,7 +450,7 @@ g_fallback = true;
   }
   (&(__dmemi + queue + ++rear - 1U) -> _data)[0U] = (&(__dmemL105R + __rect_packed_var_L5449R__L5450R[0 + __rect_packed_top_L5449R__L5450R] . local0 + 0U - 1U) -> _data) -> value;
   if ((&(__dmemL105R + __rect_packed_var_L5449R__L5450R[0 + __rect_packed_top_L5449R__L5450R] . local0 + 0U - 1U) -> _data) -> right != 0L) {
-    if (__rect_packed_top_L5449R__L5450R + 1U == 64U) {;
+    if (__rect_packed_top_L5449R__L5450R + 1U == 32U) {;
 g_fallback = true;
       return ;
     }
