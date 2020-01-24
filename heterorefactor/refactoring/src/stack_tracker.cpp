@@ -38,8 +38,10 @@ void StackTracker::track_call_return(SgFunctionDeclaration *func) {
             auto var = SageBuilder::buildVariableDeclaration(name,
                     func->get_type()->get_return_type(),
                     SageBuilder::buildAssignInitializer(
-                        isSgExpression(SageInterface::deepCopyNode(
-                                ret->get_expression())),
+                        SageBuilder::buildCastExp(isSgExpression(
+                                SageInterface::deepCopyNode(
+                                    ret->get_expression())),
+                                func->get_type()->get_return_type()),
                         func->get_type()->get_return_type()),
                     SageInterface::getScope(ret));
             SageInterface::insertStatementBefore(ret, var);
