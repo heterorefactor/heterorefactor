@@ -49,7 +49,7 @@ AccessTransformer::get_storage_of(
         int struct_size = 10; // default size if no invariant availible
         if (m_type_size_mapping.find(name) !=
                 m_type_size_mapping.end()) {
-            struct_size = m_type_size_mapping[name];
+            struct_size = m_type_size_mapping[name] + 1;
         }
 
         // Build freelist union structure

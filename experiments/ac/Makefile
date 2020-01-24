@@ -49,6 +49,17 @@ $(addprefix $(mkfile_dir)/rpt/original_run_time_, $(addsuffix .txt, $(testdata))
 		$(mkfile_dir)/bin/original.exe > \
 		$(mkfile_dir)/tmp/original_output_$(@_size).txt ; \
 
+$(addprefix $(mkfile_dir)/refactored/kernel_device_, $(addsuffix .cpp, $(testdata))): \
+		$(mkfile_dir)/src/kernel.cpp invariant
+	mkdir -p $(mkfile_dir)/rpt
+	$(eval @_base := $(basename $(notdir $@)))
+	$(eval @_tmp := $(@_base:%.cpp=%))
+	$(eval @_size := $(@_tmp:kernel_device_%=%))
+	time -o $(mkfile_dir)/rpt/refactoring_time_$(@_size).txt \
+		$(mkfile_dir)/../../heterorefactor/refactoring/build/heterorefactor \
+		-rec -recfile $(mkfile_dir)/invariant/invariant_$(@_size).ivr \
+		-u $@ $<
+
 $(mkfile_dir)/bin/original.exe: \
 		$(mkfile_dir)/src/kernel.cpp \
 		$(mkfile_dir)/src/testbed.cpp
@@ -71,8 +82,6 @@ $(mkfile_dir)/refactored/kernel_instrument.cpp: $(mkfile_dir)/src/kernel.cpp
 		$(mkfile_dir)/../../heterorefactor/refactoring/build/heterorefactor \
 		-instrument $(instrumentation_profile) \
 		-u $@ $^
-
-$(addprefix $(mkfile_dir)/refactored/kernel_device_, $(addsuffix .cpp, $(testdata))):
 
 clean:
 	-rm -f $(mkfile_dir)/refactored/kernel_instrument.cpp
