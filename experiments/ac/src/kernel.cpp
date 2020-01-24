@@ -177,11 +177,13 @@ void AhoCorasick_search(
 
     for (int offset = 0; offset < substring_length; ) {
         offset += insert_node(root, substring_buf + offset, offset) + 1;
+        if (g_fallback) goto fail;
     }
 
     build_AhoCorasick(root, node_count);
     query_AhoCorasick(root, query, substring_indexes, query_indexes);
     delete_tree(root);
+    if (g_fallback) goto fail;
 
 fail:
     *fallback = g_fallback;
