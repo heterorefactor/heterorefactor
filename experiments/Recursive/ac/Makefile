@@ -3,6 +3,7 @@ testdata := 1024 2048 4096 8192 16384 32768
 
 mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
 mkfile_dir := $(dir $(mkfile_path))
+hrf_dir := $(mkfile_dir)/../../../heterorefactor/
 instrumentation_profile := /tmp/hetero-profile
 
 # Contention on $(instrumentation_profile) file, disallow parallelization
@@ -31,7 +32,7 @@ $(addprefix $(mkfile_dir)/invariant/invariant_, $(addsuffix .ivr, $(testdata))):
 		time -o $(mkfile_dir)/rpt/instrument_run_time_$(@_size).txt \
 		$(mkfile_dir)/bin/instrument.exe > \
 		$(mkfile_dir)/tmp/instrument_output_$(@_size).txt ; \
-	awk -f $(mkfile_dir)/../../heterorefactor/instrumentation/recursive/generate_invariant.awk \
+	awk -f $(hrf_dir)/instrumentation/recursive/generate_invariant.awk \
 		$(instrumentation_profile) \
 		> $(mkfile_dir)/invariant/invariant_$(@_size).ivr ; \
 
@@ -56,7 +57,7 @@ $(addprefix $(mkfile_dir)/refactored/kernel_device_, $(addsuffix .cpp, $(testdat
 	$(eval @_tmp := $(@_base:%.cpp=%))
 	$(eval @_size := $(@_tmp:kernel_device_%=%))
 	time -o $(mkfile_dir)/rpt/refactoring_time_$(@_size).txt \
-		$(mkfile_dir)/../../heterorefactor/refactoring/build/heterorefactor \
+		$(hrf_dir)/refactoring/build/heterorefactor \
 		-rec -recfile $(mkfile_dir)/invariant/invariant_$(@_size).ivr \
 		-u $@ $<
 
@@ -79,7 +80,7 @@ $(mkfile_dir)/bin/instrument.exe: \
 $(mkfile_dir)/refactored/kernel_instrument.cpp: $(mkfile_dir)/src/kernel.cpp
 	mkdir -p $(mkfile_dir)/rpt
 	time -o $(mkfile_dir)/rpt/instrument_refactoring_time.txt \
-		$(mkfile_dir)/../../heterorefactor/refactoring/build/heterorefactor \
+		$(hrf_dir)/refactoring/build/heterorefactor \
 		-instrument $(instrumentation_profile) \
 		-u $@ $^
 
