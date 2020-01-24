@@ -1,8 +1,10 @@
 // === BEGIN FP SUPPORT LIBRARY ===
 #include <cstddef>
 #include "thls/tops/policy_flopoco.hpp"
-typedef thls::policy_flopoco< 8 , 17 > __fpt_policy_t;
-typedef thls::policy_flopoco< 8,17> ::value_t __fpt_t;
+#include "bit.h"
+
+typedef thls::policy_flopoco<E, F> __fpt_policy_t;
+typedef thls::policy_flopoco< E, F> ::value_t __fpt_t;
 // === END FP SUPPORT LIBRARY ===
 #include <math.h>
 #include <hls_stream.h>
