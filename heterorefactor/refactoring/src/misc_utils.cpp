@@ -66,6 +66,8 @@ namespace misc_utils {
             std::string opttree("/opt/");
             std::string thlstree("thls/");
             std::string includetree("include/");
+            std::string uintfile("ap_int.h");
+            std::string nullfile("NULL_FILE");
             // if the file name has a sys header path
             if ((fname.find (buildtree_str1, 0) != std::string::npos) ||
                 (fname.find (buildtree_str2, 0) != std::string::npos) ||
@@ -75,6 +77,8 @@ namespace misc_utils {
                 (fname.find (systemlibtree, 0) != std::string::npos) ||
                 (fname.find (opttree, 0) != std::string::npos) ||
                 (fname.find (thlstree, 0) != std::string::npos) ||
+                (fname.find (nullfile, 0) != std::string::npos) ||
+                (fname.find (uintfile, 0) != std::string::npos) ||
                 (fname.find (includetree, 0) != std::string::npos)
                 )
                 rtval = true;

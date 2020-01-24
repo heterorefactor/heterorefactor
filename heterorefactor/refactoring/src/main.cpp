@@ -20,6 +20,7 @@
 #include <algorithm>
 #include <map>
 #include <sstream>
+#include <set>
 
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -107,6 +108,12 @@ void add_libraries(std::vector<std::string> &argvlist, char *path) {
         argvlist.push_back("-I");
         argvlist.push_back(std::string() + dir +
                 "/../../../../libraries/template-hls-float/include");
+        INFO_IF(true, std::string() + dir +
+                "/../../../../libraries/xilinx-dummy-lib");
+        INFO_IF(true, "added the above ^^\n");
+        argvlist.push_back("-I");
+        argvlist.push_back(std::string() + dir +
+                "/../../libraries/xilinx-dummy-lib");
     }
 }
 
@@ -143,6 +150,20 @@ void prepend_preprocessing_info(std::vector<std::string> &argvlist,
     }
 }
 
+std::string extractString( std::string source, std::string start, std::string end )
+{
+     const std::string emptyString = "";
+     std::size_t startIndex = source.find( start );
+     if( startIndex == std::string::npos )
+     {
+        return emptyString;
+     }
+
+     startIndex += start.length();
+
+     std::string::size_type endIndex = source.find( end, startIndex );
+     return source.substr( startIndex, endIndex - startIndex );
+}
 
 int main(int argc, char *argv[]) {
     ROSE_INITIALIZE;
@@ -162,6 +183,9 @@ int main(int argc, char *argv[]) {
     }
 
     std::map<std::string,std::string> variable_type_map;
+    std::set<std::string> var_types;
+    std::string typedef_s;
+
     if (settings.bit_file != "") {
         std::ifstream inp_file(settings.bit_file);
         std::string s;
@@ -170,7 +194,20 @@ int main(int argc, char *argv[]) {
             std::string var_name, var_type;
             splitSentence >> var_name;
             splitSentence >> var_type;
-            variable_type_map.insert(std::map<std::string,std::string>::value_type(var_name, var_type));
+            std::string bit_width = extractString(var_type, "<", ">");
+            std::string typedef_bit_width;
+            if (var_type.find("ap_uint") != std::string::npos) {
+                typedef_bit_width = "uint" + bit_width;
+            } else{
+                if (var_type.find("ap_int") != std::string::npos) {
+                    typedef_bit_width = "int" + bit_width;
+                }
+            }
+            if (var_types.find(var_type) == var_types.end()){
+                var_types.insert(var_type);
+                typedef_s = typedef_s + " typedef " + var_type + " " + typedef_bit_width + ";\n";
+            }
+            variable_type_map.insert(std::map<std::string,std::string>::value_type(var_name, typedef_bit_width));
         }
     }
 
@@ -205,6 +242,8 @@ int main(int argc, char *argv[]) {
         prepend_preprocessing_info(argvlist,
                 std::string() +
                 "// === BEGIN INT SUPPORT LIBRARY ===\n"
+                "#include \"ap_int.h\"\n" +
+                typedef_s +
                 "// === END INT SUPPORT LIBRARY ===\n");
     }
     add_default_parameters(argvlist);

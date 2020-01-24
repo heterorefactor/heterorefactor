@@ -36,12 +36,11 @@ SgType *TypeTransformer::get_transformation_fp(SgScopeStatement *scope) {
 }
 
 SgType *TypeTransformer::get_transformation_i(SgScopeStatement *scope, SgName var_name) {
-    if (!m_transform_type) {
         if (var_name_to_type_map.find(var_name.getString()) != var_name_to_type_map.end()){
-            m_transform_type = SageBuilder::buildLongType(); // TODO: need to build ap_uint type from map
+            m_transform_type = SageInterface::lookupTypedefSymbolInParentScopes(
+            var_name_to_type_map[var_name.getString()], scope)->get_type();
         } else{
             m_transform_type = SageBuilder::buildIntType();
         }
-    }
     return m_transform_type;
 }
