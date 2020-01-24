@@ -211,6 +211,13 @@ void LocalVarPacker::transform_call_return(SgFunctionDeclaration *func) {
     // reserve the start point
     auto label_start_point = create_label(func);
 
+    // transform all return
+    for (auto i : NodeQuery::querySubTree(func, V_SgReturnStmt)) {
+        auto ret = isSgReturnStmt(i);
+        create_function_return(func, ret);
+        SageInterface::removeStatement(ret);
+    }
+
     // transform all call
     for (auto i : NodeQuery::querySubTree(func, V_SgFunctionCallExp)) {
         auto call = isSgFunctionCallExp(i);
@@ -232,13 +239,6 @@ void LocalVarPacker::transform_call_return(SgFunctionDeclaration *func) {
             auto expr = create_function_call(func, call);
             SageInterface::replaceExpression(call, expr);
         }
-    }
-
-    // transform all return
-    for (auto i : NodeQuery::querySubTree(func, V_SgReturnStmt)) {
-        auto ret = isSgReturnStmt(i);
-        create_function_return(func, ret);
-        SageInterface::removeStatement(ret);
     }
 
     // return if no element in stack
@@ -359,26 +359,43 @@ SgExpression *LocalVarPacker::create_function_call(
         SgFunctionDeclaration *func, SgFunctionCallExp *call) {
     auto func_scope = func->get_definition()->get_body();
 
+    std::string mangled_name = func->get_mangled_name().getString();
+    int recur_size = 10;  // default value if no invariant available
+    if (m_func_depth_mapping.find(mangled_name) !=
+            m_func_depth_mapping.end()) {
+        recur_size = m_func_depth_mapping[mangled_name];
+    }
+
     auto curr = call->get_parent();
     while (curr && !isSgStatement(curr)) curr = curr->get_parent();
     auto stmt = isSgStatement(curr);
 
     auto label = create_label(func);
 
-    // TODO: if (stack_top + 1 == 1 << 10) g_fallback = true;
-    /*
-    auto empty_stmt = SageBuilder::buildExprStatement(
-        SageBuilder::buildIntVal(0));
-    SageInterface::insertStatementBefore(stmt,
-            SageBuilder::buildIfStmt(
-                SageBuilder::buildEqualityOp(
-                    SageBuilder::buildAddOp(
-                        get_current_stack_top(func),
-                        SageBuilder::buildUnsignedIntVal(1)),
-                    SageBuilder::buildUnsignedIntVal(1 << 10)),
-                empty_stmt, NULL));
-    SageInterface::attachArbitraryText(empty_stmt, "g_fallback = true;");
-    */
+    // if (stack_top + 1 == size) { g_fallback = true; return XX; }
+    SgStatement *return_stmt = SageBuilder::buildReturnStmt();
+    SgStatement *if_stmt = SageBuilder::buildIfStmt(
+            SageBuilder::buildEqualityOp(
+                SageBuilder::buildAddOp(
+                    get_current_stack_top(func),
+                    SageBuilder::buildUnsignedIntVal(1)),
+                SageBuilder::buildUnsignedIntVal(1 << recur_size)),
+            return_stmt, NULL);
+    SageInterface::insertStatementBefore(stmt, if_stmt);
+    auto empty_stmt = SageBuilder::buildNullStatement();
+    SageInterface::insertStatementBefore(return_stmt, empty_stmt);
+    SageInterface::attachArbitraryText(return_stmt, "g_fallback = true;");
+
+    if (!isSgTypeVoid(func->get_type()->get_return_type())) {
+        auto name = SageInterface::generateUniqueVariableName(
+                SageInterface::getScope(return_stmt));
+        auto var = SageBuilder::buildVariableDeclaration(name,
+                func->get_type()->get_return_type(), NULL,
+                SageInterface::getScope(return_stmt));
+        SageInterface::insertStatementBefore(return_stmt, var);
+        isSgReturnStmt(return_stmt)->set_expression(
+                SageBuilder::buildVarRefExp(var));
+    }
 
     // packed[stack_top].location = ?;
     SageInterface::insertStatementBefore(stmt,
