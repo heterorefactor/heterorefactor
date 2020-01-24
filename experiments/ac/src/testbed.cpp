@@ -31,6 +31,11 @@ int main(int argc, char** argv) {
                 substring_indexes.data(), query_indexes.data(),
                 &fallback);
 
+    if (fallback) {
+        std::cout << "The kernel reports fallback.\n";
+        return 0;
+    }
+
     for (int i = 0; ; i++) {
         if (substring_indexes[i] == -1) break;
         for (int j = substring_indexes[i]; substrings[j] != '%'; j++) {
