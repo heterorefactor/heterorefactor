@@ -1,6 +1,6 @@
 #!/bin/bash -
 
-SIZE=$1
+SIZE=$(($1 - 26))
 SIZE_PER_CHAR=$((SIZE / 26))
 
 echo 26

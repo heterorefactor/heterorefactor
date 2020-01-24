@@ -214,7 +214,7 @@ if (!__dst_file) { __dst_file = (unsigned long long)fopen(__dst_filename, "w"); 
     return __temp0__;
   }
    else {
-    ch >= 'a' && ch <= 'z'?(static_cast < void  >  (0)) : __assert_fail("ch >= 'a' && ch <= 'z'","hetero-cdvL2L-kernel.cpp",53,__PRETTY_FUNCTION__);
+    ch >= 'a' && ch <= 'z'?(static_cast < void  >  (0)) : __assert_fail("ch >= 'a' && ch <= 'z'","hetero-fqIsHr-kernel.cpp",53,__PRETTY_FUNCTION__);
     int idx = ch - 'a';
     if (!(&(__dmemclass_node + root + 0U - 1U) -> _data) -> next[idx]) {
       (&(__dmemclass_node + root + 0U - 1U) -> _data) -> next[idx] = new_node();
@@ -273,7 +273,7 @@ void query_AhoCorasick(__didxclass_node root,char *query,int *substring_indexes,
     char ch = query[offset];
     if (ch == '%') 
       break; 
-    ch >= 'a' && ch <= 'z'?(static_cast < void  >  (0)) : __assert_fail("ch >= 'a' && ch <= 'z'","hetero-cdvL2L-kernel.cpp",108,__PRETTY_FUNCTION__);
+    ch >= 'a' && ch <= 'z'?(static_cast < void  >  (0)) : __assert_fail("ch >= 'a' && ch <= 'z'","hetero-fqIsHr-kernel.cpp",108,__PRETTY_FUNCTION__);
     int idx = ch - 'a';
 // follow fail link if not matched in curr
     while(!(&(__dmemclass_node + curr + 0U - 1U) -> _data) -> next[idx] && curr != root)
