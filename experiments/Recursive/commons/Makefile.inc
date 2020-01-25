@@ -8,16 +8,18 @@ instrumentation_profile := /tmp/hetero-profile
 
 # Contention on $(instrumentation_profile) file, disallow parallelization
 .NOTPARALLEL:
-.PHONY: all clean invariant refactor runtime original_runtime compiletime
+.PHONY: all clean invariant refactor runtime synthesis \
+		original_runtime compile_time
 
-all: invariant refactor runtime
+all: invariant refactor runtime synthesis
 
 invariant: $(addprefix $(mkfile_dir)/invariant/invariant_, $(addsuffix .ivr, $(testdata)))
 refactor: $(addprefix $(mkfile_dir)/refactored/kernel_device_, $(addsuffix .cpp, $(testdata)))
 runtime: invariant original_runtime
+synthesis: $(addprefix $(mkfile_dir)/rpt/synthesis_log_, $(addsuffix .txt, $(testdata)))
 
 original_runtime: $(addprefix $(mkfile_dir)/rpt/original_run_time_, $(addsuffix .txt, $(testdata)))
-compiletime: $(mkfile_dir)/bin/original.exe $(mkfile_dir)/bin/instrument.exe
+compile_time: $(mkfile_dir)/bin/original.exe $(mkfile_dir)/bin/instrument.exe
 
 $(addprefix $(mkfile_dir)/invariant/invariant_, $(addsuffix .ivr, $(testdata))): \
 		$(mkfile_dir)/bin/instrument.exe \
@@ -52,7 +54,7 @@ $(addprefix $(mkfile_dir)/rpt/original_run_time_, $(addsuffix .txt, $(testdata))
 
 $(addprefix $(mkfile_dir)/refactored/kernel_device_, $(addsuffix .cpp, $(testdata))): \
 		$(mkfile_dir)/src/kernel.cpp \
-        $(addprefix $(mkfile_dir)/invariant/invariant_, $(addsuffix .ivr, $(testdata)))
+		$(addprefix $(mkfile_dir)/invariant/invariant_, $(addsuffix .ivr, $(testdata)))
 	mkdir -p $(mkfile_dir)/rpt
 	mkdir -p $(mkfile_dir)/refactored
 	$(eval @_base := $(basename $(notdir $@)))
@@ -62,6 +64,24 @@ $(addprefix $(mkfile_dir)/refactored/kernel_device_, $(addsuffix .cpp, $(testdat
 		$(hrf_dir)/refactoring/build/heterorefactor \
 		-rec -recfile $(mkfile_dir)/invariant/invariant_$(@_size).ivr \
 		-u $@ $<
+
+$(addprefix $(mkfile_dir)/rpt/synthesis_log_, $(addsuffix .txt, $(testdata))): \
+		$(addprefix $(mkfile_dir)/refactored/kernel_device_, $(addsuffix .cpp, $(testdata)))
+	mkdir -p $(mkfile_dir)/rpt
+	mkdir -p $(mkfile_dir)/refactored
+	$(eval @_base := $(basename $(notdir $@)))
+	$(eval @_tmp := $(@_base:%.txt=%))
+	$(eval @_size := $(@_tmp:synthesis_log_%=%))
+	-rm -rf $(mkfile_dir)/tmp/synthesis_$(@_size)
+	mkdir -p $(mkfile_dir)/tmp/synthesis_$(@_size)
+	cp $(mkfile_dir)/refactored/kernel_device_$(@_size).cpp \
+		$(mkfile_dir)/tmp/synthesis_$(@_size)/kernel.cpp
+	cp $(mkfile_dir)/../commons/hls.tcl $(mkfile_dir)/tmp/synthesis_$(@_size)/hls.tcl
+	cd $(mkfile_dir)/tmp/synthesis_$(@_size) && vivado_hls -f hls.tcl
+	cp $(mkfile_dir)/tmp/synthesis_$(@_size)/vivado_hls.log \
+		$(mkfile_dir)/rpt/synthesis_log_$(@_size).txt
+	cp $(mkfile_dir)/tmp/synthesis_$(@_size)/device/device/syn/report/process_top_csynth.rpt \
+		$(mkfile_dir)/rpt/synthesis_report_$(@_size).txt
 
 $(mkfile_dir)/bin/original.exe: \
 		$(mkfile_dir)/src/kernel.cpp \
