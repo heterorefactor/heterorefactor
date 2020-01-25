@@ -1,0 +1,34 @@
+face_detect_sw:result_size
+Min and Max values are 137422175156 , 137422175156
+face_detect_sw:result_h
+Min and Max values are 137422176432 , 137422176432
+weakClassifier:stddev
+Min and Max values are 305 , 369
+processImage:sum_col
+Min and Max values are 11 , 13
+imageScaler:src_width
+Min and Max values are 16 , 16
+weakClassifier:w_id
+Min and Max values are 0 , 249
+processImage:sum_row
+Min and Max values are 11 , 13
+face_detect_sw:result_w
+Min and Max values are 137422176032 , 137422176032
+imageScaler:src_height
+Min and Max values are 16 , 16
+imageScaler:dest_height
+Min and Max values are 11 , 13
+face_detect_sw:result_y
+Min and Max values are 137422175632 , 137422175632
+face_detect_sw:result_x
+Min and Max values are 137422175232 , 137422175232
+int_sqrt:value
+Min and Max values are 93384 , 136346
+weakClassifier:haar_counter
+Min and Max values are 0 , 83
+integralImages:height
+Min and Max values are 11 , 13
+imageScaler:dest_width
+Min and Max values are 11 , 13
+integralImages:width
+Min and Max values are 11 , 13
