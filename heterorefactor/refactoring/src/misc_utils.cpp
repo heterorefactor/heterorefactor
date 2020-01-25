@@ -66,6 +66,7 @@ namespace misc_utils {
             std::string opttree("/opt/");
             std::string thlstree("thls/");
             std::string includetree("include/");
+            std::string libtree("lib/");
             std::string uintfile("ap_int.h");
             std::string nullfile("NULL_FILE");
             // if the file name has a sys header path
@@ -77,9 +78,11 @@ namespace misc_utils {
                 (fname.find (systemlibtree, 0) != std::string::npos) ||
                 (fname.find (opttree, 0) != std::string::npos) ||
                 (fname.find (thlstree, 0) != std::string::npos) ||
-                (fname.find (nullfile, 0) != std::string::npos) ||
+                (fname.find (includetree, 0) != std::string::npos) ||
+                (fname.find (libtree, 0) != std::string::npos) ||
                 (fname.find (uintfile, 0) != std::string::npos) ||
-                (fname.find (includetree, 0) != std::string::npos)
+                (fname.find (nullfile, 0) != std::string::npos) ||
+                false
                 )
                 rtval = true;
             if (finfo->isCompilerGenerated())

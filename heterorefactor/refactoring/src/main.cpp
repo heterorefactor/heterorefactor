@@ -104,16 +104,10 @@ void add_libraries(std::vector<std::string> &argvlist, char *path) {
         char *dir = dirname(res);
         argvlist.push_back("-I");
         argvlist.push_back(std::string() + dir +
-                "/../../../../libraries/xilinx_include");
-        argvlist.push_back("-I");
-        argvlist.push_back(std::string() + dir +
-                "/../../../../libraries/template-hls-float/include");
-        INFO_IF(true, std::string() + dir +
-                "/../../../../libraries/xilinx-dummy-lib");
-        INFO_IF(true, "added the above ^^\n");
-        argvlist.push_back("-I");
-        argvlist.push_back(std::string() + dir +
                 "/../../libraries/xilinx-dummy-lib");
+        argvlist.push_back("-I");
+        argvlist.push_back(std::string() + dir +
+                "/../../libraries/template-hls-float/include");
     }
 }
 
