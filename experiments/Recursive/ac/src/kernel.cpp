@@ -149,7 +149,7 @@ extern "C" {
  *   substring_indexes: an output array, the indexes of found substrings.
  *   query_indexes: an output array, the corresponding indexes in query.
  */
-void AhoCorasick_search(
+void process_top(
         int *substring_length_p, char *substrings, char *query,
         int *substring_indexes, int *query_indexes, int *fallback) {
 #pragma HLS INTERFACE m_axi port=substring_length_p offset=slave bundle=gmem

@@ -26,7 +26,7 @@ int main(int argc, char** argv) {
     std::vector<int> query_indexes(worst_case_matches);
     int substring_size = substrings.size();
 
-    AhoCorasick_search(&substring_size,
+    process_top(&substring_size,
                 substrings_buffer.data(), query_buffer.data(),
                 substring_indexes.data(), query_indexes.data(),
                 &fallback);

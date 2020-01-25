@@ -483,7 +483,7 @@ int insert_node(__didxclass_node root,__didxc str,int substring_index)
     goto __rect_func_L0_L5464R__L5465R;
   }
    else {
-    __rect_packed_var_L5464R__L5465R[0 + __rect_packed_top_L5464R__L5465R] . local3 >= 'a' && __rect_packed_var_L5464R__L5465R[0 + __rect_packed_top_L5464R__L5465R] . local3 <= 'z'?(static_cast < void  >  (0)) : __assert_fail("ch >= 'a' && ch <= 'z'","hetero-UXfia2-kernel.cpp",53,__PRETTY_FUNCTION__);
+    __rect_packed_var_L5464R__L5465R[0 + __rect_packed_top_L5464R__L5465R] . local3 >= 'a' && __rect_packed_var_L5464R__L5465R[0 + __rect_packed_top_L5464R__L5465R] . local3 <= 'z'?(static_cast < void  >  (0)) : __assert_fail("ch >= 'a' && ch <= 'z'","hetero-2Jo0zZ-kernel.cpp",53,__PRETTY_FUNCTION__);
     __rect_packed_var_L5464R__L5465R[0 + __rect_packed_top_L5464R__L5465R] . local4 = __rect_packed_var_L5464R__L5465R[0 + __rect_packed_top_L5464R__L5465R] . local3 - 'a';
     if (!(&(__dmemclass_node + __rect_packed_var_L5464R__L5465R[0 + __rect_packed_top_L5464R__L5465R] . local0 + 0U - 1U) -> _data) -> next[__rect_packed_var_L5464R__L5465R[0 + __rect_packed_top_L5464R__L5465R] . local4]) {
       (&(__dmemclass_node + __rect_packed_var_L5464R__L5465R[0 + __rect_packed_top_L5464R__L5465R] . local0 + 0U - 1U) -> _data) -> next[__rect_packed_var_L5464R__L5465R[0 + __rect_packed_top_L5464R__L5465R] . local4] = new_node();
@@ -554,7 +554,7 @@ void query_AhoCorasick(__didxclass_node root,char *query,int *substring_indexes,
     char ch = query[offset];
     if (ch == '%') 
       break; 
-    ch >= 'a' && ch <= 'z'?(static_cast < void  >  (0)) : __assert_fail("ch >= 'a' && ch <= 'z'","hetero-UXfia2-kernel.cpp",108,__PRETTY_FUNCTION__);
+    ch >= 'a' && ch <= 'z'?(static_cast < void  >  (0)) : __assert_fail("ch >= 'a' && ch <= 'z'","hetero-2Jo0zZ-kernel.cpp",108,__PRETTY_FUNCTION__);
     int idx = ch - 'a';
 // follow fail link if not matched in curr
     while(!(&(__dmemclass_node + curr + 0U - 1U) -> _data) -> next[idx] && curr != root)
@@ -636,7 +636,7 @@ extern "C" {
  *   query_indexes: an output array, the corresponding indexes in query.
  */
 
-void AhoCorasick_search(int *substring_length_p,char *substrings,char *query,int *substring_indexes,int *query_indexes,int *fallback)
+void process_top(int *substring_length_p,char *substrings,char *query,int *substring_indexes,int *query_indexes,int *fallback)
 {
   
 #pragma HLS INTERFACE m_axi port=substring_length_p offset=slave bundle=gmem

@@ -208,19 +208,19 @@ if (!__dst_file) { __dst_file = (unsigned long long)fopen(__dst_filename, "w"); 
   char ch =  *(&(__dmemc + str + 0U - 1U) -> _data);
   if (ch == '%') {
     (&(__dmemclass_node + root + 0U - 1U) -> _data) -> substring_index = substring_index;
-    int __temp0__ = 0;
+    int __temp0__ = (int )0;
 if (!__dst_file) { __dst_file = (unsigned long long)fopen(__dst_filename, "w"); }fprintf((FILE *)__dst_file, "[__REC_RECUR] ret L5464R__L5465R\n");fflush((FILE *)__dst_file);
     0;
     return __temp0__;
   }
    else {
-    ch >= 'a' && ch <= 'z'?(static_cast < void  >  (0)) : __assert_fail("ch >= 'a' && ch <= 'z'","hetero-jpgqmL-kernel.cpp",53,__PRETTY_FUNCTION__);
+    ch >= 'a' && ch <= 'z'?(static_cast < void  >  (0)) : __assert_fail("ch >= 'a' && ch <= 'z'","hetero-0PmLeS-kernel.cpp",53,__PRETTY_FUNCTION__);
     int idx = ch - 'a';
     if (!(&(__dmemclass_node + root + 0U - 1U) -> _data) -> next[idx]) {
       (&(__dmemclass_node + root + 0U - 1U) -> _data) -> next[idx] = new_node();
       node_count += 1;
     }
-    int __temp1__ = insert_node((&(__dmemclass_node + root + 0U - 1U) -> _data) -> next[idx],str + 1,substring_index) + 1;
+    int __temp1__ = (int )(insert_node((&(__dmemclass_node + root + 0U - 1U) -> _data) -> next[idx],str + 1,substring_index) + 1);
 if (!__dst_file) { __dst_file = (unsigned long long)fopen(__dst_filename, "w"); }fprintf((FILE *)__dst_file, "[__REC_RECUR] ret L5464R__L5465R\n");fflush((FILE *)__dst_file);
     0;
     return __temp1__;
@@ -273,7 +273,7 @@ void query_AhoCorasick(__didxclass_node root,char *query,int *substring_indexes,
     char ch = query[offset];
     if (ch == '%') 
       break; 
-    ch >= 'a' && ch <= 'z'?(static_cast < void  >  (0)) : __assert_fail("ch >= 'a' && ch <= 'z'","hetero-jpgqmL-kernel.cpp",108,__PRETTY_FUNCTION__);
+    ch >= 'a' && ch <= 'z'?(static_cast < void  >  (0)) : __assert_fail("ch >= 'a' && ch <= 'z'","hetero-0PmLeS-kernel.cpp",108,__PRETTY_FUNCTION__);
     int idx = ch - 'a';
 // follow fail link if not matched in curr
     while(!(&(__dmemclass_node + curr + 0U - 1U) -> _data) -> next[idx] && curr != root)
@@ -325,7 +325,7 @@ extern "C" {
  *   query_indexes: an output array, the corresponding indexes in query.
  */
 
-void AhoCorasick_search(int *substring_length_p,char *substrings,char *query,int *substring_indexes,int *query_indexes,int *fallback)
+void process_top(int *substring_length_p,char *substrings,char *query,int *substring_indexes,int *query_indexes,int *fallback)
 {
   
 #pragma HLS INTERFACE m_axi port=substring_length_p offset=slave bundle=gmem

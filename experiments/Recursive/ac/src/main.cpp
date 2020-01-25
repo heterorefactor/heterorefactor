@@ -39,7 +39,7 @@ int main(int argc, char** argv) {
     world.addProgram(kernelFile);
 
     CLKernel Kernel(world.getContext(), world.getProgram(),
-            "AhoCorasick_search", world.getDevice());
+            "process_top", world.getDevice());
 
     int substrings_size = substrings.size();
     CLMemObj substrings_size_mem((void*)&substrings_size, sizeof(int), 1, CL_MEM_READ_ONLY);
@@ -84,7 +84,7 @@ int main(int argc, char** argv) {
         struct timeval start, end;
         gettimeofday(&start, 0);
         std::cout << "INFO: falling back!" << std::endl;
-        AhoCorasick_search(&substrings_size,
+        process_top(&substrings_size,
                 substrings_buffer.data(), query_buffer.data(),
                 substring_indexes.data(), query_indexes.data(),
                 fallback);
