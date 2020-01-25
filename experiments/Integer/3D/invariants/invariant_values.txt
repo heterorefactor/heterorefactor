@@ -1,0 +1,78 @@
+rasterization1:max_index[..]
+Min and Max values are : 252 , 924
+rasterization1:max_index[..]
+Min and Max sizes are : 1 , 1
+rasterization1:max_index[..]
+Number of unique values are : 53
+rasterization2:max_index[..]
+Min and Max values are : 252 , 924
+rasterization2:max_index[..]
+Min and Max sizes are : 1 , 1
+rasterization2:max_index[..]
+Number of unique values are : 53
+rasterization1:max_min[..]
+Min and Max values are : 12 , 239
+rasterization1:max_min[..]
+Min and Max sizes are : 5 , 5
+rasterization1:max_min[..]
+Number of unique values are : 139
+rasterization2:max_min[..]
+Min and Max values are : 12 , 239
+rasterization2:max_min[..]
+Min and Max sizes are : 5 , 5
+rasterization2:max_min[..]
+Number of unique values are : 139
+pixel_in_triangle:y
+Min and Max values are 28 , 238
+find_max:in2
+Min and Max values are 41 , 239
+find_max:in1
+Min and Max values are 28 , 226
+zculling:counter
+Min and Max values are 0 , 99
+projection:angle
+Min and Max values are 0 , 0
+pixel_in_triangle:x
+Min and Max values are 38 , 163
+coloringFB:counter
+Min and Max values are 0 , 99
+find_min:in0
+Min and Max values are 38 , 239
+find_min:in1
+Min and Max values are 28 , 226
+zculling:size
+Min and Max values are 0 , 316
+find_min:in2
+Min and Max values are 41 , 239
+find_max:in0
+Min and Max values are 38 , 239
+coloringFB:size_pixels
+Min and Max values are 0 , 316
+pixel_in_triangle:y
+Min and Max values are 28 , 238
+find_max:in2
+Min and Max values are 41 , 239
+find_max:in1
+Min and Max values are 28 , 226
+zculling:counter
+Min and Max values are 0 , 99
+projection:angle
+Min and Max values are 0 , 0
+pixel_in_triangle:x
+Min and Max values are 38 , 163
+coloringFB:counter
+Min and Max values are 0 , 99
+find_min:in0
+Min and Max values are 38 , 239
+rendering_sw:output
+Min and Max values are 137422111296 , 137422111296
+find_min:in1
+Min and Max values are 28 , 226
+zculling:size
+Min and Max values are 0 , 316
+find_min:in2
+Min and Max values are 41 , 239
+find_max:in0
+Min and Max values are 38 , 239
+coloringFB:size_pixels
+Min and Max values are 0 , 316

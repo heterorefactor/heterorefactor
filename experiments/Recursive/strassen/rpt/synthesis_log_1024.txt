@@ -1,0 +1,390 @@
+
+****** Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2018.3 (64-bit)
+  **** SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
+  **** IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+    ** Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+
+source /opt/tools/xilinx/Vivado/2018.3/scripts/vivado_hls/hls.tcl -notrace
+INFO: [HLS 200-10] Running '/opt/tools/xilinx/Vivado/2018.3/bin/unwrapped/lnx64.o/vivado_hls'
+INFO: [HLS 200-10] For user 'lau' on host 'u0-lau' (Linux_x86_64 version 4.4.0-169-generic) on Sat Jan 25 10:36:05 PST 2020
+INFO: [HLS 200-10] On os Ubuntu 16.04.5 LTS
+INFO: [HLS 200-10] In directory '/home/lau/projects/dynamic/icse2020-artifacts/experiments/Recursive/strassen/tmp/synthesis_1024'
+INFO: [HLS 200-10] Creating and opening project '/home/lau/projects/dynamic/icse2020-artifacts/experiments/Recursive/strassen/tmp/synthesis_1024/device'.
+INFO: [HLS 200-10] Adding design file 'kernel.cpp' to the project
+INFO: [HLS 200-10] Creating and opening solution '/home/lau/projects/dynamic/icse2020-artifacts/experiments/Recursive/strassen/tmp/synthesis_1024/device/device'.
+INFO: [HLS 200-10] Cleaning up the solution database.
+INFO: [HLS 200-10] Setting target device to 'xcvu9p-fsgd2104-3-e'
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 3.3ns.
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file 'kernel.cpp' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:08 ; elapsed = 00:00:10 . Memory (MB): peak = 435.000 ; gain = 0.051 ; free physical = 62541 ; free virtual = 64202
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:08 ; elapsed = 00:00:10 . Memory (MB): peak = 435.000 ; gain = 0.051 ; free physical = 62541 ; free virtual = 64202
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 435.043 ; gain = 0.094 ; free physical = 62534 ; free virtual = 64195
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_list_remove__dmemUL' into '__dst_alloc_list_pop__dmemUL' (<stdin>:121) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_bucket_for_request__dmemUL' into '__dst_alloc_malloc__dmemUL' (<stdin>:145) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_node_for_index__dmemUL' into '__dst_alloc_malloc__dmemUL' (<stdin>:152) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_flip_parent_split__dmemUL' into '__dst_alloc_malloc__dmemUL' (<stdin>:153) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_clr_parent_split__dmemUL' into '__dst_alloc_malloc__dmemUL' (<stdin>:156) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_index_for_node__dmemUL' into '__dst_alloc_malloc__dmemUL' (<stdin>:159) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_list_push__dmemUL' into '__dst_alloc_malloc__dmemUL' (<stdin>:159) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_list_remove__dmemi' into '__dst_alloc_list_pop__dmemi' (<stdin>:121) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_bucket_for_request__dmemi' into '__dst_alloc_malloc__dmemi' (<stdin>:145) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_node_for_index__dmemi' into '__dst_alloc_malloc__dmemi' (<stdin>:152) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_flip_parent_split__dmemi' into '__dst_alloc_malloc__dmemi' (<stdin>:153) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_clr_parent_split__dmemi' into '__dst_alloc_malloc__dmemi' (<stdin>:156) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_index_for_node__dmemi' into '__dst_alloc_malloc__dmemi' (<stdin>:159) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_list_push__dmemi' into '__dst_alloc_malloc__dmemi' (<stdin>:159) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_bucket_for_request__dmemi' into '__dst_alloc_free__dmemi' (<stdin>:170) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_node_for_index__dmemi' into '__dst_alloc_free__dmemi' (<stdin>:171) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_flip_parent_split__dmemi' into '__dst_alloc_free__dmemi' (<stdin>:173) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_test_parent_split__dmemi' into '__dst_alloc_free__dmemi' (<stdin>:174) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_index_for_node__dmemi' into '__dst_alloc_free__dmemi' (<stdin>:175) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_list_remove__dmemi' into '__dst_alloc_free__dmemi' (<stdin>:175) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_list_push__dmemi' into '__dst_alloc_free__dmemi' (<stdin>:179) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_bucket_for_request__dmemUL' into '__dst_alloc_free__dmemUL' (<stdin>:170) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_node_for_index__dmemUL' into '__dst_alloc_free__dmemUL' (<stdin>:171) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_flip_parent_split__dmemUL' into '__dst_alloc_free__dmemUL' (<stdin>:173) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_test_parent_split__dmemUL' into '__dst_alloc_free__dmemUL' (<stdin>:174) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_index_for_node__dmemUL' into '__dst_alloc_free__dmemUL' (<stdin>:175) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_list_remove__dmemUL' into '__dst_alloc_free__dmemUL' (<stdin>:175) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_list_push__dmemUL' into '__dst_alloc_free__dmemUL' (<stdin>:179) automatically.
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:11 ; elapsed = 00:00:14 . Memory (MB): peak = 435.152 ; gain = 0.203 ; free physical = 62532 ; free virtual = 64194
+INFO: [XFORM 203-102] Automatically partitioning small array '.str' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local0' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local1' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local2' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local3' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local4' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local5' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local6' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local7' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local8' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local9' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local10' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local11' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local12' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local13' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local14' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local15' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local16' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local17' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local18' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local19' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local20' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local21' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local22' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local23' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local24' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local25' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local26' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local27' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local28' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local29' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local30' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local31' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local32' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local33' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local34' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local35' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local36' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local37' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local38' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local39' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local40' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local41' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local42' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local43' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local44' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local45' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local46' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local47' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local48' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local49' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local50' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local51' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local52' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local53' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local54' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local55' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local56' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local57' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local58' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R.local59' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R._location' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R._return' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R._ret0' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R._ret1' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R._ret2' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R._ret3' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R._ret4' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R._ret5' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array '__rect_packed_var_L5457R__L5458R._ret6' (<stdin>:375) completely based on array size.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local0' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local1' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local2' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local3' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local4' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local5' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local6' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local7' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local8' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local9' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local10' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local11' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local12' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local13' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local14' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local15' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local16' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local17' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local18' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local19' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local20' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local21' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local22' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local23' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local24' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local25' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local26' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local27' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local28' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local29' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local30' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local31' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local32' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local33' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local34' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local35' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local36' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local37' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local38' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local39' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local40' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local41' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local42' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local43' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local44' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local45' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local46' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local47' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local48' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local49' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local50' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local51' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local52' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local53' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local54' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local55' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local56' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local57' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local58' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R.local59' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R._location' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R._return' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R._ret0' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R._ret1' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R._ret2' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R._ret3' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R._ret4' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R._ret5' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array '__rect_packed_var_L5457R__L5458R._ret6' (<stdin>:375) in dimension 1 completely.
+INFO: [XFORM 203-102] Automatically partitioning small array '.str' completely based on array size.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_list_remove__dmemUL' into '__dst_alloc_list_pop__dmemUL' (<stdin>:121) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_bucket_for_request__dmemUL' into '__dst_alloc_malloc__dmemUL' (<stdin>:145) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_node_for_index__dmemUL' into '__dst_alloc_malloc__dmemUL' (<stdin>:152) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_flip_parent_split__dmemUL' into '__dst_alloc_malloc__dmemUL' (<stdin>:153) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_clr_parent_split__dmemUL' into '__dst_alloc_malloc__dmemUL' (<stdin>:156) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_index_for_node__dmemUL' into '__dst_alloc_malloc__dmemUL' (<stdin>:159) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_list_push__dmemUL' into '__dst_alloc_malloc__dmemUL' (<stdin>:159) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_list_remove__dmemi' into '__dst_alloc_list_pop__dmemi' (<stdin>:121) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_bucket_for_request__dmemi' into '__dst_alloc_malloc__dmemi' (<stdin>:145) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_node_for_index__dmemi' into '__dst_alloc_malloc__dmemi' (<stdin>:152) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_flip_parent_split__dmemi' into '__dst_alloc_malloc__dmemi' (<stdin>:153) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_clr_parent_split__dmemi' into '__dst_alloc_malloc__dmemi' (<stdin>:156) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_index_for_node__dmemi' into '__dst_alloc_malloc__dmemi' (<stdin>:159) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_list_push__dmemi' into '__dst_alloc_malloc__dmemi' (<stdin>:159) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_bucket_for_request__dmemi' into '__dst_alloc_free__dmemi' (<stdin>:170) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_node_for_index__dmemi' into '__dst_alloc_free__dmemi' (<stdin>:171) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_flip_parent_split__dmemi' into '__dst_alloc_free__dmemi' (<stdin>:173) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_test_parent_split__dmemi' into '__dst_alloc_free__dmemi' (<stdin>:174) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_index_for_node__dmemi' into '__dst_alloc_free__dmemi' (<stdin>:175) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_list_remove__dmemi' into '__dst_alloc_free__dmemi' (<stdin>:175) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_list_push__dmemi' into '__dst_alloc_free__dmemi' (<stdin>:179) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_bucket_for_request__dmemUL' into '__dst_alloc_free__dmemUL' (<stdin>:170) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_node_for_index__dmemUL' into '__dst_alloc_free__dmemUL' (<stdin>:171) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_flip_parent_split__dmemUL' into '__dst_alloc_free__dmemUL' (<stdin>:173) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_test_parent_split__dmemUL' into '__dst_alloc_free__dmemUL' (<stdin>:174) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_index_for_node__dmemUL' into '__dst_alloc_free__dmemUL' (<stdin>:175) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_list_remove__dmemUL' into '__dst_alloc_free__dmemUL' (<stdin>:175) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_list_push__dmemUL' into '__dst_alloc_free__dmemUL' (<stdin>:179) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_list_pop__dmemUL' into '__dst_alloc_malloc__dmemUL' (<stdin>:148) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_list_pop__dmemi' into '__dst_alloc_malloc__dmemi' (<stdin>:148) automatically.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:31 ; elapsed = 00:00:37 . Memory (MB): peak = 562.949 ; gain = 128.000 ; free physical = 62496 ; free virtual = 64156
+WARNING: [XFORM 203-631] Renaming function '__dst_alloc_malloc__dmemi' to '__dst_alloc_malloc__' (<stdin>:79:10)
+WARNING: [XFORM 203-631] Renaming function '__dst_alloc_malloc__dmemUL' to '__dst_alloc_malloc__.1' (<stdin>:79:10)
+WARNING: [XFORM 203-631] Renaming function '__dst_alloc_free__dmemi' to '__dst_alloc_free__dm' (<stdin>:76:5)
+WARNING: [XFORM 203-631] Renaming function '__dst_alloc_free__dmemUL' to '__dst_alloc_free__dm.1' (<stdin>:76:5)
+INFO: [HLS 200-444] Inferring multiple bus burst read of variable length on port 'gmem' (<stdin>:241:7). These data requests might be further partitioned to multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings.
+INFO: [HLS 200-444] Inferring multiple bus burst read of variable length on port 'gmem' (<stdin>:255:7). These data requests might be further partitioned to multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings.
+INFO: [HLS 200-444] Inferring multiple bus burst write of variable length on port 'gmem' (<stdin>:262:7). These data requests might be further partitioned to multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings.
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:01:02 ; elapsed = 00:01:08 . Memory (MB): peak = 626.949 ; gain = 192.000 ; free physical = 62393 ; free virtual = 64053
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'process_top' ...
+WARNING: [SYN 201-103] Legalizing function name '__dst_alloc_malloc__.1' to 'p_dst_alloc_malloc_1'.
+WARNING: [SYN 201-103] Legalizing function name '__dst_alloc_malloc__' to 'p_dst_alloc_malloc_s'.
+WARNING: [SYN 201-103] Legalizing function name '__dst_alloc_free__dm' to 'p_dst_alloc_free_dm'.
+WARNING: [SYN 201-103] Legalizing function name '__dst_alloc_free__dm.1' to 'p_dst_alloc_free_dm_1'.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'p_dst_alloc_malloc_1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 69.62 seconds; current allocated memory: 309.031 MB.
+INFO: [HLS 200-434] Only 0 loops out of a total 3 loops have been pipelined in this design.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.32 seconds; current allocated memory: 309.547 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'p_dst_alloc_malloc_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.53 seconds; current allocated memory: 310.037 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.33 seconds; current allocated memory: 310.547 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'p_dst_alloc_free_dm' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.53 seconds; current allocated memory: 310.932 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.27 seconds; current allocated memory: 311.337 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'p_dst_alloc_free_dm_1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.5 seconds; current allocated memory: 311.708 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.27 seconds; current allocated memory: 312.114 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'MatrixMultiply' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.41 seconds; current allocated memory: 312.553 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.36 seconds; current allocated memory: 312.974 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'Strassen' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 10.58 seconds; current allocated memory: 351.212 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] After resource sharing, estimated clock period (3.62312ns) exceeds the target (target clock period: 3.3ns, clock uncertainty: 0.4125ns, effective delay budget: 2.8875ns).
+INFO: [BIND 205-100] The critical path consists of the following:
+	'load' operation ('p_rect_packed_top_L5_30', <stdin>:409) on local variable '__rect_packed_top_L5457R__L5458R' (0 ns)
+	'mux' operation ('tmp_278', <stdin>:409) (0.463 ns)
+	'call' operation ('p_rect_packed_var_L5_254', <stdin>:409) to '__dst_alloc_malloc__.1' (3.16 ns)
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 24.58 seconds; current allocated memory: 385.201 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'process_top' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 15.31 seconds; current allocated memory: 386.281 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 2.96 seconds; current allocated memory: 387.579 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'p_dst_alloc_malloc_1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'p_dst_alloc_malloc_1'.
+INFO: [HLS 200-111]  Elapsed time: 4.2 seconds; current allocated memory: 388.870 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'p_dst_alloc_malloc_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'p_dst_alloc_malloc_s'.
+INFO: [HLS 200-111]  Elapsed time: 0.57 seconds; current allocated memory: 392.043 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'p_dst_alloc_free_dm' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'p_dst_alloc_free_dm'.
+INFO: [HLS 200-111]  Elapsed time: 0.6 seconds; current allocated memory: 395.000 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'p_dst_alloc_free_dm_1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'p_dst_alloc_free_dm_1'.
+INFO: [HLS 200-111]  Elapsed time: 0.53 seconds; current allocated memory: 397.571 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'MatrixMultiply' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'MatrixMultiply'.
+INFO: [HLS 200-111]  Elapsed time: 0.55 seconds; current allocated memory: 400.301 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'Strassen' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Generating core module 'process_top_mux_42_32_1_1': 443 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'process_top_mux_42_64_1_1': 163 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'Strassen'.
+INFO: [HLS 200-111]  Elapsed time: 5.14 seconds; current allocated memory: 465.525 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'process_top' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'process_top/gmem' to 'm_axi'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'process_top/np' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'process_top/lp' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'process_top/mp' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'process_top/mat1' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'process_top/mat2' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'process_top/mat3' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'process_top/fallback' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'process_top' to 's_axilite & ap_ctrl_hs'.
+WARNING: [RTGEN 206-101] Register 'g_fallback' is power-on initialization.
+INFO: [RTGEN 206-100] Bundling port 'return', 'np', 'lp', 'mp', 'mat1', 'mat2' and 'fallback' to AXI-Lite port control.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'process_top'.
+INFO: [HLS 200-111]  Elapsed time: 26.56 seconds; current allocated memory: 687.361 MB.
+INFO: [RTMG 210-278] Implementing memory 'process_top_p_dst_alloc_buckets_1_ram (RAM)' using distributed RAMs with power-on initialization.
+INFO: [RTMG 210-278] Implementing memory 'process_top_p_dmemUL_link_prev_ram (RAM)' using block RAMs with power-on initialization.
+INFO: [RTMG 210-278] Implementing memory 'process_top_p_dst_alloc_node_spl_1_ram (RAM)' using distributed RAMs with power-on initialization.
+INFO: [RTMG 210-278] Implementing memory 'process_top_p_dst_alloc_buckets_s_ram (RAM)' using distributed RAMs with power-on initialization.
+INFO: [RTMG 210-278] Implementing memory 'process_top_p_dmemi_link_prev_ram (RAM)' using block RAMs with power-on initialization.
+INFO: [RTMG 210-278] Implementing memory 'process_top_p_dst_alloc_node_spl_ram (RAM)' using block RAMs with power-on initialization.
+INFO: [RTMG 210-278] Implementing memory 'process_top_p_dmemUL_data_ram (RAM)' using block RAMs with power-on initialization.
+INFO: [RTMG 210-278] Implementing memory 'process_top_p_dmemi_data_ram (RAM)' using block RAMs with power-on initialization.
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:02:35 ; elapsed = 00:02:56 . Memory (MB): peak = 1224.438 ; gain = 789.488 ; free physical = 61663 ; free virtual = 63534
+INFO: [SYSC 207-301] Generating SystemC RTL for process_top.
+INFO: [VHDL 208-304] Generating VHDL RTL for process_top.
+INFO: [VLOG 209-307] Generating Verilog RTL for process_top.
+INFO: [HLS 200-112] Total elapsed time: 176.37 seconds; peak allocated memory: 687.361 MB.
+INFO: [Common 17-206] Exiting vivado_hls at Sat Jan 25 10:39:00 2020...
