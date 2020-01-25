@@ -15,8 +15,9 @@ all: invariant refactor runtime synthesis
 
 invariant: $(addprefix $(mkfile_dir)/invariant/invariant_, $(addsuffix .ivr, $(testdata)))
 refactor: $(addprefix $(mkfile_dir)/refactored/kernel_device_, $(addsuffix .cpp, $(testdata)))
-runtime: invariant original_runtime
+runtime: invariant original_runtime refactor
 synthesis: $(addprefix $(mkfile_dir)/rpt/synthesis_log_, $(addsuffix .txt, $(testdata)))
+implement: $(addprefix $(mkfile_dir)/rpt/implement_log_, $(addsuffix .txt, $(testdata)))
 
 original_runtime: $(addprefix $(mkfile_dir)/rpt/original_run_time_, $(addsuffix .txt, $(testdata)))
 compile_time: $(mkfile_dir)/bin/original.exe $(mkfile_dir)/bin/instrument.exe
@@ -83,12 +84,33 @@ $(addprefix $(mkfile_dir)/rpt/synthesis_log_, $(addsuffix .txt, $(testdata))): \
 	cp $(mkfile_dir)/tmp/synthesis_$(@_size)/device/device/syn/report/process_top_csynth.rpt \
 		$(mkfile_dir)/rpt/synthesis_report_$(@_size).txt
 
+$(addprefix $(mkfile_dir)/rpt/implement_log_, $(addsuffix .txt, $(testdata))): \
+		$(addprefix $(mkfile_dir)/refactored/kernel_device_, $(addsuffix .cpp, $(testdata)))
+	mkdir -p $(mkfile_dir)/rpt
+	mkdir -p $(mkfile_dir)/refactored
+	$(eval @_base := $(basename $(notdir $@)))
+	$(eval @_tmp := $(@_base:%.txt=%))
+	$(eval @_size := $(@_tmp:implement_log_%=%))
+	-rm -rf $(mkfile_dir)/tmp/implement_$(@_size)
+	mkdir -p $(mkfile_dir)/tmp/implement_$(@_size)
+	cp $(mkfile_dir)/refactored/kernel_device_$(@_size).cpp \
+		$(mkfile_dir)/tmp/implement_$(@_size)/kernel.cpp
+	cp $(mkfile_dir)/../commons/impl.tcl $(mkfile_dir)/tmp/implement_$(@_size)/impl.tcl
+	# it is possible that implementation fail for large designs
+	-cd $(mkfile_dir)/tmp/implement_$(@_size) && \
+		time -o $(mkfile_dir)/rpt/implementation_time_$(@_size).txt \
+			vivado_hls -f impl.tcl
+	cp $(mkfile_dir)/tmp/implement_$(@_size)/vivado_hls.log \
+		$(mkfile_dir)/rpt/implement_log_$(@_size).txt
+	-cp $(mkfile_dir)/tmp/implement_$(@_size)/device/device/impl/report/verilog/process_top_export.rpt \
+		$(mkfile_dir)/rpt/implement_report_$(@_size).txt
+
 $(mkfile_dir)/bin/original.exe: \
 		$(mkfile_dir)/src/kernel.cpp \
 		$(mkfile_dir)/src/testbed.cpp
 	mkdir -p $(mkfile_dir)/bin
 	mkdir -p $(mkfile_dir)/rpt
-	time -o $(mkfile_dir)/rpt/original_compilation.txt \
+	time -o $(mkfile_dir)/rpt/original_compilation_time.txt \
 		g++ -o $@ $^
 
 $(mkfile_dir)/bin/instrument.exe: \
@@ -96,7 +118,7 @@ $(mkfile_dir)/bin/instrument.exe: \
 		$(mkfile_dir)/src/testbed.cpp
 	mkdir -p $(mkfile_dir)/bin
 	mkdir -p $(mkfile_dir)/rpt
-	time -o $(mkfile_dir)/rpt/instrument_compilation.txt \
+	time -o $(mkfile_dir)/rpt/instrument_compilation_time.txt \
 		g++ -o $@ $^
 
 $(mkfile_dir)/refactored/kernel_instrument.cpp: $(mkfile_dir)/src/kernel.cpp
