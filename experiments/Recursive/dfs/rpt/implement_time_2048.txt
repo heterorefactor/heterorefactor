@@ -1,0 +1,2 @@
+331.11user 234.24system 18:49.52elapsed 50%CPU (0avgtext+0avgdata 3168560maxresident)k
+317272inputs+423120outputs (23major+8607264minor)pagefaults 0swaps

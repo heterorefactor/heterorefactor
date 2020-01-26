@@ -1,0 +1,1498 @@
+
+****** Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2018.3 (64-bit)
+  **** SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
+  **** IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+    ** Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+
+source /opt/tools/xilinx/Vivado/2018.3/scripts/vivado_hls/hls.tcl -notrace
+INFO: [HLS 200-10] Running '/opt/tools/xilinx/Vivado/2018.3/bin/unwrapped/lnx64.o/vivado_hls'
+INFO: [HLS 200-10] For user 'lau' on host 'u0-lau' (Linux_x86_64 version 4.4.0-169-generic) on Sat Jan 25 14:01:47 PST 2020
+INFO: [HLS 200-10] On os Ubuntu 16.04.5 LTS
+INFO: [HLS 200-10] In directory '/home/lau/projects/dynamic/icse2020-artifacts/experiments/Recursive/ac/tmp/implement_32768'
+INFO: [HLS 200-10] Creating and opening project '/home/lau/projects/dynamic/icse2020-artifacts/experiments/Recursive/ac/tmp/implement_32768/device'.
+INFO: [HLS 200-10] Adding design file 'kernel.cpp' to the project
+INFO: [HLS 200-10] Creating and opening solution '/home/lau/projects/dynamic/icse2020-artifacts/experiments/Recursive/ac/tmp/implement_32768/device/device'.
+INFO: [HLS 200-10] Cleaning up the solution database.
+INFO: [HLS 200-10] Setting target device to 'xcvu9p-fsgd2104-3-e'
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 3.3ns.
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file 'kernel.cpp' ... 
+WARNING: [HLS 200-40] In file included from kernel.cpp:1:
+<stdin>:378:5: warning: expression result unused [-Wunused-value]
+    0;
+    ^
+1 warning generated.
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 435.000 ; gain = 0.051 ; free physical = 46823 ; free virtual = 49068
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 435.000 ; gain = 0.051 ; free physical = 46823 ; free virtual = 49068
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 435.000 ; gain = 0.051 ; free physical = 46792 ; free virtual = 49037
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_list_remove__dmemclass_node' into '__dst_alloc_list_pop__dmemclass_node' (<stdin>:121) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_bucket_for_request__dmemclass_node' into '__dst_alloc_malloc__dmemclass_node' (<stdin>:145) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_node_for_index__dmemclass_node' into '__dst_alloc_malloc__dmemclass_node' (<stdin>:152) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_flip_parent_split__dmemclass_node' into '__dst_alloc_malloc__dmemclass_node' (<stdin>:153) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_clr_parent_split__dmemclass_node' into '__dst_alloc_malloc__dmemclass_node' (<stdin>:156) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_index_for_node__dmemclass_node' into '__dst_alloc_malloc__dmemclass_node' (<stdin>:159) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_list_push__dmemclass_node' into '__dst_alloc_malloc__dmemclass_node' (<stdin>:159) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_list_remove__dmemc' into '__dst_alloc_list_pop__dmemc' (<stdin>:121) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_bucket_for_request__dmemc' into '__dst_alloc_malloc__dmemc' (<stdin>:145) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_node_for_index__dmemc' into '__dst_alloc_malloc__dmemc' (<stdin>:152) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_flip_parent_split__dmemc' into '__dst_alloc_malloc__dmemc' (<stdin>:153) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_clr_parent_split__dmemc' into '__dst_alloc_malloc__dmemc' (<stdin>:156) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_index_for_node__dmemc' into '__dst_alloc_malloc__dmemc' (<stdin>:159) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_list_push__dmemc' into '__dst_alloc_malloc__dmemc' (<stdin>:159) automatically.
+INFO: [XFORM 203-602] Inlining function 'new_node' into 'insert_node' (<stdin>:248) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_list_remove__dmemUL' into '__dst_alloc_list_pop__dmemUL' (<stdin>:121) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_bucket_for_request__dmemUL' into '__dst_alloc_malloc__dmemUL' (<stdin>:145) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_node_for_index__dmemUL' into '__dst_alloc_malloc__dmemUL' (<stdin>:152) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_flip_parent_split__dmemUL' into '__dst_alloc_malloc__dmemUL' (<stdin>:153) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_clr_parent_split__dmemUL' into '__dst_alloc_malloc__dmemUL' (<stdin>:156) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_index_for_node__dmemUL' into '__dst_alloc_malloc__dmemUL' (<stdin>:159) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_list_push__dmemUL' into '__dst_alloc_malloc__dmemUL' (<stdin>:159) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_bucket_for_request__dmemUL' into '__dst_alloc_free__dmemUL' (<stdin>:170) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_node_for_index__dmemUL' into '__dst_alloc_free__dmemUL' (<stdin>:171) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_flip_parent_split__dmemUL' into '__dst_alloc_free__dmemUL' (<stdin>:173) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_test_parent_split__dmemUL' into '__dst_alloc_free__dmemUL' (<stdin>:174) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_index_for_node__dmemUL' into '__dst_alloc_free__dmemUL' (<stdin>:175) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_list_remove__dmemUL' into '__dst_alloc_free__dmemUL' (<stdin>:175) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_list_push__dmemUL' into '__dst_alloc_free__dmemUL' (<stdin>:179) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_bucket_for_request__dmemclass_node' into '__dst_alloc_free__dmemclass_node' (<stdin>:170) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_node_for_index__dmemclass_node' into '__dst_alloc_free__dmemclass_node' (<stdin>:171) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_flip_parent_split__dmemclass_node' into '__dst_alloc_free__dmemclass_node' (<stdin>:173) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_test_parent_split__dmemclass_node' into '__dst_alloc_free__dmemclass_node' (<stdin>:174) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_index_for_node__dmemclass_node' into '__dst_alloc_free__dmemclass_node' (<stdin>:175) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_list_remove__dmemclass_node' into '__dst_alloc_free__dmemclass_node' (<stdin>:175) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_list_push__dmemclass_node' into '__dst_alloc_free__dmemclass_node' (<stdin>:179) automatically.
+INFO: [XFORM 203-602] Inlining function 'new_node' into 'process_top' (<stdin>:427) automatically.
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:09 ; elapsed = 00:00:11 . Memory (MB): peak = 435.008 ; gain = 0.059 ; free physical = 46782 ; free virtual = 49027
+INFO: [XFORM 203-102] Automatically partitioning small array '.str' completely based on array size.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_list_remove__dmemclass_node' into '__dst_alloc_list_pop__dmemclass_node' (<stdin>:121) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_bucket_for_request__dmemclass_node' into '__dst_alloc_malloc__dmemclass_node' (<stdin>:145) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_node_for_index__dmemclass_node' into '__dst_alloc_malloc__dmemclass_node' (<stdin>:152) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_flip_parent_split__dmemclass_node' into '__dst_alloc_malloc__dmemclass_node' (<stdin>:153) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_clr_parent_split__dmemclass_node' into '__dst_alloc_malloc__dmemclass_node' (<stdin>:156) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_index_for_node__dmemclass_node' into '__dst_alloc_malloc__dmemclass_node' (<stdin>:159) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_list_push__dmemclass_node' into '__dst_alloc_malloc__dmemclass_node' (<stdin>:159) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_list_remove__dmemc' into '__dst_alloc_list_pop__dmemc' (<stdin>:121) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_bucket_for_request__dmemc' into '__dst_alloc_malloc__dmemc' (<stdin>:145) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_node_for_index__dmemc' into '__dst_alloc_malloc__dmemc' (<stdin>:152) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_flip_parent_split__dmemc' into '__dst_alloc_malloc__dmemc' (<stdin>:153) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_clr_parent_split__dmemc' into '__dst_alloc_malloc__dmemc' (<stdin>:156) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_index_for_node__dmemc' into '__dst_alloc_malloc__dmemc' (<stdin>:159) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_list_push__dmemc' into '__dst_alloc_malloc__dmemc' (<stdin>:159) automatically.
+INFO: [XFORM 203-602] Inlining function 'new_node' into 'insert_node' (<stdin>:248) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_list_remove__dmemUL' into '__dst_alloc_list_pop__dmemUL' (<stdin>:121) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_bucket_for_request__dmemUL' into '__dst_alloc_malloc__dmemUL' (<stdin>:145) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_node_for_index__dmemUL' into '__dst_alloc_malloc__dmemUL' (<stdin>:152) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_flip_parent_split__dmemUL' into '__dst_alloc_malloc__dmemUL' (<stdin>:153) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_clr_parent_split__dmemUL' into '__dst_alloc_malloc__dmemUL' (<stdin>:156) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_index_for_node__dmemUL' into '__dst_alloc_malloc__dmemUL' (<stdin>:159) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_list_push__dmemUL' into '__dst_alloc_malloc__dmemUL' (<stdin>:159) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_bucket_for_request__dmemUL' into '__dst_alloc_free__dmemUL' (<stdin>:170) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_node_for_index__dmemUL' into '__dst_alloc_free__dmemUL' (<stdin>:171) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_flip_parent_split__dmemUL' into '__dst_alloc_free__dmemUL' (<stdin>:173) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_test_parent_split__dmemUL' into '__dst_alloc_free__dmemUL' (<stdin>:174) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_index_for_node__dmemUL' into '__dst_alloc_free__dmemUL' (<stdin>:175) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_list_remove__dmemUL' into '__dst_alloc_free__dmemUL' (<stdin>:175) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_list_push__dmemUL' into '__dst_alloc_free__dmemUL' (<stdin>:179) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_bucket_for_request__dmemclass_node' into '__dst_alloc_free__dmemclass_node' (<stdin>:170) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_node_for_index__dmemclass_node' into '__dst_alloc_free__dmemclass_node' (<stdin>:171) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_flip_parent_split__dmemclass_node' into '__dst_alloc_free__dmemclass_node' (<stdin>:173) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_test_parent_split__dmemclass_node' into '__dst_alloc_free__dmemclass_node' (<stdin>:174) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_index_for_node__dmemclass_node' into '__dst_alloc_free__dmemclass_node' (<stdin>:175) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_list_remove__dmemclass_node' into '__dst_alloc_free__dmemclass_node' (<stdin>:175) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_list_push__dmemclass_node' into '__dst_alloc_free__dmemclass_node' (<stdin>:179) automatically.
+INFO: [XFORM 203-602] Inlining function 'new_node' into 'process_top' (<stdin>:427) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_list_pop__dmemclass_node' into '__dst_alloc_malloc__dmemclass_node' (<stdin>:148) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_list_pop__dmemc' into '__dst_alloc_malloc__dmemc' (<stdin>:148) automatically.
+INFO: [XFORM 203-602] Inlining function '__dst_alloc_list_pop__dmemUL' into '__dst_alloc_malloc__dmemUL' (<stdin>:148) automatically.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:10 ; elapsed = 00:00:13 . Memory (MB): peak = 578.949 ; gain = 144.000 ; free physical = 46263 ; free virtual = 48509
+WARNING: [HLS 200-451] Automatic burst inferencing is disabled for port 'substrings' as a bitwidth mismatch was detected between port 'substrings' and its bundle 'gmem' (8 vs. 32)(<stdin>:434:5). To allow bursting all ports sharing a bundle must have the same bitwidth.
+WARNING: [XFORM 203-631] Renaming function '__dst_alloc_malloc__dmemclass_node' to '__dst_alloc_malloc__' (<stdin>:79:10)
+WARNING: [XFORM 203-631] Renaming function '__dst_alloc_malloc__dmemc' to '__dst_alloc_malloc__.1' (<stdin>:79:10)
+WARNING: [XFORM 203-631] Renaming function '__dst_alloc_malloc__dmemUL' to '__dst_alloc_malloc__.2' (<stdin>:79:10)
+WARNING: [XFORM 203-631] Renaming function '__dst_alloc_free__dmemclass_node' to '__dst_alloc_free__dm' (<stdin>:76:5)
+WARNING: [XFORM 203-631] Renaming function '__dst_alloc_free__dmemUL' to '__dst_alloc_free__dm.1' (<stdin>:76:5)
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:12 ; elapsed = 00:00:15 . Memory (MB): peak = 651.949 ; gain = 217.000 ; free physical = 46103 ; free virtual = 48348
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'process_top' ...
+WARNING: [SYN 201-103] Legalizing function name '__dst_alloc_malloc__' to 'p_dst_alloc_malloc_s'.
+WARNING: [SYN 201-103] Legalizing function name '__dst_alloc_malloc__.1' to 'p_dst_alloc_malloc_1'.
+WARNING: [SYN 201-103] Legalizing function name '__dst_alloc_malloc__.2' to 'p_dst_alloc_malloc_2'.
+WARNING: [SYN 201-103] Legalizing function name '__dst_alloc_free__dm.1' to 'p_dst_alloc_free_dm_1'.
+WARNING: [SYN 201-103] Legalizing function name '__dst_alloc_free__dm' to 'p_dst_alloc_free_dm'.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'p_dst_alloc_malloc_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 14.99 seconds; current allocated memory: 160.427 MB.
+INFO: [HLS 200-434] Only 0 loops out of a total 2 loops have been pipelined in this design.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.2 seconds; current allocated memory: 160.910 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'p_dst_alloc_malloc_1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.41 seconds; current allocated memory: 161.362 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.22 seconds; current allocated memory: 161.853 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'insert_node' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.52 seconds; current allocated memory: 162.705 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.42 seconds; current allocated memory: 163.499 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'p_dst_alloc_malloc_2' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.56 seconds; current allocated memory: 163.974 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.2 seconds; current allocated memory: 164.511 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'p_dst_alloc_free_dm_1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.4 seconds; current allocated memory: 164.850 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.22 seconds; current allocated memory: 165.298 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'build_AhoCorasick' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.33 seconds; current allocated memory: 165.599 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.3 seconds; current allocated memory: 165.986 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'query_AhoCorasick' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.45 seconds; current allocated memory: 166.369 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.19 seconds; current allocated memory: 166.862 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'p_dst_alloc_free_dm' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.37 seconds; current allocated memory: 167.215 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.2 seconds; current allocated memory: 167.621 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'delete_tree' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.34 seconds; current allocated memory: 167.980 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.23 seconds; current allocated memory: 168.333 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'process_top' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.4 seconds; current allocated memory: 168.718 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 1.49 seconds; current allocated memory: 169.650 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'p_dst_alloc_malloc_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'p_dst_alloc_malloc_s'.
+INFO: [HLS 200-111]  Elapsed time: 0.95 seconds; current allocated memory: 170.620 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'p_dst_alloc_malloc_1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'p_dst_alloc_malloc_1'.
+INFO: [HLS 200-111]  Elapsed time: 0.59 seconds; current allocated memory: 173.553 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'insert_node' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Generating core module 'process_top_ama_addmuladd_18ns_18ns_6ns_9s_22_1_1': 3 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'process_top_mul_mul_18ns_6ns_22_1_1': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'insert_node'.
+INFO: [HLS 200-111]  Elapsed time: 0.74 seconds; current allocated memory: 177.685 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'p_dst_alloc_malloc_2' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'p_dst_alloc_malloc_2'.
+INFO: [HLS 200-111]  Elapsed time: 0.91 seconds; current allocated memory: 182.833 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'p_dst_alloc_free_dm_1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'p_dst_alloc_free_dm_1'.
+INFO: [HLS 200-111]  Elapsed time: 0.62 seconds; current allocated memory: 185.845 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'build_AhoCorasick' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Generating core module 'process_top_mac_muladd_6ns_18ns_5ns_22_1_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'process_top_mul_mul_6ns_18ns_22_1_1': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'build_AhoCorasick'.
+INFO: [HLS 200-111]  Elapsed time: 0.78 seconds; current allocated memory: 188.668 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'query_AhoCorasick' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Generating core module 'process_top_mac_muladd_6ns_18ns_9s_22_1_1': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'query_AhoCorasick'.
+INFO: [HLS 200-111]  Elapsed time: 0.91 seconds; current allocated memory: 191.143 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'p_dst_alloc_free_dm' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'p_dst_alloc_free_dm'.
+INFO: [HLS 200-111]  Elapsed time: 0.55 seconds; current allocated memory: 193.559 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'delete_tree' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Generating core module 'process_top_ama_addmuladd_18ns_18ns_6ns_22ns_22_1_1': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'delete_tree'.
+INFO: [HLS 200-111]  Elapsed time: 0.72 seconds; current allocated memory: 196.290 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'process_top' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'process_top/gmem' to 'm_axi'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'process_top/substring_length_p' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'process_top/substrings' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'process_top/query' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'process_top/substring_indexes' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'process_top/query_indexes' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'process_top/fallback' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'process_top' to 's_axilite & ap_ctrl_hs'.
+WARNING: [RTGEN 206-101] Register 'g_fallback' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'node_count' is power-on initialization.
+WARNING: [RTGEN 206-101] Global scalar 'node_count' will not be exposed as RTL port.
+INFO: [RTGEN 206-100] Bundling port 'return', 'substring_length_p', 'substrings', 'query', 'substring_indexes', 'query_indexes' and 'fallback' to AXI-Lite port control.
+INFO: [RTGEN 206-100] Generating core module 'process_top_mul_mul_18ns_6ns_22_1_1': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'process_top'.
+INFO: [HLS 200-111]  Elapsed time: 1.07 seconds; current allocated memory: 200.320 MB.
+INFO: [RTMG 210-278] Implementing memory 'p_dst_alloc_malloc_1_p_dst_alloc_buckets_2_ram (RAM)' using distributed RAMs with power-on initialization.
+INFO: [RTMG 210-278] Implementing memory 'p_dst_alloc_malloc_1_p_dmemc_link_prev_ram (RAM)' using block RAMs with power-on initialization.
+INFO: [RTMG 210-278] Implementing memory 'p_dst_alloc_malloc_1_p_dst_alloc_node_spl_2_ram (RAM)' using block RAMs with power-on initialization.
+INFO: [RTMG 210-278] Implementing memory 'insert_node_p_rect_packed_var_L5_ram (RAM)' using block RAMs.
+INFO: [RTMG 210-278] Implementing memory 'insert_node_p_rect_packed_var_L5_1_ram (RAM)' using block RAMs.
+INFO: [RTMG 210-278] Implementing memory 'insert_node_p_rect_packed_var_L5_2_ram (RAM)' using block RAMs.
+INFO: [RTMG 210-278] Implementing memory 'insert_node_p_rect_packed_var_L5_3_ram (RAM)' using block RAMs.
+INFO: [RTMG 210-278] Implementing memory 'insert_node_p_rect_packed_var_L5_4_ram (RAM)' using block RAMs.
+INFO: [RTMG 210-278] Implementing memory 'insert_node_p_rect_packed_var_L5_5_ram (RAM)' using block RAMs.
+INFO: [RTMG 210-278] Implementing memory 'build_AhoCorasick_p_dmemUL_data_ram (RAM)' using block RAMs with power-on initialization.
+INFO: [RTMG 210-278] Implementing memory 'process_top_p_dmemclass_node_da_2_ram (RAM)' using block RAMs with power-on initialization.
+INFO: [RTMG 210-278] Implementing memory 'process_top_p_dmemc_data_ram (RAM)' using block RAMs with power-on initialization.
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:26 ; elapsed = 00:00:37 . Memory (MB): peak = 725.949 ; gain = 291.000 ; free physical = 44355 ; free virtual = 46730
+INFO: [SYSC 207-301] Generating SystemC RTL for process_top.
+INFO: [VHDL 208-304] Generating VHDL RTL for process_top.
+INFO: [VLOG 209-307] Generating Verilog RTL for process_top.
+INFO: [IMPL 213-8] Exporting RTL as a Vivado IP.
+
+****** Vivado v2018.3 (64-bit)
+  **** SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
+  **** IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+    ** Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+
+source run_ippack.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/tools/xilinx/Vivado/2018.3/data/ip'.
+INFO: [Common 17-206] Exiting Vivado at Sat Jan 25 14:02:43 2020...
+INFO: [IMPL 213-8] Starting RTL evaluation using Vivado ...
+
+****** Vivado v2018.3 (64-bit)
+  **** SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
+  **** IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+    ** Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+
+source run_vivado.tcl -notrace
+create_project: Time (s): cpu = 00:00:03 ; elapsed = 00:00:06 . Memory (MB): peak = 1370.164 ; gain = 2.020 ; free physical = 42946 ; free virtual = 45247
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/lau/projects/dynamic/icse2020-artifacts/experiments/Recursive/ac/tmp/implement_32768/device/device/impl/ip'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/tools/xilinx/Vivado/2018.3/data/ip'.
+update_ip_catalog: Time (s): cpu = 00:00:06 ; elapsed = 00:00:09 . Memory (MB): peak = 1370.164 ; gain = 0.000 ; free physical = 42665 ; free virtual = 44966
+Wrote  : </home/lau/projects/dynamic/icse2020-artifacts/experiments/Recursive/ac/tmp/implement_32768/device/device/impl/verilog/project.srcs/sources_1/bd/bd_0/bd_0.bd> 
+</hls_inst/s_axi_control/Reg> is being mapped into </s_axi_control> at <0x00000000 [ 4K ]>
+</m_axi_gmem/Reg> is being mapped into </hls_inst/Data_m_axi_gmem> at <0x44A00000 [ 64K ]>
+WARNING: [BD 41-927] Following properties on pin /hls_inst/ap_clk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=bd_0_ap_clk_0 
+Wrote  : </home/lau/projects/dynamic/icse2020-artifacts/experiments/Recursive/ac/tmp/implement_32768/device/device/impl/verilog/project.srcs/sources_1/bd/bd_0/bd_0.bd> 
+VHDL Output written to : /home/lau/projects/dynamic/icse2020-artifacts/experiments/Recursive/ac/tmp/implement_32768/device/device/impl/verilog/project.srcs/sources_1/bd/bd_0/synth/bd_0.v
+VHDL Output written to : /home/lau/projects/dynamic/icse2020-artifacts/experiments/Recursive/ac/tmp/implement_32768/device/device/impl/verilog/project.srcs/sources_1/bd/bd_0/sim/bd_0.v
+VHDL Output written to : /home/lau/projects/dynamic/icse2020-artifacts/experiments/Recursive/ac/tmp/implement_32768/device/device/impl/verilog/project.srcs/sources_1/bd/bd_0/hdl/bd_0_wrapper.v
+Using BD top: bd_0_wrapper
+INFO: [BD 41-1662] The design 'bd_0.bd' is already validated. Therefore parameter propagation will not be re-run.
+VHDL Output written to : /home/lau/projects/dynamic/icse2020-artifacts/experiments/Recursive/ac/tmp/implement_32768/device/device/impl/verilog/project.srcs/sources_1/bd/bd_0/synth/bd_0.v
+VHDL Output written to : /home/lau/projects/dynamic/icse2020-artifacts/experiments/Recursive/ac/tmp/implement_32768/device/device/impl/verilog/project.srcs/sources_1/bd/bd_0/sim/bd_0.v
+VHDL Output written to : /home/lau/projects/dynamic/icse2020-artifacts/experiments/Recursive/ac/tmp/implement_32768/device/device/impl/verilog/project.srcs/sources_1/bd/bd_0/hdl/bd_0_wrapper.v
+INFO: [BD 41-1029] Generation completed for the IP Integrator block hls_inst .
+Exporting to file /home/lau/projects/dynamic/icse2020-artifacts/experiments/Recursive/ac/tmp/implement_32768/device/device/impl/verilog/project.srcs/sources_1/bd/bd_0/hw_handoff/bd_0.hwh
+Generated Block Design Tcl file /home/lau/projects/dynamic/icse2020-artifacts/experiments/Recursive/ac/tmp/implement_32768/device/device/impl/verilog/project.srcs/sources_1/bd/bd_0/hw_handoff/bd_0_bd.tcl
+Generated Hardware Definition File /home/lau/projects/dynamic/icse2020-artifacts/experiments/Recursive/ac/tmp/implement_32768/device/device/impl/verilog/project.srcs/sources_1/bd/bd_0/synth/bd_0.hwdef
+launch_runs: Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1607.289 ; gain = 115.156 ; free physical = 42340 ; free virtual = 44695
+[Sat Jan 25 14:03:19 2020] Launched bd_0_hls_inst_0_synth_1...
+Run output will be captured here: /home/lau/projects/dynamic/icse2020-artifacts/experiments/Recursive/ac/tmp/implement_32768/device/device/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/runme.log
+[Sat Jan 25 14:03:19 2020] Launched synth_1...
+Run output will be captured here: /home/lau/projects/dynamic/icse2020-artifacts/experiments/Recursive/ac/tmp/implement_32768/device/device/impl/verilog/project.runs/synth_1/runme.log
+[Sat Jan 25 14:03:19 2020] Waiting for synth_1 to finish...
+
+*** Running vivado
+    with args -log bd_0_wrapper.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source bd_0_wrapper.tcl
+
+
+****** Vivado v2018.3 (64-bit)
+  **** SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
+  **** IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+    ** Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+
+source bd_0_wrapper.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/lau/projects/dynamic/icse2020-artifacts/experiments/Recursive/ac/tmp/implement_32768/device/device/impl/ip'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/tools/xilinx/Vivado/2018.3/data/ip'.
+update_ip_catalog: Time (s): cpu = 00:00:06 ; elapsed = 00:00:09 . Memory (MB): peak = 1345.391 ; gain = 14.750 ; free physical = 40298 ; free virtual = 42850
+Command: synth_design -top bd_0_wrapper -part xcvu9p-fsgd2104-3-e -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xcvu9p'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xcvu9p'
+INFO: [Common 17-1540] The version limit for your license is '2019.12' and has expired for new software. A version limit expiration means that, although you may be able to continue to use the current version of tools or IP with this license, you will not be eligible for any updates or new releases.
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 1757644 
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 1494.168 ; gain = 81.000 ; free physical = 40118 ; free virtual = 42670
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'bd_0_wrapper' [/home/lau/projects/dynamic/icse2020-artifacts/experiments/Recursive/ac/tmp/implement_32768/device/device/impl/verilog/project.srcs/sources_1/bd/bd_0/hdl/bd_0_wrapper.v:12]
+INFO: [Synth 8-6157] synthesizing module 'bd_0' [/home/lau/projects/dynamic/icse2020-artifacts/experiments/Recursive/ac/tmp/implement_32768/device/device/impl/verilog/project.srcs/sources_1/bd/bd_0/synth/bd_0.v:13]
+INFO: [Synth 8-6157] synthesizing module 'bd_0_hls_inst_0' [/home/lau/projects/dynamic/icse2020-artifacts/experiments/Recursive/ac/tmp/implement_32768/device/device/impl/verilog/project.runs/synth_1/.Xil/Vivado-1754755-u0-lau/realtime/bd_0_hls_inst_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'bd_0_hls_inst_0' (1#1) [/home/lau/projects/dynamic/icse2020-artifacts/experiments/Recursive/ac/tmp/implement_32768/device/device/impl/verilog/project.runs/synth_1/.Xil/Vivado-1754755-u0-lau/realtime/bd_0_hls_inst_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'bd_0' (2#1) [/home/lau/projects/dynamic/icse2020-artifacts/experiments/Recursive/ac/tmp/implement_32768/device/device/impl/verilog/project.srcs/sources_1/bd/bd_0/synth/bd_0.v:13]
+INFO: [Synth 8-6155] done synthesizing module 'bd_0_wrapper' (3#1) [/home/lau/projects/dynamic/icse2020-artifacts/experiments/Recursive/ac/tmp/implement_32768/device/device/impl/verilog/project.srcs/sources_1/bd/bd_0/hdl/bd_0_wrapper.v:12]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1547.918 ; gain = 134.750 ; free physical = 40099 ; free virtual = 42651
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:06 . Memory (MB): peak = 1547.918 ; gain = 134.750 ; free physical = 40080 ; free virtual = 42633
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:06 . Memory (MB): peak = 1547.918 ; gain = 134.750 ; free physical = 40081 ; free virtual = 42635
+---------------------------------------------------------------------------------
+INFO: [Device 21-403] Loading part xcvu9p-fsgd2104-3-e
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/home/lau/projects/dynamic/icse2020-artifacts/experiments/Recursive/ac/tmp/implement_32768/device/device/impl/verilog/project.srcs/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/bd_0_hls_inst_0/bd_0_hls_inst_0_in_context.xdc] for cell 'bd_0_i/hls_inst'
+Finished Parsing XDC File [/home/lau/projects/dynamic/icse2020-artifacts/experiments/Recursive/ac/tmp/implement_32768/device/device/impl/verilog/project.srcs/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/bd_0_hls_inst_0/bd_0_hls_inst_0_in_context.xdc] for cell 'bd_0_i/hls_inst'
+Parsing XDC File [/home/lau/projects/dynamic/icse2020-artifacts/experiments/Recursive/ac/tmp/implement_32768/device/device/impl/verilog/process_top.xdc]
+Finished Parsing XDC File [/home/lau/projects/dynamic/icse2020-artifacts/experiments/Recursive/ac/tmp/implement_32768/device/device/impl/verilog/process_top.xdc]
+Parsing XDC File [/home/lau/projects/dynamic/icse2020-artifacts/experiments/Recursive/ac/tmp/implement_32768/device/device/impl/verilog/project.runs/synth_1/dont_touch.xdc]
+Finished Parsing XDC File [/home/lau/projects/dynamic/icse2020-artifacts/experiments/Recursive/ac/tmp/implement_32768/device/device/impl/verilog/project.runs/synth_1/dont_touch.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2523.637 ; gain = 0.000 ; free physical = 39187 ; free virtual = 41849
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2523.637 ; gain = 0.000 ; free physical = 39187 ; free virtual = 41848
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.06 . Memory (MB): peak = 2523.637 ; gain = 0.000 ; free physical = 39188 ; free virtual = 41850
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:25 ; elapsed = 00:00:50 . Memory (MB): peak = 2523.637 ; gain = 1110.469 ; free physical = 41294 ; free virtual = 43961
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xcvu9p-fsgd2104-3-e
+INFO: [Synth 8-6742] Reading net delay rules and data
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:25 ; elapsed = 00:00:50 . Memory (MB): peak = 2523.637 ; gain = 1110.469 ; free physical = 41293 ; free virtual = 43961
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property DONT_TOUCH = true for bd_0_i. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for bd_0_i/hls_inst. (constraint file  auto generated constraint, line ).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:25 ; elapsed = 00:00:51 . Memory (MB): peak = 2523.637 ; gain = 1110.469 ; free physical = 41294 ; free virtual = 43963
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:25 ; elapsed = 00:00:51 . Memory (MB): peak = 2523.637 ; gain = 1110.469 ; free physical = 41290 ; free virtual = 43961
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 6840 (col length:120)
+BRAMs: 4320 (col length: RAMB18 360 RAMB36 180)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+Warning: Parallel synthesis criteria is not met 
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:26 ; elapsed = 00:00:51 . Memory (MB): peak = 2523.637 ; gain = 1110.469 ; free physical = 41261 ; free virtual = 43944
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:49 ; elapsed = 00:01:54 . Memory (MB): peak = 2813.137 ; gain = 1399.969 ; free physical = 45838 ; free virtual = 48441
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:49 ; elapsed = 00:01:54 . Memory (MB): peak = 2813.137 ; gain = 1399.969 ; free physical = 45836 ; free virtual = 48440
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:49 ; elapsed = 00:01:54 . Memory (MB): peak = 2822.152 ; gain = 1408.984 ; free physical = 45861 ; free virtual = 48465
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:50 ; elapsed = 00:01:54 . Memory (MB): peak = 2822.152 ; gain = 1408.984 ; free physical = 45833 ; free virtual = 48445
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:50 ; elapsed = 00:01:54 . Memory (MB): peak = 2822.152 ; gain = 1408.984 ; free physical = 45833 ; free virtual = 48445
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:50 ; elapsed = 00:01:54 . Memory (MB): peak = 2822.152 ; gain = 1408.984 ; free physical = 45832 ; free virtual = 48445
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:50 ; elapsed = 00:01:54 . Memory (MB): peak = 2822.152 ; gain = 1408.984 ; free physical = 45832 ; free virtual = 48445
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:50 ; elapsed = 00:01:54 . Memory (MB): peak = 2822.152 ; gain = 1408.984 ; free physical = 45832 ; free virtual = 48445
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:50 ; elapsed = 00:01:54 . Memory (MB): peak = 2822.152 ; gain = 1408.984 ; free physical = 45832 ; free virtual = 48445
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++------+----------------+----------+
+|      |BlackBox name   |Instances |
++------+----------------+----------+
+|1     |bd_0_hls_inst_0 |         1|
++------+----------------+----------+
+
+Report Cell Usage: 
++------+----------------+------+
+|      |Cell            |Count |
++------+----------------+------+
+|1     |bd_0_hls_inst_0 |     1|
++------+----------------+------+
+
+Report Instance Areas: 
++------+---------+-------+------+
+|      |Instance |Module |Cells |
++------+---------+-------+------+
+|1     |top      |       |   208|
+|2     |  bd_0_i |bd_0   |   208|
++------+---------+-------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:50 ; elapsed = 00:01:54 . Memory (MB): peak = 2822.152 ; gain = 1408.984 ; free physical = 45832 ; free virtual = 48445
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:31 ; elapsed = 00:01:14 . Memory (MB): peak = 2822.152 ; gain = 433.266 ; free physical = 45853 ; free virtual = 48467
+Synthesis Optimization Complete : Time (s): cpu = 00:00:50 ; elapsed = 00:01:55 . Memory (MB): peak = 2822.160 ; gain = 1408.984 ; free physical = 45863 ; free virtual = 48477
+INFO: [Project 1-571] Translating synthesized netlist
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2887.262 ; gain = 0.000 ; free physical = 45687 ; free virtual = 48329
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+INFO: [Common 17-83] Releasing license: Synthesis
+20 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:53 ; elapsed = 00:01:58 . Memory (MB): peak = 2887.262 ; gain = 1524.027 ; free physical = 45736 ; free virtual = 48378
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2887.262 ; gain = 0.000 ; free physical = 45736 ; free virtual = 48378
+WARNING: [Constraints 18-5210] No constraints selected for write.
+Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
+INFO: [Common 17-1381] The checkpoint '/home/lau/projects/dynamic/icse2020-artifacts/experiments/Recursive/ac/tmp/implement_32768/device/device/impl/verilog/project.runs/synth_1/bd_0_wrapper.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file bd_0_wrapper_utilization_synth.rpt -pb bd_0_wrapper_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Sat Jan 25 14:13:39 2020...
+[Sat Jan 25 14:13:40 2020] synth_1 finished
+wait_on_run: Time (s): cpu = 00:07:29 ; elapsed = 00:10:21 . Memory (MB): peak = 1611.289 ; gain = 0.000 ; free physical = 47463 ; free virtual = 50087
+Design is defaulting to impl run constrset: constrs_1
+Design is defaulting to synth run part: xcvu9p-fsgd2104-3-e
+INFO: [Project 1-454] Reading design checkpoint '/home/lau/projects/dynamic/icse2020-artifacts/experiments/Recursive/ac/tmp/implement_32768/device/device/impl/verilog/project.srcs/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/bd_0_hls_inst_0.dcp' for cell 'bd_0_i/hls_inst'
+INFO: [Netlist 29-17] Analyzing 1050 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2018.3
+INFO: [Device 21-403] Loading part xcvu9p-fsgd2104-3-e
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Parsing XDC File [/home/lau/projects/dynamic/icse2020-artifacts/experiments/Recursive/ac/tmp/implement_32768/device/device/impl/verilog/process_top.xdc]
+Finished Parsing XDC File [/home/lau/projects/dynamic/icse2020-artifacts/experiments/Recursive/ac/tmp/implement_32768/device/device/impl/verilog/process_top.xdc]
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2683.051 ; gain = 0.000 ; free physical = 45592 ; free virtual = 48206
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 105 instances were transformed.
+  DSP48E2 => DSP48E2 (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD_DATA, DSP_PREADD): 9 instances
+  RAM16X1S => RAM32X1S (RAMS32): 96 instances
+
+open_run: Time (s): cpu = 00:00:29 ; elapsed = 00:00:51 . Memory (MB): peak = 2683.051 ; gain = 1071.762 ; free physical = 45565 ; free virtual = 48180
+Running report: report_utilization -file ./report/process_top_utilization_synth.rpt
+Contents of report file './report/process_top_utilization_synth.rpt' is as follows:
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+-------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
+| Date         : Sat Jan 25 14:14:32 2020
+| Host         : u0-lau running 64-bit Ubuntu 16.04.5 LTS
+| Command      : report_utilization -file ./report/process_top_utilization_synth.rpt
+| Design       : bd_0_wrapper
+| Device       : xcvu9pfsgd2104-3
+| Design State : Synthesized
+-------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. CLB Logic
+1.1 Summary of Registers by Type
+2. BLOCKRAM
+3. ARITHMETIC
+4. I/O
+5. CLOCK
+6. ADVANCED
+7. CONFIGURATION
+8. Primitives
+9. Black Boxes
+10. Instantiated Netlists
+11. SLR Connectivity
+12. SLR Connectivity Matrix
+13. SLR CLB Logic and Dedicated Block Utilization
+14. SLR IO Utilization
+
+1. CLB Logic
+------------
+
++----------------------------+------+-------+-----------+-------+
+|          Site Type         | Used | Fixed | Available | Util% |
++----------------------------+------+-------+-----------+-------+
+| CLB LUTs*                  | 9185 |     0 |   1182240 |  0.78 |
+|   LUT as Logic             | 9021 |     0 |   1182240 |  0.76 |
+|   LUT as Memory            |  164 |     0 |    591840 |  0.03 |
+|     LUT as Distributed RAM |   96 |     0 |           |       |
+|     LUT as Shift Register  |   68 |     0 |           |       |
+| CLB Registers              | 6448 |     0 |   2364480 |  0.27 |
+|   Register as Flip Flop    | 6448 |     0 |   2364480 |  0.27 |
+|   Register as Latch        |    0 |     0 |   2364480 |  0.00 |
+| CARRY8                     |  350 |     0 |    147780 |  0.24 |
+| F7 Muxes                   |  463 |     0 |    591120 |  0.08 |
+| F8 Muxes                   |  132 |     0 |    295560 |  0.04 |
+| F9 Muxes                   |    0 |     0 |    147780 |  0.00 |
++----------------------------+------+-------+-----------+-------+
+* Warning! The Final LUT count, after physical optimizations and full implementation, is typically lower. Run opt_design after synthesis, if not already completed, for a more realistic count.
+
+
+1.1 Summary of Registers by Type
+--------------------------------
+
++-------+--------------+-------------+--------------+
+| Total | Clock Enable | Synchronous | Asynchronous |
++-------+--------------+-------------+--------------+
+| 0     |            _ |           - |            - |
+| 0     |            _ |           - |          Set |
+| 0     |            _ |           - |        Reset |
+| 0     |            _ |         Set |            - |
+| 0     |            _ |       Reset |            - |
+| 0     |          Yes |           - |            - |
+| 0     |          Yes |           - |          Set |
+| 0     |          Yes |           - |        Reset |
+| 43    |          Yes |         Set |            - |
+| 6405  |          Yes |       Reset |            - |
++-------+--------------+-------------+--------------+
+
+
+2. BLOCKRAM
+-----------
+
++-------------------+------+-------+-----------+--------+
+|     Site Type     | Used | Fixed | Available |  Util% |
++-------------------+------+-------+-----------+--------+
+| Block RAM Tile    | 2302 |     0 |      2160 | 106.57 |
+|   RAMB36/FIFO*    | 2299 |     0 |      2160 | 106.44 |
+|     RAMB36E2 only | 2299 |       |           |        |
+|   RAMB18          |    6 |     0 |      4320 |   0.14 |
+|     RAMB18E2 only |    6 |       |           |        |
+| URAM              |    0 |     0 |       960 |   0.00 |
++-------------------+------+-------+-----------+--------+
+* Note: Each Block RAM Tile only has one FIFO logic available and therefore can accommodate only one FIFO36E2 or one FIFO18E2. However, if a FIFO18E2 occupies a Block RAM Tile, that tile can still accommodate a RAMB18E2
+
+
+3. ARITHMETIC
+-------------
+
++----------------+------+-------+-----------+-------+
+|    Site Type   | Used | Fixed | Available | Util% |
++----------------+------+-------+-----------+-------+
+| DSPs           |    9 |     0 |      6840 |  0.13 |
+|   DSP48E2 only |    9 |       |           |       |
++----------------+------+-------+-----------+-------+
+
+
+4. I/O
+------
+
++------------+------+-------+-----------+-------+
+|  Site Type | Used | Fixed | Available | Util% |
++------------+------+-------+-----------+-------+
+| Bonded IOB |    0 |     0 |       676 |  0.00 |
++------------+------+-------+-----------+-------+
+
+
+5. CLOCK
+--------
+
++----------------------+------+-------+-----------+-------+
+|       Site Type      | Used | Fixed | Available | Util% |
++----------------------+------+-------+-----------+-------+
+| GLOBAL CLOCK BUFFERs |    0 |     0 |      1800 |  0.00 |
+|   BUFGCE             |    0 |     0 |       720 |  0.00 |
+|   BUFGCE_DIV         |    0 |     0 |       120 |  0.00 |
+|   BUFG_GT            |    0 |     0 |       720 |  0.00 |
+|   BUFGCTRL*          |    0 |     0 |       240 |  0.00 |
+| PLL                  |    0 |     0 |        60 |  0.00 |
+| MMCM                 |    0 |     0 |        30 |  0.00 |
++----------------------+------+-------+-----------+-------+
+* Note: Each used BUFGCTRL counts as two global buffer resources. This table does not include global clocking resources, only buffer cell usage. See the Clock Utilization Report (report_clock_utilization) for detailed accounting of global clocking resource availability.
+
+
+6. ADVANCED
+-----------
+
++-----------------+------+-------+-----------+-------+
+|    Site Type    | Used | Fixed | Available | Util% |
++-----------------+------+-------+-----------+-------+
+| CMACE4          |    0 |     0 |         9 |  0.00 |
+| GTYE4_CHANNEL   |    0 |     0 |        76 |  0.00 |
+| GTYE4_COMMON    |    0 |     0 |        19 |  0.00 |
+| ILKNE4          |    0 |     0 |         9 |  0.00 |
+| OBUFDS_GTE4     |    0 |     0 |        38 |  0.00 |
+| OBUFDS_GTE4_ADV |    0 |     0 |        38 |  0.00 |
+| PCIE40E4        |    0 |     0 |         6 |  0.00 |
+| SYSMONE4        |    0 |     0 |         3 |  0.00 |
++-----------------+------+-------+-----------+-------+
+
+
+7. CONFIGURATION
+----------------
+
++-------------+------+-------+-----------+-------+
+|  Site Type  | Used | Fixed | Available | Util% |
++-------------+------+-------+-----------+-------+
+| BSCANE2     |    0 |     0 |        12 |  0.00 |
+| DNA_PORTE2  |    0 |     0 |         3 |  0.00 |
+| EFUSE_USR   |    0 |     0 |         3 |  0.00 |
+| FRAME_ECCE4 |    0 |     0 |         3 |  0.00 |
+| ICAPE3      |    0 |     0 |         6 |  0.00 |
+| MASTER_JTAG |    0 |     0 |         3 |  0.00 |
+| STARTUPE3   |    0 |     0 |         3 |  0.00 |
++-------------+------+-------+-----------+-------+
+
+
+8. Primitives
+-------------
+
++----------+------+---------------------+
+| Ref Name | Used | Functional Category |
++----------+------+---------------------+
+| FDRE     | 6405 |            Register |
+| LUT6     | 3121 |                 CLB |
+| LUT3     | 2416 |                 CLB |
+| RAMB36E2 | 2299 |           Block Ram |
+| LUT5     | 2110 |                 CLB |
+| LUT4     | 1673 |                 CLB |
+| LUT2     |  771 |                 CLB |
+| MUXF7    |  463 |                 CLB |
+| LUT1     |  426 |                 CLB |
+| CARRY8   |  350 |                 CLB |
+| MUXF8    |  132 |                 CLB |
+| RAMS32   |   96 |                 CLB |
+| SRL16E   |   68 |                 CLB |
+| FDSE     |   43 |            Register |
+| DSP48E2  |    9 |          Arithmetic |
+| RAMB18E2 |    6 |           Block Ram |
++----------+------+---------------------+
+
+
+9. Black Boxes
+--------------
+
++----------+------+
+| Ref Name | Used |
++----------+------+
+
+
+10. Instantiated Netlists
+-------------------------
+
++-----------------+------+
+|     Ref Name    | Used |
++-----------------+------+
+| bd_0_hls_inst_0 |    1 |
++-----------------+------+
+
+
+11. SLR Connectivity
+--------------------
+
++----------------------------------+------+-------+-----------+-------+
+|                                  | Used | Fixed | Available | Util% |
++----------------------------------+------+-------+-----------+-------+
+| SLR2 <-> SLR1                    |    0 |       |     17280 |  0.00 |
+|   SLR1 -> SLR2                   |    0 |       |           |  0.00 |
+|     Using TX_REG only            |    0 |     0 |           |       |
+|     Using RX_REG only            |    0 |     0 |           |       |
+|     Using Both TX_REG and RX_REG |    0 |     0 |           |       |
+|   SLR2 -> SLR1                   |    0 |       |           |  0.00 |
+|     Using TX_REG only            |    0 |     0 |           |       |
+|     Using RX_REG only            |    0 |     0 |           |       |
+|     Using Both TX_REG and RX_REG |    0 |     0 |           |       |
+| SLR1 <-> SLR0                    |    0 |       |     17280 |  0.00 |
+|   SLR0 -> SLR1                   |    0 |       |           |  0.00 |
+|     Using TX_REG only            |    0 |     0 |           |       |
+|     Using RX_REG only            |    0 |     0 |           |       |
+|     Using Both TX_REG and RX_REG |    0 |     0 |           |       |
+|   SLR1 -> SLR0                   |    0 |       |           |  0.00 |
+|     Using TX_REG only            |    0 |     0 |           |       |
+|     Using RX_REG only            |    0 |     0 |           |       |
+|     Using Both TX_REG and RX_REG |    0 |     0 |           |       |
++----------------------------------+------+-------+-----------+-------+
+| Total SLLs Used                  |    0 |       |           |       |
++----------------------------------+------+-------+-----------+-------+
+
+
+12. SLR Connectivity Matrix
+---------------------------
+
++------+------+------+------+
+|      | SLR2 | SLR1 | SLR0 |
++------+------+------+------+
+| SLR2 |    0 |    0 |    0 |
+| SLR1 |    0 |    0 |    0 |
+| SLR0 |    0 |    0 |    0 |
++------+------+------+------+
+
+
+13. SLR CLB Logic and Dedicated Block Utilization
+-------------------------------------------------
+
++----------------------------+------+------+------+--------+--------+--------+
+|          Site Type         | SLR0 | SLR1 | SLR2 | SLR0 % | SLR1 % | SLR2 % |
++----------------------------+------+------+------+--------+--------+--------+
+| CLB                        |    0 |    0 |    0 |   0.00 |   0.00 |   0.00 |
+|   CLBL                     |    0 |    0 |    0 |   0.00 |   0.00 |   0.00 |
+|   CLBM                     |    0 |    0 |    0 |   0.00 |   0.00 |   0.00 |
+| CLB LUTs                   |    0 |    0 |    0 |   0.00 |   0.00 |   0.00 |
+|   LUT as Logic             |    0 |    0 |    0 |   0.00 |   0.00 |   0.00 |
+|   LUT as Memory            |    0 |    0 |    0 |   0.00 |   0.00 |   0.00 |
+|     LUT as Distributed RAM |    0 |    0 |    0 |   0.00 |   0.00 |   0.00 |
+|     LUT as Shift Register  |    0 |    0 |    0 |   0.00 |   0.00 |   0.00 |
+| CLB Registers              |    0 |    0 |    0 |   0.00 |   0.00 |   0.00 |
+| CARRY8                     |    0 |    0 |    0 |   0.00 |   0.00 |   0.00 |
+| F7 Muxes                   |    0 |    0 |    0 |   0.00 |   0.00 |   0.00 |
+| F8 Muxes                   |    0 |    0 |    0 |   0.00 |   0.00 |   0.00 |
+| F9 Muxes                   |    0 |    0 |    0 |   0.00 |   0.00 |   0.00 |
+| Block RAM Tile             |    0 |    0 |    0 |   0.00 |   0.00 |   0.00 |
+|   RAMB36/FIFO              |    0 |    0 |    0 |   0.00 |   0.00 |   0.00 |
+|   RAMB18                   |    0 |    0 |    0 |   0.00 |   0.00 |   0.00 |
+| URAM                       |    0 |    0 |    0 |   0.00 |   0.00 |   0.00 |
+| DSPs                       |    0 |    0 |    0 |   0.00 |   0.00 |   0.00 |
+| PLL                        |    0 |    0 |    0 |   0.00 |   0.00 |   0.00 |
+| MMCM                       |    0 |    0 |    0 |   0.00 |   0.00 |   0.00 |
+| Unique Control Sets        |    0 |    0 |    0 |   0.00 |   0.00 |   0.00 |
++----------------------------+------+------+------+--------+--------+--------+
+* Note: Available Control Sets based on CLB Registers / 8
+
+
+14. SLR IO Utilization
+----------------------
+
++-----------+-------------+---------+--------------+----------+--------------+----------+-----+
+| SLR Index | Bonded IOBs | (%)IOBs | Bonded IPADs | (%)IPADs | Bonded OPADs | (%)OPADs | GTs |
++-----------+-------------+---------+--------------+----------+--------------+----------+-----+
+| SLR2      |           0 |    0.00 |            0 |     0.00 |            0 |     0.00 |   0 |
+| SLR1      |           0 |    0.00 |            0 |     0.00 |            0 |     0.00 |   0 |
+| SLR0      |           0 |    0.00 |            0 |     0.00 |            0 |     0.00 |   0 |
++-----------+-------------+---------+--------------+----------+--------------+----------+-----+
+| Total     |           0 |         |            0 |          |            0 |          |   0 |
++-----------+-------------+---------+--------------+----------+--------------+----------+-----+
+
+
+
+Running report: report_timing_summary -file ./report/process_top_timing_synth.rpt
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -3, Temperature grade: E, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 8 CPUs
+WARNING: [Timing 38-242] The property HD.CLK_SRC of clock port "ap_clk" is not set. In out-of-context mode, this prevents timing estimation for clock delay/skew
+Resolution: Set the HD.CLK_SRC property of the out-of-context port to the location of the clock buffer instance in the top-level design
+report_timing_summary: Time (s): cpu = 00:02:50 ; elapsed = 00:02:16 . Memory (MB): peak = 4316.422 ; gain = 1633.371 ; free physical = 40900 ; free virtual = 43557
+Contents of report file './report/process_top_timing_synth.rpt' is as follows:
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+-----------------------------------------------------------------------------------------
+| Tool Version      : Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
+| Date              : Sat Jan 25 14:16:48 2020
+| Host              : u0-lau running 64-bit Ubuntu 16.04.5 LTS
+| Command           : report_timing_summary -file ./report/process_top_timing_synth.rpt
+| Design            : bd_0_wrapper
+| Device            : xcvu9p-fsgd2104
+| Speed File        : -3  PRODUCTION 1.23 10-29-2018
+| Temperature Grade : E
+-----------------------------------------------------------------------------------------
+
+Timing Summary Report
+
+------------------------------------------------------------------------------------------------
+| Timer Settings
+| --------------
+------------------------------------------------------------------------------------------------
+
+  Enable Multi Corner Analysis               :  Yes
+  Enable Pessimism Removal                   :  Yes
+  Pessimism Removal Resolution               :  Nearest Common Node
+  Enable Input Delay Default Clock           :  No
+  Enable Preset / Clear Arcs                 :  No
+  Disable Flight Delays                      :  No
+  Ignore I/O Paths                           :  No
+  Timing Early Launch at Borrowing Latches   :  false
+
+  Corner  Analyze    Analyze    
+  Name    Max Paths  Min Paths  
+  ------  ---------  ---------  
+  Slow    Yes        Yes        
+  Fast    Yes        Yes        
+
+
+
+check_timing report
+
+Table of Contents
+-----------------
+1. checking no_clock
+2. checking constant_clock
+3. checking pulse_width_clock
+4. checking unconstrained_internal_endpoints
+5. checking no_input_delay
+6. checking no_output_delay
+7. checking multiple_clock
+8. checking generated_clocks
+9. checking loops
+10. checking partial_input_delay
+11. checking partial_output_delay
+12. checking latch_loops
+
+1. checking no_clock
+--------------------
+ There are 0 register/latch pins with no clock.
+
+
+2. checking constant_clock
+--------------------------
+ There are 0 register/latch pins with constant_clock.
+
+
+3. checking pulse_width_clock
+-----------------------------
+ There are 0 register/latch pins which need pulse_width check
+
+
+4. checking unconstrained_internal_endpoints
+--------------------------------------------
+ There are 0 pins that are not constrained for maximum delay.
+
+ There are 0 pins that are not constrained for maximum delay due to constant clock.
+
+
+5. checking no_input_delay
+--------------------------
+ There are 94 input ports with no input delay specified. (HIGH)
+
+ There are 0 input ports with no input delay but user has a false path constraint.
+
+
+6. checking no_output_delay
+---------------------------
+ There are 148 ports with no output delay specified. (HIGH)
+
+ There are 0 ports with no output delay but user has a false path constraint
+
+ There are 0 ports with no output delay but with a timing clock defined on it or propagating through it
+
+
+7. checking multiple_clock
+--------------------------
+ There are 0 register/latch pins with multiple clocks.
+
+
+8. checking generated_clocks
+----------------------------
+ There are 0 generated clocks that are not connected to a clock source.
+
+
+9. checking loops
+-----------------
+ There are 0 combinational loops in the design.
+
+
+10. checking partial_input_delay
+--------------------------------
+ There are 0 input ports with partial input delay specified.
+
+
+11. checking partial_output_delay
+---------------------------------
+ There are 0 ports with partial output delay specified.
+
+
+12. checking latch_loops
+------------------------
+ There are 0 combinational latch loops in the design through latch input
+
+
+
+------------------------------------------------------------------------------------------------
+| Design Timing Summary
+| ---------------------
+------------------------------------------------------------------------------------------------
+
+    WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
+    -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
+      0.350        0.000                      0                56661        0.031        0.000                      0                56661        1.155        0.000                       0                  8928  
+
+
+All user specified timing constraints are met.
+
+
+------------------------------------------------------------------------------------------------
+| Clock Summary
+| -------------
+------------------------------------------------------------------------------------------------
+
+Clock   Waveform(ns)         Period(ns)      Frequency(MHz)
+-----   ------------         ----------      --------------
+ap_clk  {0.000 1.650}        3.300           303.030         
+
+
+------------------------------------------------------------------------------------------------
+| Intra Clock Table
+| -----------------
+------------------------------------------------------------------------------------------------
+
+Clock             WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
+-----             -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
+ap_clk              0.350        0.000                      0                56661        0.031        0.000                      0                56661        1.155        0.000                       0                  8928  
+
+
+------------------------------------------------------------------------------------------------
+| Inter Clock Table
+| -----------------
+------------------------------------------------------------------------------------------------
+
+From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints  
+----------    --------          -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------  
+
+
+------------------------------------------------------------------------------------------------
+| Other Path Groups Table
+| -----------------------
+------------------------------------------------------------------------------------------------
+
+Path Group    From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints  
+----------    ----------    --------          -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------  
+
+
+------------------------------------------------------------------------------------------------
+| Timing Details
+| --------------
+------------------------------------------------------------------------------------------------
+
+
+---------------------------------------------------------------------------------------------------
+From Clock:  ap_clk
+  To Clock:  ap_clk
+
+Setup :            0  Failing Endpoints,  Worst Slack        0.350ns,  Total Violation        0.000ns
+Hold  :            0  Failing Endpoints,  Worst Slack        0.031ns,  Total Violation        0.000ns
+PW    :            0  Failing Endpoints,  Worst Slack        1.155ns,  Total Violation        0.000ns
+---------------------------------------------------------------------------------------------------
+
+
+Max Delay Paths
+--------------------------------------------------------------------------------------
+Slack (MET) :             0.350ns  (required time - arrival time)
+  Source:                 bd_0_i/hls_inst/inst/p_dmemclass_node_da_2_U/process_top_p_dmemclass_node_da_2_ram_U/addr0_t1_reg[5]/C
+                            (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@1.650ns period=3.300ns})
+  Destination:            bd_0_i/hls_inst/inst/p_dmemclass_node_da_2_U/process_top_p_dmemclass_node_da_2_ram_U/ram_reg_0_0/ADDRARDADDR[5]
+                            (rising edge-triggered cell RAMB36E2 clocked by ap_clk  {rise@0.000ns fall@1.650ns period=3.300ns})
+  Path Group:             ap_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            3.300ns  (ap_clk rise@3.300ns - ap_clk rise@0.000ns)
+  Data Path Delay:        2.595ns  (logic 0.066ns (2.543%)  route 2.529ns (97.457%))
+  Logic Levels:           0  
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock ap_clk rise edge)     0.000     0.000 r  
+                                                      0.000     0.000 r  ap_clk (IN)
+                         net (fo=8972, unset)         0.000     0.000    bd_0_i/hls_inst/inst/p_dmemclass_node_da_2_U/process_top_p_dmemclass_node_da_2_ram_U/ap_clk
+                         FDRE                                         r  bd_0_i/hls_inst/inst/p_dmemclass_node_da_2_U/process_top_p_dmemclass_node_da_2_ram_U/addr0_t1_reg[5]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_FDRE_C_Q)         0.066     0.066 r  bd_0_i/hls_inst/inst/p_dmemclass_node_da_2_U/process_top_p_dmemclass_node_da_2_ram_U/addr0_t1_reg[5]/Q
+                         net (fo=1716, unplaced)      2.529     2.595    bd_0_i/hls_inst/inst/p_dmemclass_node_da_2_U/process_top_p_dmemclass_node_da_2_ram_U/addr0_t1[5]
+                         RAMB36E2                                     r  bd_0_i/hls_inst/inst/p_dmemclass_node_da_2_U/process_top_p_dmemclass_node_da_2_ram_U/ram_reg_0_0/ADDRARDADDR[5]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock ap_clk rise edge)     3.300     3.300 r  
+                                                      0.000     3.300 r  ap_clk (IN)
+                         net (fo=8972, unset)         0.000     3.300    bd_0_i/hls_inst/inst/p_dmemclass_node_da_2_U/process_top_p_dmemclass_node_da_2_ram_U/ap_clk
+                         RAMB36E2                                     r  bd_0_i/hls_inst/inst/p_dmemclass_node_da_2_U/process_top_p_dmemclass_node_da_2_ram_U/ram_reg_0_0/CLKARDCLK
+                         clock pessimism              0.000     3.300    
+                         clock uncertainty           -0.035     3.265    
+                         RAMB36E2 (Setup_RAMB36E2_CLKARDCLK_ADDRARDADDR[5])
+                                                     -0.319     2.946    bd_0_i/hls_inst/inst/p_dmemclass_node_da_2_U/process_top_p_dmemclass_node_da_2_ram_U/ram_reg_0_0
+  -------------------------------------------------------------------
+                         required time                          2.946    
+                         arrival time                          -2.595    
+  -------------------------------------------------------------------
+                         slack                                  0.350    
+
+
+
+
+
+Min Delay Paths
+--------------------------------------------------------------------------------------
+Slack (MET) :             0.031ns  (arrival time - required time)
+  Source:                 bd_0_i/hls_inst/inst/p_dmemclass_node_da_2_U/process_top_p_dmemclass_node_da_2_ram_U/addr0_t1_reg[13]/C
+                            (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@1.650ns period=3.300ns})
+  Destination:            bd_0_i/hls_inst/inst/p_dmemclass_node_da_2_U/process_top_p_dmemclass_node_da_2_ram_U/ram_reg_0_0/ADDRARDADDR[13]
+                            (rising edge-triggered cell RAMB36E2 clocked by ap_clk  {rise@0.000ns fall@1.650ns period=3.300ns})
+  Path Group:             ap_clk
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (ap_clk rise@0.000ns - ap_clk rise@0.000ns)
+  Data Path Delay:        0.037ns  (logic 0.037ns (100.000%)  route 0.000ns (0.000%))
+  Logic Levels:           0  
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock ap_clk rise edge)     0.000     0.000 r  
+                                                      0.000     0.000 r  ap_clk (IN)
+                         net (fo=8972, unset)         0.000     0.000    bd_0_i/hls_inst/inst/p_dmemclass_node_da_2_U/process_top_p_dmemclass_node_da_2_ram_U/ap_clk
+                         FDRE                                         r  bd_0_i/hls_inst/inst/p_dmemclass_node_da_2_U/process_top_p_dmemclass_node_da_2_ram_U/addr0_t1_reg[13]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_FDRE_C_Q)         0.037     0.037 r  bd_0_i/hls_inst/inst/p_dmemclass_node_da_2_U/process_top_p_dmemclass_node_da_2_ram_U/addr0_t1_reg[13]/Q
+                         net (fo=1716, unplaced)      0.000     0.037    bd_0_i/hls_inst/inst/p_dmemclass_node_da_2_U/process_top_p_dmemclass_node_da_2_ram_U/addr0_t1[13]
+                         RAMB36E2                                     r  bd_0_i/hls_inst/inst/p_dmemclass_node_da_2_U/process_top_p_dmemclass_node_da_2_ram_U/ram_reg_0_0/ADDRARDADDR[13]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock ap_clk rise edge)     0.000     0.000 r  
+                                                      0.000     0.000 r  ap_clk (IN)
+                         net (fo=8972, unset)         0.000     0.000    bd_0_i/hls_inst/inst/p_dmemclass_node_da_2_U/process_top_p_dmemclass_node_da_2_ram_U/ap_clk
+                         RAMB36E2                                     r  bd_0_i/hls_inst/inst/p_dmemclass_node_da_2_U/process_top_p_dmemclass_node_da_2_ram_U/ram_reg_0_0/CLKARDCLK
+                         clock pessimism              0.000     0.000    
+                         RAMB36E2 (Hold_RAMB36E2_CLKARDCLK_ADDRARDADDR[13])
+                                                      0.006     0.006    bd_0_i/hls_inst/inst/p_dmemclass_node_da_2_U/process_top_p_dmemclass_node_da_2_ram_U/ram_reg_0_0
+  -------------------------------------------------------------------
+                         required time                         -0.006    
+                         arrival time                           0.037    
+  -------------------------------------------------------------------
+                         slack                                  0.031    
+
+
+
+
+
+Pulse Width Checks
+--------------------------------------------------------------------------------------
+Clock Name:         ap_clk
+Waveform(ns):       { 0.000 1.650 }
+Period(ns):         3.300
+Sources:            { ap_clk }
+
+Check Type        Corner  Lib Pin             Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location  Pin
+Min Period        n/a     RAMB36E2/CLKARDCLK  n/a            1.392         3.300       1.908                bd_0_i/hls_inst/inst/grp_build_AhoCorasick_fu_323/p_dmemUL_link_prev_U/p_dst_alloc_malloc_1_p_dmemc_link_prev_ram_U/ram_reg_1_0/CLKARDCLK
+Low Pulse Width   Slow    RAMB36E2/CLKARDCLK  n/a            0.495         1.650       1.155                bd_0_i/hls_inst/inst/grp_build_AhoCorasick_fu_323/p_dmemUL_link_prev_U/p_dst_alloc_malloc_1_p_dmemc_link_prev_ram_U/ram_reg_1_0/CLKARDCLK
+High Pulse Width  Slow    RAMB36E2/CLKARDCLK  n/a            0.495         1.650       1.155                bd_0_i/hls_inst/inst/grp_build_AhoCorasick_fu_323/p_dmemUL_link_prev_U/p_dst_alloc_malloc_1_p_dmemc_link_prev_ram_U/ram_reg_1_0/CLKARDCLK
+
+
+
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 4316.422 ; gain = 0.000 ; free physical = 40882 ; free virtual = 43539
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 4348.438 ; gain = 0.000 ; free physical = 40665 ; free virtual = 43382
+[Sat Jan 25 14:17:06 2020] Launched impl_1...
+Run output will be captured here: /home/lau/projects/dynamic/icse2020-artifacts/experiments/Recursive/ac/tmp/implement_32768/device/device/impl/verilog/project.runs/impl_1/runme.log
+launch_runs: Time (s): cpu = 00:00:16 ; elapsed = 00:00:18 . Memory (MB): peak = 4348.438 ; gain = 32.016 ; free physical = 40402 ; free virtual = 43074
+[Sat Jan 25 14:17:06 2020] Waiting for impl_1 to finish...
+
+*** Running vivado
+    with args -log bd_0_wrapper.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source bd_0_wrapper.tcl -notrace
+
+
+****** Vivado v2018.3 (64-bit)
+  **** SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
+  **** IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+    ** Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+
+source bd_0_wrapper.tcl -notrace
+Command: open_checkpoint /home/lau/projects/dynamic/icse2020-artifacts/experiments/Recursive/ac/tmp/implement_32768/device/device/impl/verilog/project.runs/impl_1/bd_0_wrapper.dcp
+
+Starting open_checkpoint Task
+
+Time (s): cpu = 00:00:00.06 ; elapsed = 00:00:00.11 . Memory (MB): peak = 1372.145 ; gain = 0.000 ; free physical = 40181 ; free virtual = 42849
+INFO: [Netlist 29-17] Analyzing 1050 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2018.3
+INFO: [Device 21-403] Loading part xcvu9p-fsgd2104-3-e
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Timing 38-478] Restoring timing data from binary archive.
+INFO: [Timing 38-479] Binary timing data restore complete.
+INFO: [Project 1-856] Restoring constraints from binary archive.
+INFO: [Project 1-853] Binary constraint restore complete.
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 2816.527 ; gain = 0.000 ; free physical = 37478 ; free virtual = 40153
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 105 instances were transformed.
+  DSP48E2 => DSP48E2 (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD_DATA, DSP_PREADD): 9 instances
+  RAM16X1S => RAM32X1S (RAMS32): 96 instances
+
+INFO: [Project 1-604] Checkpoint was created with Vivado v2018.3 (64-bit) build 2405991
+open_checkpoint: Time (s): cpu = 00:00:36 ; elapsed = 00:01:10 . Memory (MB): peak = 2816.527 ; gain = 1444.383 ; free physical = 37475 ; free virtual = 40150
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/lau/projects/dynamic/icse2020-artifacts/experiments/Recursive/ac/tmp/implement_32768/device/device/impl/ip'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/tools/xilinx/Vivado/2018.3/data/ip'.
+update_ip_catalog: Time (s): cpu = 00:00:04 ; elapsed = 00:00:06 . Memory (MB): peak = 2816.527 ; gain = 0.000 ; free physical = 36805 ; free virtual = 39552
+Command: opt_design
+Attempting to get a license for feature 'Implementation' and/or device 'xcvu9p'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xcvu9p'
+INFO: [Common 17-1540] The version limit for your license is '2019.12' and has expired for new software. A version limit expiration means that, although you may be able to continue to use the current version of tools or IP with this license, you will not be eligible for any updates or new releases.
+Running DRC as a precondition to command opt_design
+
+Starting DRC Task
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Project 1-461] DRC finished with 0 Errors
+INFO: [Project 1-462] Please refer to the DRC report (report_drc) for more information.
+
+Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 2938.492 ; gain = 80.031 ; free physical = 37247 ; free virtual = 40006
+
+Starting Cache Timing Information Task
+Ending Cache Timing Information Task | Checksum: 1097f217b
+
+Time (s): cpu = 00:00:00.22 ; elapsed = 00:00:00.22 . Memory (MB): peak = 2938.492 ; gain = 0.000 ; free physical = 37233 ; free virtual = 39994
+
+Starting Logic Optimization Task
+
+Phase 1 Retarget
+INFO: [Opt 31-138] Pushed 1 inverter(s) to 1302 load pin(s).
+INFO: [Opt 31-49] Retargeted 0 cell(s).
+Phase 1 Retarget | Checksum: e5df5724
+
+Time (s): cpu = 00:00:04 ; elapsed = 00:00:03 . Memory (MB): peak = 2988.488 ; gain = 24.012 ; free physical = 39041 ; free virtual = 41785
+INFO: [Opt 31-389] Phase Retarget created 119 cells and removed 157 cells
+
+Phase 2 Constant propagation
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Phase 2 Constant propagation | Checksum: 61d7bf5a
+
+Time (s): cpu = 00:00:05 ; elapsed = 00:00:03 . Memory (MB): peak = 2988.488 ; gain = 24.012 ; free physical = 39070 ; free virtual = 41760
+INFO: [Opt 31-389] Phase Constant propagation created 0 cells and removed 0 cells
+
+Phase 3 Sweep
+Phase 3 Sweep | Checksum: 2150b6da
+
+Time (s): cpu = 00:00:06 ; elapsed = 00:00:04 . Memory (MB): peak = 2988.488 ; gain = 24.012 ; free physical = 39105 ; free virtual = 41796
+INFO: [Opt 31-389] Phase Sweep created 0 cells and removed 0 cells
+
+Phase 4 BUFG optimization
+Phase 4 BUFG optimization | Checksum: 2150b6da
+
+Time (s): cpu = 00:00:06 ; elapsed = 00:00:05 . Memory (MB): peak = 2988.488 ; gain = 24.012 ; free physical = 39129 ; free virtual = 41820
+INFO: [Opt 31-662] Phase BUFG optimization created 0 cells of which 0 are BUFGs and removed 0 cells.
+
+Phase 5 Shift Register Optimization
+Phase 5 Shift Register Optimization | Checksum: abd0225b
+
+Time (s): cpu = 00:00:08 ; elapsed = 00:00:07 . Memory (MB): peak = 2988.488 ; gain = 24.012 ; free physical = 38598 ; free virtual = 41289
+INFO: [Opt 31-389] Phase Shift Register Optimization created 0 cells and removed 0 cells
+
+Phase 6 Post Processing Netlist
+Phase 6 Post Processing Netlist | Checksum: abd0225b
+
+Time (s): cpu = 00:00:09 ; elapsed = 00:00:07 . Memory (MB): peak = 2988.488 ; gain = 24.012 ; free physical = 38499 ; free virtual = 41190
+INFO: [Opt 31-389] Phase Post Processing Netlist created 0 cells and removed 0 cells
+Opt_design Change Summary
+=========================
+
+
+-------------------------------------------------------------------------------------------------------------------------
+|  Phase                        |  #Cells created  |  #Cells Removed  |  #Constrained objects preventing optimizations  |
+-------------------------------------------------------------------------------------------------------------------------
+|  Retarget                     |             119  |             157  |                                              0  |
+|  Constant propagation         |               0  |               0  |                                              0  |
+|  Sweep                        |               0  |               0  |                                              0  |
+|  BUFG optimization            |               0  |               0  |                                              0  |
+|  Shift Register Optimization  |               0  |               0  |                                              0  |
+|  Post Processing Netlist      |               0  |               0  |                                              0  |
+-------------------------------------------------------------------------------------------------------------------------
+
+
+
+Starting Connectivity Check Task
+
+Time (s): cpu = 00:00:00.05 ; elapsed = 00:00:00.05 . Memory (MB): peak = 2988.488 ; gain = 0.000 ; free physical = 38514 ; free virtual = 41204
+Ending Logic Optimization Task | Checksum: abd0225b
+
+Time (s): cpu = 00:00:09 ; elapsed = 00:00:08 . Memory (MB): peak = 2988.488 ; gain = 24.012 ; free physical = 38485 ; free virtual = 41176
+
+Starting Power Optimization Task
+INFO: [Pwropt 34-132] Skipping clock gating for clocks with a period < 2.00 ns.
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [Pwropt 34-9] Applying IDT optimizations ...
+INFO: [Pwropt 34-10] Applying ODC optimizations ...
+WARNING: [Timing 38-242] The property HD.CLK_SRC of clock port "ap_clk" is not set. In out-of-context mode, this prevents timing estimation for clock delay/skew
+Resolution: Set the HD.CLK_SRC property of the out-of-context port to the location of the clock buffer instance in the top-level design
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=0.350 | TNS=0.000 |
+Running Vector-less Activity Propagation...
+
+Finished Running Vector-less Activity Propagation
+
+
+Starting PowerOpt Patch Enables Task
+INFO: [Pwropt 34-162] WRITE_MODE attribute of 0 BRAM(s) out of a total of 2305 has been updated to save power. Run report_power_opt to get a complete listing of the BRAMs updated.
+INFO: [Pwropt 34-201] Structural ODC has moved 0 WE to EN ports
+Number of BRAM Ports augmented: 0 newly gated: 0 Total Ports: 4610
+Ending PowerOpt Patch Enables Task | Checksum: abd0225b
+
+Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 5951.457 ; gain = 0.000 ; free physical = 40351 ; free virtual = 43082
+Ending Power Optimization Task | Checksum: abd0225b
+
+Time (s): cpu = 00:05:42 ; elapsed = 00:03:29 . Memory (MB): peak = 5951.457 ; gain = 2962.969 ; free physical = 40474 ; free virtual = 43205
+
+Starting Final Cleanup Task
+Ending Final Cleanup Task | Checksum: abd0225b
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 5951.457 ; gain = 0.000 ; free physical = 40466 ; free virtual = 43197
+
+Starting Netlist Obfuscation Task
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 5951.457 ; gain = 0.000 ; free physical = 40466 ; free virtual = 43197
+Ending Netlist Obfuscation Task | Checksum: abd0225b
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 5951.457 ; gain = 0.000 ; free physical = 40464 ; free virtual = 43195
+INFO: [Common 17-83] Releasing license: Implementation
+36 Infos, 1 Warnings, 0 Critical Warnings and 0 Errors encountered.
+opt_design completed successfully
+opt_design: Time (s): cpu = 00:05:58 ; elapsed = 00:03:45 . Memory (MB): peak = 5951.457 ; gain = 3134.930 ; free physical = 40423 ; free virtual = 43153
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 5951.457 ; gain = 0.000 ; free physical = 40425 ; free virtual = 43156
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 5951.457 ; gain = 0.000 ; free physical = 39936 ; free virtual = 42789
+INFO: [Common 17-1381] The checkpoint '/home/lau/projects/dynamic/icse2020-artifacts/experiments/Recursive/ac/tmp/implement_32768/device/device/impl/verilog/project.runs/impl_1/bd_0_wrapper_opt.dcp' has been generated.
+write_checkpoint: Time (s): cpu = 00:01:25 ; elapsed = 00:00:29 . Memory (MB): peak = 5951.457 ; gain = 0.000 ; free physical = 39619 ; free virtual = 42468
+INFO: [runtcl-4] Executing : report_drc -file bd_0_wrapper_drc_opted.rpt -pb bd_0_wrapper_drc_opted.pb -rpx bd_0_wrapper_drc_opted.rpx
+Command: report_drc -file bd_0_wrapper_drc_opted.rpt -pb bd_0_wrapper_drc_opted.pb -rpx bd_0_wrapper_drc_opted.rpx
+INFO: [IP_Flow 19-1839] IP Catalog is up to date.
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Coretcl 2-168] The results of DRC are in file /home/lau/projects/dynamic/icse2020-artifacts/experiments/Recursive/ac/tmp/implement_32768/device/device/impl/verilog/project.runs/impl_1/bd_0_wrapper_drc_opted.rpt.
+report_drc completed successfully
+report_drc: Time (s): cpu = 00:00:12 ; elapsed = 00:00:08 . Memory (MB): peak = 5951.457 ; gain = 0.000 ; free physical = 39121 ; free virtual = 41970
+Command: place_design
+Attempting to get a license for feature 'Implementation' and/or device 'xcvu9p'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xcvu9p'
+INFO: [Common 17-1540] The version limit for your license is '2019.12' and has expired for new software. A version limit expiration means that, although you may be able to continue to use the current version of tools or IP with this license, you will not be eligible for any updates or new releases.
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+Running DRC as a precondition to command place_design
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+
+Starting Placer Task
+INFO: [Place 30-611] Multithreading enabled for place_design using a maximum of 8 CPUs
+
+Phase 1 Placer Initialization
+
+Phase 1.1 Placer Initialization Netlist Sorting
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 5951.457 ; gain = 0.000 ; free physical = 38222 ; free virtual = 40966
+Phase 1.1 Placer Initialization Netlist Sorting | Checksum: 9db47233
+
+Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.05 . Memory (MB): peak = 5951.457 ; gain = 0.000 ; free physical = 38222 ; free virtual = 40966
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 5951.457 ; gain = 0.000 ; free physical = 38210 ; free virtual = 40954
+
+Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device
+ERROR: [Place 30-640] Place Check : This design requires more RAMB36/FIFO cells than are available in the target device. This design requires 2299 of such cell types but only 2160 compatible sites are available in the target device. Please analyze your synthesis results and constraints to ensure the design is mapped to Xilinx primitives as expected. If so, please consider targeting a larger device.
+ERROR: [Place 30-640] Place Check : This design requires more RAMB18 and RAMB36/FIFO cells than are available in the target device. This design requires 4604 of such cell types but only 4320 compatible sites are available in the target device. Please analyze your synthesis results and constraints to ensure the design is mapped to Xilinx primitives as expected. If so, please consider targeting a larger device.
+ERROR: [Place 30-640] Place Check : This design requires more RAMB36E2 cells than are available in the target device. This design requires 2299 of such cell types but only 2160 compatible sites are available in the target device. Please analyze your synthesis results and constraints to ensure the design is mapped to Xilinx primitives as expected. If so, please consider targeting a larger device.
+Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device | Checksum: 54edc68b
+
+Time (s): cpu = 00:00:05 ; elapsed = 00:00:03 . Memory (MB): peak = 5951.457 ; gain = 0.000 ; free physical = 37970 ; free virtual = 40713
+Phase 1 Placer Initialization | Checksum: 54edc68b
+
+Time (s): cpu = 00:00:05 ; elapsed = 00:00:03 . Memory (MB): peak = 5951.457 ; gain = 0.000 ; free physical = 37969 ; free virtual = 40712
+ERROR: [Place 30-99] Placer failed with error: 'IO Clock Placer stopped due to earlier errors. Implementation Feasibility check failed, Please see the previously displayed individual error or warning messages for more details.'
+Please review all ERROR, CRITICAL WARNING, and WARNING messages during placement to understand the cause for failure.
+Ending Placer Task | Checksum: 54edc68b
+
+Time (s): cpu = 00:00:05 ; elapsed = 00:00:03 . Memory (MB): peak = 5951.457 ; gain = 0.000 ; free physical = 37991 ; free virtual = 40734
+INFO: [Common 17-83] Releasing license: Implementation
+53 Infos, 1 Warnings, 0 Critical Warnings and 5 Errors encountered.
+place_design failed
+ERROR: [Common 17-69] Command failed: Placer could not place all instances
+INFO: [Common 17-206] Exiting Vivado at Sat Jan 25 14:23:07 2020...
+[Sat Jan 25 14:23:07 2020] impl_1 finished
+wait_on_run: Time (s): cpu = 00:00:01 ; elapsed = 00:06:01 . Memory (MB): peak = 4348.438 ; gain = 0.000 ; free physical = 37999 ; free virtual = 40743
+ERROR: [Common 17-69] Command failed: Run 'impl_1' failed. Unable to open
+INFO: [Common 17-206] Exiting Vivado at Sat Jan 25 14:23:07 2020...
+ERROR: [HLS 200-478] vivado returned an error child process exited abnormally
+command 'ap_source' returned error code
+    while executing
+"source [lindex $::argv 1] "
+    ("uplevel" body line 1)
+    invoked from within
+"uplevel \#0 { source [lindex $::argv 1] } "
+
+INFO: [HLS 200-112] Total elapsed time: 1282.68 seconds; peak allocated memory: 200.320 MB.
+INFO: [Common 17-206] Exiting vivado_hls at Sat Jan 25 14:23:09 2020...

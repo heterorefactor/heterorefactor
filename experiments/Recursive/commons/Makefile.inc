@@ -98,7 +98,7 @@ $(addprefix $(mkfile_dir)/rpt/implement_log_, $(addsuffix .txt, $(testdata))): \
 	cp $(mkfile_dir)/../commons/impl.tcl $(mkfile_dir)/tmp/implement_$(@_size)/impl.tcl
 	# it is possible that implementation fail for large designs
 	-cd $(mkfile_dir)/tmp/implement_$(@_size) && \
-		time -o $(mkfile_dir)/rpt/implementation_time_$(@_size).txt \
+		time -o $(mkfile_dir)/rpt/implement_time_$(@_size).txt \
 			vivado_hls -f impl.tcl
 	cp $(mkfile_dir)/tmp/implement_$(@_size)/vivado_hls.log \
 		$(mkfile_dir)/rpt/implement_log_$(@_size).txt
