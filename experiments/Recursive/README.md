@@ -199,7 +199,8 @@ g++ [kernel]/refactored/kernel_device_[size].cpp [kernel]/src/testbed.cpp
 #### Synthesis and Implementation
 
 In HLS terminology, synthesis means transform the input C++ code into Verilog
-code in RTL level. A verilog code can be implemented into a bitstream, i.e., a
+code in [RTL level](https://en.wikipedia.org/wiki/Register-transfer_level).
+This transformed Verilog code can be implemented into a bitstream, i.e., a
 binary file that can be executed on FPGA.
 
 In order to synthesize the refactored kernel for execution on FPGA, we use the
