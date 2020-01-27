@@ -3,15 +3,18 @@ This is the implementation of diffiential execution-based probabilistic verifica
 
 ## Prerequisites
 - To run the code, you must have a valid Xilinx Vivado HLS installed.
-- If you do not have a Xilinx Vivado HLS environment but you are interested in how to reproduce the results manually, please go to the "Manual Verification" folder, and follow the instructions there.
+- If you do not have a Xilinx Vivado HLS environment but you are interested in how to reproduce the results manually, please go to the "Manual Verification" folder in each subject program, and follow the instructions there.
 
 ## folder structure
-- Manual Verification
-- Subject Programs
-- 
-
-## How to run the probablistic verification
-To reproduce the results of RGB2YUV:
-1. open Terminal and type the command: g++ main.cpp sampleGen.cpp verification.cpp
-2. type the command: ./a.out alpha epsilon error
-
+- KNN-l2norm
+  - hls_kernel: This contains the original kernel program.
+  - Refactored Kernel: This contains the refactored kernel program.
+  - Manual Verification: If you do not have a valid Xilinx Vivado HLS environment, this folder contains the ready-to-use HLS csim outputs. You can verify the reduced bitwidths manually based on these outputs.
+  - Report: If you do not have a valid Xilinx Vivado HLS environment, this folder contains the synthesis reports for the original and refactored versions of the benchmark.
+- RGB2YUV
+  - hls_kernel
+  - Refactored Kernel
+  - Manual Verification
+  - Report
+- Probabilistic Verification
+- README.md
