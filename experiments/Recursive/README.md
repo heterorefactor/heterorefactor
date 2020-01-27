@@ -1,9 +1,9 @@
 ## Experiments on recursive data structure kernels
 
-This document contains the information to reproduce the experiment results on
+This document contains the information to reproduce the experimental results on
 recursive data structure kernels. We will first provide instructions to run
-several one-click scripts to reproduce the report files, and explain how to
-interpret them. Then we will discuss the underlaying steps in this scripts.
+several one-click scripts to reproduce the report files and explain how to
+interpret them. Then we will discuss the underlying steps in these scripts.
 Finally, we will present how to add a new kernel to these experiments.
 
 All commands in this document are assumed to be executed in the directory of
@@ -14,7 +14,7 @@ back in the following steps.
 
 #### System packages
 
-We assume Ubuntu 18.04 LTS are installed. All prerequisites in the root
+We assume Ubuntu 18.04 LTS is installed. All prerequisites in the root
 README.md file should be installed:
 
 ```bash
@@ -30,13 +30,13 @@ run `vivado` and `vivado_hls` in your terminal.
 
 #### HeteroRefactor tool
 
-The heterorefactor tool should be built to run all experiments:
+The heterorefactor tool should be built to run all the experiments:
 
 ```bash
 cd ../heterorefactor; make
 ```
 
-Alternatively, you can build all required libraries:
+Alternatively, you can build all the required libraries:
 
 ```bash
 cd ../heterorefactor/libraries; make
@@ -73,7 +73,7 @@ make synthesis
 ```
 
 If you have Vivado and Vivado HLS installed on your system, you can also
-generate implementation report for frequency and actual resource report:
+generate an implementation report for frequency and an actual resource report:
 
 ```bash
 make implement
@@ -88,7 +88,7 @@ and also the table showing resource utilization for HeteroRefactor, use command:
 make report
 ```
 
-This command read from `*/rpt/implement_report*` and summarize the results into
+This command reads from `*/rpt/implement_report*` and summarizes the results into
 a single CSV file. The clock period is shown in ns, e.g., 5ns clock period = 100
 MHz frequency. You may also read from `[kernel]/rpt/implement_report_[size].txt`
 on your own.
@@ -105,9 +105,9 @@ There are other reports available under `[kernel]/rpt/`:
   instrumentation code of a certain kernel size.
 * `[kernel]/rpt/refactoring_time_[size].txt` shows the refactoring time of a
   kernel of size `[size]`.
-* Specially, `ac/rpt/implement_raw_vivado_bug_16384.txt` shows the raw report
+* Especially, `ac/rpt/implement_raw_vivado_bug_16384.txt` shows the raw report
   file produced by Vivado instead of Vivado HLS. Because Vivado HLS has a bug
-  that will results in zero resource utilization report for some kernels, we
+  that will result in a zero resource utilization report for some kernels, we
   extract the raw report file for your reference.
 
 Also, all the refactored code are available under `[kernel]/refactored/`:
@@ -116,7 +116,7 @@ Also, all the refactored code are available under `[kernel]/refactored/`:
   instrumentation code for invariant detection.
 * `[kernel]/refactored/kernel_device_[size].cpp` is the automatically refactored
   kernel code that can be synthesized with Vivado HLS. It is generated using the
-  invariant detected using the instrumentation code with a input size of
+  invariant detected using the instrumentation code with an input size of
   `[size]`.
 
 If you are interested, you can also check `[kernel]/invariant/` for detected
@@ -125,14 +125,14 @@ invariants.
 ### What Happened Behind
 
 You can always check the `Makefile` to see what is performed. For your
-convience, we present the overall reproduce steps. You can also perform these
+convenience, we present the overall reproduce steps. You can also perform these
 steps manually.
 
 #### Invariant Detection
 
 We use the `instrument` mode of HeteroRefactor to refactor the kernel code to
 produce a profile file at a given location, then compile and run with a testdata
-with given size. We parse the profile file to produce an invariant file as the
+with the given size. We parse the profile file to produce an invariant file as the
 new input of HeteroRefactor for `rec` mode. This is the target `invariant` in
 the Makefile. It performs the following operations:
 
@@ -205,7 +205,7 @@ In order to synthesize the refactored kernel for execution on FPGA, we use the
 Tcl script `commons/hls.tcl` to instruct Vivado HLS. It reads a file
 `kernel.cpp` and set `process_top` as the top-level function; it opens a
 solution called `device`; it set the target FPGA as `xcvu9p-fsgd2104-3-e` and
-the target clock period as `3.3ns`. It synthesize the code then close the
+the target clock period as `3.3ns`. It synthesizes the code then close the
 project:
 
 ```tcl
@@ -271,7 +271,7 @@ size 16384, you need to use this file for results due to a Vivado HLS bug.
 If you are a GUI user, you can simply add the corresponding
 `kernel_device_[size].cpp` file to your project and perform synthesis or
 implementation on the toolbar. The report file should be displayed on the
-screen. However, the author of this document have not tested in the GUI way.
+screen. However, the author of this document has not tested in a GUI way.
 
 ### How to Add New Kernels
 
@@ -290,7 +290,7 @@ you can create this structure:
 
 You can directly copy the Makefile from `ac/Makefile`. The `kernel.cpp` should
 define an HLS kernel named `process_top` with proper HLS interface annotation.
-The `testbed.cpp` should contains a `main` function to read input data from
+The `testbed.cpp` should contain a `main` function to read input data from
 stdin, use `process_top` to process this data and possibly output to stdout. The
 `data_generator.sh` should accept one argument as the data size, and output a
 valid input data for the testbed with the given size to stdout. You can always
