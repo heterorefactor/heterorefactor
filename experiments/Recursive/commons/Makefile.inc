@@ -11,7 +11,7 @@ instrumentation_profile := /tmp/hetero-profile
 .PHONY: all clean invariant refactor runtime synthesis \
 		original_runtime compile_time
 
-all: invariant refactor runtime synthesis
+all: invariant refactor runtime
 
 invariant: $(addprefix $(mkfile_dir)/invariant/invariant_, $(addsuffix .ivr, $(testdata)))
 refactor: $(addprefix $(mkfile_dir)/refactored/kernel_device_, $(addsuffix .cpp, $(testdata)))
