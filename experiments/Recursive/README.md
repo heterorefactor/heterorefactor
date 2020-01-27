@@ -177,6 +177,7 @@ The invariant file is now available at
 
 We use the invariant detected in the previous step for the `rec` mode of
 HeteroRefactor to refactor the kernel code to enable Vivado HLS synthesis.
+This is the target `refactor` in the Makefile. 
 
 ```bash
 ../heterorefactor/refactoring/build/heterorefactor \
@@ -188,7 +189,7 @@ HeteroRefactor to refactor the kernel code to enable Vivado HLS synthesis.
 The HeteroRefactor tool will produce
 `[kernel]/refactored/kernel_device_[size].cpp` as the refactored kernel code.
 Note that this code can not only be synthesized, but also be executed on CPU.
-Therefore, you can always use G++ to verify the correctness:
+Therefore, you can always use `g++` to verify the correctness:
 
 ```bash
 g++ [kernel]/refactored/kernel_device_[size].cpp [kernel]/src/testbed.cpp
@@ -202,7 +203,8 @@ code in RTL level. A verilog code can be implemented into a bitstream, i.e., a
 binary file that can be executed on FPGA.
 
 In order to synthesize the refactored kernel for execution on FPGA, we use the
-Tcl script `commons/hls.tcl` to instruct Vivado HLS. It reads a file
+Tcl script `commons/hls.tcl` to instruct Vivado HLS. This is the target `synthesis`
+in the Makefile. It reads a file
 `kernel.cpp` and set `process_top` as the top-level function; it opens a
 solution called `device`; it set the target FPGA as `xcvu9p-fsgd2104-3-e` and
 the target clock period as `3.3ns`. It synthesizes the code then close the
@@ -251,7 +253,8 @@ close_project
 exit
 ```
 
-Alternatively, you can use `commons/impl.tcl`:
+Alternatively, you can use `commons/impl.tcl`. This is the target `implement`
+in the Makefile.
 
 ```bash
 cp [kernel]/refactored/kernel_device_[size].cpp \
