@@ -1,5 +1,5 @@
 # Probablistic Verification
-This is the implementation of diffiential execution-based probabilistic verification to select the reduced bitwidth for floating point. 
+This is the implementation of differential execution-based probabilistic verification to select the reduced bitwidth for floating point. 
 
 ## Prerequisites
 - To run the code, you must have a valid Xilinx Vivado HLS installed.
