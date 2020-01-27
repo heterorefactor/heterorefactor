@@ -206,9 +206,9 @@ binary file that can be executed on FPGA.
 In order to synthesize the refactored kernel for execution on FPGA, we use the
 Tcl script `commons/hls.tcl` to instruct Vivado HLS. This is the target `synthesis`
 in the Makefile. It reads a file
-`kernel.cpp` and set `process_top` as the top-level function; it opens a
-solution called `device`; it set the target FPGA as `xcvu9p-fsgd2104-3-e` and
-the target clock period as `3.3ns`. It synthesizes the code then close the
+`kernel.cpp` and sets `process_top` as the top-level function; it opens a
+solution called `device`; it sets the target FPGA as `xcvu9p-fsgd2104-3-e` and
+the target clock period as `3.3ns`; it synthesizes the code then close the
 project:
 
 ```tcl
