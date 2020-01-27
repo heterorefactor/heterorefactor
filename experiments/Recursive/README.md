@@ -301,5 +301,4 @@ under your own directory. It will produce the results as for other kernels.
 
 ---
 
-![][image-6]
-[image-6]: http://vast.cs.ucla.edu/sites/default/themes/CADlab_cadlab/images/logo.png
+![vast](http://vast.cs.ucla.edu/sites/default/themes/CADlab_cadlab/images/logo.png)
