@@ -2,7 +2,7 @@
 This is the implementation of diffiential execution-based probabilistic verification to select the reduced bitwidth for floating point. 
 
 ## How to run the probablistic verification
-If you have a valid Xilinx Vivado HLS environment:
+This requires you have a valid Xilinx Vivado HLS installed:
 1. open Terminal, go to the current directory and type the following commands: "cmake .", "make"
 2. type the command: ./fpverification alpha epsilon error. For example: ./fpverification 0.999 0.03 0.000001
 
