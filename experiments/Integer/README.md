@@ -20,7 +20,7 @@ This contains the steps to identify the invariants for the instrumented benchmar
     - Modify CMakeLists.txt in clang/tools by adding add_clang_subdirectory(transformer)
     - E.g. To transform bubble sort run python transform.py path_to_benchmark_source path_to_transformed_code path_to_<array_vars.txt> path_to_<invariants.txt> /bin/transformer <size of instrumentation>
 
-## folder structure
+## Folder structure
 - Benchmark Program:
     - Instrumentation
         - input
