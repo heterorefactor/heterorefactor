@@ -3,7 +3,7 @@ Artifacts submission for ICSE 2020.
 
 ## Prerequisites
 
-We assume Ubuntu 16.04.5 LTS is installed. The following packages are required to be installed before building this system. We list them as Ubuntu package name. If you are using another operating system, you will need to look up the corresponding package name yourself.
+We assume Ubuntu 16.04.5 LTS is installed. The following packages are required to be installed before building this system. We list them as Ubuntu package names. If you are using another operating system, please check the corresponding package names by yourself.
 
 ```bash
 sudo apt-get install gawk git wget tar bzip2 gcc automake autoconf \
@@ -11,9 +11,9 @@ sudo apt-get install gawk git wget tar bzip2 gcc automake autoconf \
     libpython2.7-dev ghostscript libhpdf-dev libmpfrc++-dev
 ```
 
-If you want to reproduce the synthesis and implementation results, you need to have a valid Vivado license and install that on your system. You need to make sure that they are in your `PATH` environment variable, and you can run `vivado` and `vivado_hls` in your terminal.
+To get the resource utilization results for the original and refactored kernels, a valid Xilinx Vivado license is required to do the FPGA synthesis and implementation. Please make sure they are in your `PATH` environment variable, and you can run `vivado` and `vivado_hls` in your terminal. 
 
-We require a modification on the library files shipped with your Vivado installation to reproduce the results for floating-point number kernels. Due to copyright issues, we cannot release the modified code in public. This library will be available upon request. Please send an email to Jason Lau \<<lau@cs.ucla.edu>\> along with a screenshot of the license screen of your Vivado installation. We will reply with the code and instructions as soon as possible we receive and verify the request.
+We made some modifications on the library that is shipped with your Vivado installation to get / reproduce the results for floating-point kernels. Due to copyright issues, we cannot release the modified code in public. This library will be available upon request if you have a valid license. Please send an email to Jason Lau \<<lau@cs.ucla.edu>\> along with a screenshot of the license screen of your Vivado installation. We will reply with the code and instructions as soon as possible we receive and verify the request.
 
 ## How to build the HeteroRefactor tool
 
