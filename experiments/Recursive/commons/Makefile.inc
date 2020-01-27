@@ -8,15 +8,16 @@ instrumentation_profile := /tmp/hetero-profile
 
 # Contention on $(instrumentation_profile) file, disallow parallelization
 .NOTPARALLEL:
-.PHONY: all clean invariant refactor runtime synthesis \
-		original_runtime compile_time
+.PHONY: all clean invariant refactor runtime \
+		synthesis implement original_runtime compile_time
 
 all: invariant refactor runtime
 
 invariant: $(addprefix $(mkfile_dir)/invariant/invariant_, $(addsuffix .ivr, $(testdata)))
 refactor: $(addprefix $(mkfile_dir)/refactored/kernel_device_, $(addsuffix .cpp, $(testdata)))
 runtime: invariant original_runtime refactor
-synthesis: $(addprefix $(mkfile_dir)/rpt/synthesis_log_, $(addsuffix .txt, $(testdata)))
+synthesis: $(addprefix $(mkfile_dir)/rpt/synthesis_log_, $(addsuffix .txt, $(testdata))) \
+		$(mkfile_dir)/rpt/synthesis_log_original.txt
 implement: $(addprefix $(mkfile_dir)/rpt/implement_log_, $(addsuffix .txt, $(testdata)))
 
 original_runtime: $(addprefix $(mkfile_dir)/rpt/original_run_time_, $(addsuffix .txt, $(testdata)))
@@ -83,6 +84,17 @@ $(addprefix $(mkfile_dir)/rpt/synthesis_log_, $(addsuffix .txt, $(testdata))): \
 		$(mkfile_dir)/rpt/synthesis_log_$(@_size).txt
 	cp $(mkfile_dir)/tmp/synthesis_$(@_size)/device/device/syn/report/process_top_csynth.rpt \
 		$(mkfile_dir)/rpt/synthesis_report_$(@_size).txt
+
+$(mkfile_dir)/rpt/synthesis_log_original.txt: $(mkfile_dir)/src/kernel.cpp
+	mkdir -p $(mkfile_dir)/rpt
+	-rm -rf $(mkfile_dir)/tmp/synthesis_original
+	mkdir -p $(mkfile_dir)/tmp/synthesis_original
+	cp $(mkfile_dir)/src/kernel.cpp $(mkfile_dir)/tmp/synthesis_original/kernel.cpp
+	cp $(mkfile_dir)/../commons/hls.tcl $(mkfile_dir)/tmp/synthesis_original/hls.tcl
+	# synthesis will fail
+	-cd $(mkfile_dir)/tmp/synthesis_original && vivado_hls -f hls.tcl
+	cp $(mkfile_dir)/tmp/synthesis_original/vivado_hls.log \
+		$(mkfile_dir)/rpt/synthesis_log_original.txt
 
 $(addprefix $(mkfile_dir)/rpt/implement_log_, $(addsuffix .txt, $(testdata))): \
 		$(addprefix $(mkfile_dir)/refactored/kernel_device_, $(addsuffix .cpp, $(testdata)))
