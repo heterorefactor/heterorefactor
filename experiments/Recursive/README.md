@@ -58,7 +58,7 @@ checking under this folder. See How to Interpret. If you want to generate them
 again in your environment, use `make clean` under this folder to clean all
 generated results first.
 
-Then you can reproduce all data with:
+You can reproduce the invariant dectection and refactoring with:
 
 ```bash
 make
@@ -81,6 +81,18 @@ make implement
 
 ### How to Interpret
 
+All the refactored code are available under `[kernel]/refactored/`:
+
+* `[kernel]/refactored/kernel_instrument.cpp` is the automatically generated
+  instrumentation code for invariant detection.
+* `[kernel]/refactored/kernel_device_[size].cpp` is the automatically refactored
+  kernel code that can be synthesized with Vivado HLS. It is generated using the
+  invariant detected using the instrumentation code with an input size of
+  `[size]`.
+
+If you are interested, you can also check `[kernel]/invariant/` for detected
+invariants.
+
 For data in the figure showing operating frequency for different input sizes,
 and also the table showing resource utilization for HeteroRefactor, use command:
 
@@ -91,7 +103,9 @@ make report
 This command reads from `*/rpt/implement_report*` and summarizes the results into
 a single CSV file. The clock period is shown in ns, e.g., 5ns clock period = 100
 MHz frequency. You may also read from `[kernel]/rpt/implement_report_[size].txt`
-on your own.
+to interpret them on your own. You need to have implementation report before this
+step. They are already available in this repository is you did not perform
+`make clean`, or if you have successfully completed `make implement`.
 
 There are other reports available under `[kernel]/rpt/`:
 
@@ -109,18 +123,6 @@ There are other reports available under `[kernel]/rpt/`:
   file produced by Vivado instead of Vivado HLS. Because Vivado HLS has a bug
   that will result in a zero resource utilization report for some kernels, we
   extract the raw report file for your reference.
-
-Also, all the refactored code are available under `[kernel]/refactored/`:
-
-* `[kernel]/refactored/kernel_instrument.cpp` is the automatically generated
-  instrumentation code for invariant detection.
-* `[kernel]/refactored/kernel_device_[size].cpp` is the automatically refactored
-  kernel code that can be synthesized with Vivado HLS. It is generated using the
-  invariant detected using the instrumentation code with an input size of
-  `[size]`.
-
-If you are interested, you can also check `[kernel]/invariant/` for detected
-invariants.
 
 ### What Happened Behind
 
