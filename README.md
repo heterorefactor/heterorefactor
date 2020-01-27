@@ -1,64 +1,82 @@
-# icse2020-artifacts
+# HeteroRefactor (icse2020-artifacts)
 Artifacts submission for ICSE 2020.
 
 ## Prerequisites
 
-The following packages are required to be install before building this system (listed as Ubuntu package name):
+We assume Ubuntu 16.04.5 LTS is installed. The following packages are required to be install before building this system. We list them as Ubuntu package name. If you are using other operating system, you will need to look up the corresponding package name yourself.
 
-```
-sudo apt-get install gawk git wget tar bzip2 gcc automake autoconf libhpdf-dev libc6-dev \
-    autotools-dev bison flex libtool libbz2-dev libpython2.7-dev ghostscript libhpdf-dev libmpfrc++-dev
-```
-
-## How to run ROSE-based refactoring
-
-```
-heterorefactor -I path/to/template-hls-float/include -u output.cpp input.cpp
+```bash
+sudo apt-get install gawk git wget tar bzip2 gcc automake autoconf \
+    libhpdf-dev libc6-dev autotools-dev bison flex libtool libbz2-dev \
+    libpython2.7-dev ghostscript libhpdf-dev libmpfrc++-dev
 ```
 
-See `heterorefactor -h` for details.
+If you want to reproduce the synthesis and implementation results, you need to have a valid Vivado license and install that on your system. You need to make sure that they are in your `PATH` environment variable, and you can run `vivado` and `vivado_hls` in your terminal.
 
-## Tentative folder structure scheme
+We require a modification on the library files shipped with your Vivado installation to reproduce the results for floating point number kernels. Due to copyright issues, we cannot release the modified code in public. This library will be available upon request. Please send an email to Jason Lau \<<lau@cs.ucla.edu>\> along with a screenshot of the license screen of your Vivado installation. We will reply with the code and instructions as soon as possible once we receive and verify the request.
+
+## How to build the HeteroRefactor tool
+
+Simply `make`! If you only want to build the tool without running tests:
+
+```
+cd heterorefactor; make
+```
+
+Alternatively, you can build all the required libraries:
+
+```bash
+cd heterorefactor/libraries; make
+```
+
+Then build the refactoring tool:
+
+```bash
+cd heterorefactor/refactoring; make
+```
+
+You can add `-j 16` option to the `make` command for faster building. Adjust the
+number `16` to match your core numbers on your system.
+
+## How to Use HeteroRefactor
+
+After building the system, the tool `heterorefactor` is available under `heterorefactor/refactoring/build/heterorefactor`. For your convenience of usage, we hardcoded a relative path to avoid you explicitly specifying the root path of this project. Therefore, please do not move the binary file. Optionally, you can add `heterorefactor/refactoring/build/` to your `PATH`.
+
+The usage follows, you can check `heterorefactor -h` for a detailed manual.
+
+```bash
+heterorefactor [-int/-fp/-rec/-instrument] -I path/your/include/files -u refactored_output_code.cpp input_code.cpp
+```
+
+For example, if you want to refactor the linked list kernel using HeteroRefactor and output to `output.cpp`:
+
+```bash
+heterorefactor -rec -u output.cpp experiments/Recursive/ll/src/kernel.cpp
+```
+
+You can see more detailed usage in each experiment folder.
+
+## Project Folder Structure
 
 - heterorefactor
-  - libraries (JL: building scripts and patches for all libraries)
+  - libraries (building scripts and patches for all libraries)
     - Makefile
-    - rose-compiler (JL: automated compilation for ROSE)
-    - xilinx-dummy-lib (JL: dummy include files of Xilinx libraries optimized for ROSE)
-    - template-hls-float.patch (JL: patch file for the floating point library)
+    - rose-compiler (automated compilation of ROSE)
+    - xilinx-dummy-lib (a modified Xilinx libraries for ROSE, available upon request)
+    - template-hls-float.patch (patch file for the floating point library)
   - refactoring
   - instrumentation
-    - recursive
-    - integer
-    - fp
 - experiments
-  - ac
-    - makefile
-    - src
-      - host_main.cpp
-      - kernel.cpp
-      - kernel_hr_refactored.cpp
-      - kernel_manual_refactored.cpp
-    - input
-      - input_file.txt
-    - invariant
-      - instrumentation.out
-    - rpt
-      - hls_report.rpt
-      - (if in paper) vivado_report.rpt
-  - dfs
-  - ll
-  - merge
-  - strassen
-  - fd
-  - 3d
-  - bubble
-  - knn
-  - rgb2yuv
+  - Recursive
+    - \[kernel\]
+      - makefile
+      - src
+        - kernel.cpp
+        - testbed.cpp
+      - testdata
+        - data_generator.sh
+      - invariant
+      - rpt
 
 ## TODOs before opensource releasing
-
 - Remove the modified Xilinx library `heterorefactor/libraries/xilinx-dummy-lib/`.
-    - This file is required for reproducing refactoring results since the original Xilinx library cannot be parsed by ROSE. We removed some irrelevant code and only keep the framework for ROSE analysis.
-    - However, this dummy skeleton library contains some of Xilinx proprietary code and APIs design. These code must not be distributed without a valid license agreement with Xilinx.
-    - Therefore, while it is OK for artifacts review, we need to remove this library before releasing this repository to the public.
