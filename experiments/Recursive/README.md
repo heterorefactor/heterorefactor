@@ -14,7 +14,7 @@ back in the following steps.
 
 #### System packages
 
-We assume Ubuntu 18.04 LTS is installed. All prerequisites in the root
+We assume Ubuntu 16.04.5 LTS is installed. All prerequisites in the root
 README.md file should be installed:
 
 ```bash
