@@ -105,14 +105,15 @@ to interpret them on your own. You need to have implementation report before thi
 step. They are already available in this repository if you did not perform
 `make clean`, or if you have successfully completed `make implement`.
 
-There are other reports available under `[kernel]/rpt/`:
+There are some other reports available under `[kernel]/rpt/`:
 
+* `[kernel]/rpt/synthesis_log_original.txt` shows the error output by Vivado HLS
+  during the synthesis of the original kernel before our refactoring.
 * `[kernel]/rpt/implement_log_[size].txt` shows the log output by Vivado during
   implementation of the kernel of size `[size]`.
 * `[kernel]/rpt/implement_time_[size].txt` shows the implementation time of the
   kernel of size `[size]`.
-* `[kernel]/rpt/instrument_compilation_time.txt` shows the compilation time of
-  the instrumentation code.
+* `[kernel]/rpt/original_run_time_[size].txt` shows the original run time.
 * `[kernel]/rpt/instrument_run_time_[size].txt` shows the run time of the
   instrumentation code of a certain kernel size.
 * `[kernel]/rpt/refactoring_time_[size].txt` shows the refactoring time of a
