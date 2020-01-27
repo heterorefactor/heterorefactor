@@ -13,7 +13,7 @@ void testbed(
 int main()
 {
 	printf("Reading the samples\n");
-	FILE* f = fopen("4224samples.txt", "r");
+	FILE* f = fopen("2064samples.txt", "r");
 
 	float m;
 	for (int i = 0; i < size; i++)
