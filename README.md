@@ -79,3 +79,9 @@ See `README.md` files under `experiments/FP`, `experiments/Integer` and `experim
 
 ## TODOs before opensource releasing
 - Remove the modified Xilinx library `heterorefactor/libraries/xilinx-dummy-lib/`.
+
+---
+
+![SEAL](http://web.cs.ucla.edu/~miryung/seal-logo.jpg)
+
+![VAST](http://vast.cs.ucla.edu/sites/default/themes/CADlab_cadlab/images/logo.png)
