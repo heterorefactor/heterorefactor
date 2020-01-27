@@ -276,8 +276,7 @@ screen. However, the author of this document has not tested in a GUI way.
 ### How to Add New Kernels
 
 If you want to add your own new kernels for testing, you can create a new
-directory under this folder. For example, if you have a kernel called `ray`,
-you can create this structure:
+directory under this folder. You can create this subfolder structure:
 
 ```
 ├── Makefile
