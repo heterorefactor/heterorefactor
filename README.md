@@ -76,9 +76,6 @@ See `README.md` files under `experiments/FP`, `experiments/Integer` and `experim
   - **Integer**
   - **Recursive**
 
-## TODOs before opensource releasing
-- Remove the modified Xilinx library `heterorefactor/libraries/xilinx-dummy-lib/`.
-
 ---
 
 ![SEAL](http://web.cs.ucla.edu/~miryung/seal-logo.jpg)
