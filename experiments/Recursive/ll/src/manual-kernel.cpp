@@ -49,7 +49,7 @@ typedef struct NODE {
     DATA data;
     int next;
 } NODE;
-Allocator<NODE> tree;
+Allocator<NODE> list;
 
 void init(Allocator<NODE>::ptr *head) {
     *head = _NULL;
@@ -57,37 +57,37 @@ void init(Allocator<NODE>::ptr *head) {
 
 int *output_list(Allocator<NODE>::ptr head, int *curr) {
     Allocator<NODE>::ptr temp;
-    for (temp = head; temp != _NULL; temp = tree.space[temp].next) {
-        *(curr++) = tree.space[temp].data.info;
+    for (temp = head; temp != _NULL; temp = list.space[temp].next) {
+        *(curr++) = list.space[temp].data.info;
     }
     return curr;
 }
 
 Allocator<NODE>::ptr add(Allocator<NODE>::ptr node, DATA data) {
-    Allocator<NODE>::ptr temp = tree.malloc();
+    Allocator<NODE>::ptr temp = list.malloc();
     if (temp == _NULL) {
         g_fallback = true; return _NULL;
     }
-    tree.space[temp].data = data;
-    tree.space[temp].next = node;
+    list.space[temp].data = data;
+    list.space[temp].next = node;
     node = temp;
     return node;
 }
 
 void add_at(Allocator<NODE>::ptr node, DATA data) {
-    Allocator<NODE>::ptr temp = tree.malloc();
+    Allocator<NODE>::ptr temp = list.malloc();
     if (temp == _NULL) {
         g_fallback = true; return;
     }
-    tree.space[temp].data = data;
-    tree.space[temp].next = tree.space[node].next;
-    tree.space[node].next = temp;
+    list.space[temp].data = data;
+    list.space[temp].next = list.space[node].next;
+    list.space[node].next = temp;
 }
 
 void remove_node(Allocator<NODE>::ptr head) {
-    Allocator<NODE>::ptr temp = tree.space[head].next;
-    tree.space[head].next = tree.space[tree.space[head].next].next;
-    tree.free(temp);
+    Allocator<NODE>::ptr temp = list.space[head].next;
+    list.space[head].next = list.space[list.space[head].next].next;
+    list.free(temp);
 }
 
 struct _reverse_rec_recursion_record {
@@ -122,8 +122,8 @@ Allocator<NODE>::ptr reverse_rec(
         if (_location == 1) goto reverse_rec_L1;
 
 reverse_rec_L0:
-        if (tree.space[ptr].next == _NULL) {
-            tree.space[ptr].next = previous;
+        if (list.space[ptr].next == _NULL) {
+            list.space[ptr].next = previous;
             // function return: return ptr;
             // set return value
             _stack[_stack_top].return_val = ptr;
@@ -136,13 +136,13 @@ reverse_rec_L0:
                 g_fallback = true;
                 return 0;
             }
-            // function call: reverse_rec(tree.space[ptr].next, ptr);
+            // function call: reverse_rec(list.space[ptr].next, ptr);
             // store variable
             _stack[_stack_top].ptr = ptr;
             _stack[_stack_top].previous = previous;
             _stack[_stack_top].temp = temp;
             // variable init
-            ptr = tree.space[_stack[_stack_top].ptr].next;
+            ptr = list.space[_stack[_stack_top].ptr].next;
             previous = _stack[_stack_top].ptr;
             // store location
             _stack[_stack_top]._location = 1;
@@ -154,7 +154,7 @@ reverse_rec_L0:
 reverse_rec_L1:
             // get return value
             temp = _stack[_stack_top+1].return_val;
-            tree.space[ptr].next = previous;
+            list.space[ptr].next = previous;
             // function return: return temp;
             // set return value
             _stack[_stack_top].return_val = temp;
@@ -168,19 +168,19 @@ reverse_rec_L1:
 }
 
 Allocator<NODE>::ptr sort_list(Allocator<NODE>::ptr head) {
-    Allocator<NODE>::ptr tmpPtr = head, tmpNxt = tree.space[head].next;
+    Allocator<NODE>::ptr tmpPtr = head, tmpNxt = list.space[head].next;
     DATA tmp;
     while (tmpNxt != _NULL) {
         while (tmpNxt != tmpPtr) {
-            if (tree.space[tmpNxt].data.info < tree.space[tmpPtr].data.info) {
-                tmp = tree.space[tmpPtr].data;
-                tree.space[tmpPtr].data = tree.space[tmpNxt].data;
-                tree.space[tmpNxt].data = tmp;
+            if (list.space[tmpNxt].data.info < list.space[tmpPtr].data.info) {
+                tmp = list.space[tmpPtr].data;
+                list.space[tmpPtr].data = list.space[tmpNxt].data;
+                list.space[tmpNxt].data = tmp;
             }
-            tmpPtr = tree.space[tmpPtr].next;
+            tmpPtr = list.space[tmpPtr].next;
         }
         tmpPtr = head;
-        tmpNxt = tree.space[tmpNxt].next;
+        tmpNxt = list.space[tmpNxt].next;
     }
     return tmpPtr;
 }
@@ -211,14 +211,14 @@ void process_top(int n, int *input, int *output, int *fallback) {
     curr = output_list(head, curr);
     *(curr++) = -1;
 
-    node = tree.space[tree.space[tree.space[head].next].next].next;
+    node = list.space[list.space[list.space[head].next].next].next;
     element.info = 2000;
     add_at(node, element);
     if (g_fallback) goto fail;
     curr = output_list(head, curr);
     *(curr++) = -1;
 
-    node = tree.space[tree.space[head].next].next;
+    node = list.space[list.space[head].next].next;
     remove_node(node);
     head = sort_list(head);
     curr = output_list(head, curr);

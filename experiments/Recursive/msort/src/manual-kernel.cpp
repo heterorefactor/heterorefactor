@@ -47,7 +47,7 @@ struct Node {
   int next;
 };
 typedef struct Node node;
-Allocator<node> tree;
+Allocator<node> list;
 
 /* function prototypes */
 Allocator<node>::ptr SortedMerge(
@@ -90,7 +90,7 @@ Allocator<node>::ptr MergeSort(Allocator<node>::ptr head) {
 
 MergeSort_L0:
     /* Base case -- length 0 or 1 */
-    if ((head == _NULL) || (tree.space[head].next == _NULL)) {
+    if ((head == _NULL) || (list.space[head].next == _NULL)) {
       // function return: return head;
       // set return value
       _stack[_stack_top].return_val = head;
@@ -98,23 +98,23 @@ MergeSort_L0:
       continue;
     }
 
-    fast = tree.space[head].next;
+    fast = list.space[head].next;
     slow = head;
 
     /* Advance 'fast' two nodes, and advance 'slow' one node */
     while (fast != _NULL) {
-      fast = tree.space[fast].next;
+      fast = list.space[fast].next;
       if (fast != _NULL) {
-        slow = tree.space[slow].next;
-        fast = tree.space[fast].next;
+        slow = list.space[slow].next;
+        fast = list.space[fast].next;
       }
     }
 
     /* 'slow' is before the midpoint in the list, so split it in two
     at that point. */
     a = head;
-    b = tree.space[slow].next;
-    tree.space[slow].next = _NULL;
+    b = list.space[slow].next;
+    list.space[slow].next = _NULL;
 
     /* Recursively sort the sublists */
     // stack overflow
@@ -229,15 +229,15 @@ SortedMerge_L0:
     }
 
     /* Pick either a or b, and recur */
-    if (tree.space[a].data <= tree.space[b].data) {
+    if (list.space[a].data <= list.space[b].data) {
       result = a;
-      // function call: SortedMerge(tree.space[a].next, b);
+      // function call: SortedMerge(list.space[a].next, b);
       // store variable
       _stack[_stack_top].a = a;
       _stack[_stack_top].b = b;
       _stack[_stack_top].result = result;
       // variable init
-      a = tree.space[a].next;
+      a = list.space[a].next;
       b = b;
       // store location
       _stack[_stack_top]._location = 1;
@@ -248,17 +248,17 @@ SortedMerge_L0:
 
 SortedMerge_L1:
       // get return value
-      tree.space[result].next = _stack[_stack_top+1].return_val;
+      list.space[result].next = _stack[_stack_top+1].return_val;
     } else {
       result = b;
-      // function call: SortedMerge(a, tree.space[b].next);
+      // function call: SortedMerge(a, list.space[b].next);
       // store variable
       _stack[_stack_top].a = a;
       _stack[_stack_top].b = b;
       _stack[_stack_top].result = result;
       // variable init
       a = a;
-      b = tree.space[b].next;
+      b = list.space[b].next;
       // store location
       _stack[_stack_top]._location = 2;
       // push stack
@@ -268,7 +268,7 @@ SortedMerge_L1:
 
 SortedMerge_L2:
       // get return value
-      tree.space[result].next = _stack[_stack_top+1].return_val;
+      list.space[result].next = _stack[_stack_top+1].return_val;
     }
     // function return: return (result);
     // set return value
@@ -284,8 +284,8 @@ SortedMerge_L2:
 /* Function to print nodes in a given linked list */
 int *printList(Allocator<node>::ptr node, int *output) {
   while (node != _NULL) {
-    *(output++) = tree.space[node].data;
-    node = tree.space[node].next;
+    *(output++) = list.space[node].data;
+    node = list.space[node].next;
   }
   return output;
 }
@@ -293,17 +293,17 @@ int *printList(Allocator<node>::ptr node, int *output) {
 /* Function to insert a node at the beginging of the linked list */
 void push(Allocator<node>::ptr *head_ref, int new_data) {
   /* allocate node */
-  Allocator<node>::ptr new_node = tree.malloc();
+  Allocator<node>::ptr new_node = list.malloc();
   if (new_node == _NULL) {
     g_fallback = true;
     return;
   }
 
   /* put in the data */
-  tree.space[new_node].data = new_data;
+  list.space[new_node].data = new_data;
 
   /* link the old list off the new node */
-  tree.space[new_node].next = (*head_ref);
+  list.space[new_node].next = (*head_ref);
 
   /* move the head to point to the new node */
   (*head_ref) = new_node;
