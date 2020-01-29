@@ -53,7 +53,7 @@ Allocator<node> list;
 Allocator<node>::ptr SortedMerge(
         Allocator<node>::ptr a, Allocator<node>::ptr b);
 
-struct _reverse_rec_MergeSort {
+struct _recurse_rec_MergeSort {
   Allocator<node>::ptr head;
   Allocator<node>::ptr fast;
   Allocator<node>::ptr slow;
@@ -65,7 +65,7 @@ struct _reverse_rec_MergeSort {
 
 /* sorts the linked list by changing next pointers (not data) */
 Allocator<node>::ptr MergeSort(Allocator<node>::ptr head) {
-  volatile _reverse_rec_MergeSort _stack[MAX_SIZE];
+  volatile _recurse_rec_MergeSort _stack[MAX_SIZE];
   volatile int _stack_top = 0;
 
   // initialize the stack
@@ -175,7 +175,7 @@ MergeSort_L2:
   return _stack[_stack_top].return_val;
 }
 
-struct _reverse_rec_SortedMerge {
+struct _recurse_rec_SortedMerge {
   Allocator<node>::ptr a;
   Allocator<node>::ptr b;
   Allocator<node>::ptr result;
@@ -187,7 +187,7 @@ struct _reverse_rec_SortedMerge {
 function */
 Allocator<node>::ptr SortedMerge(
         Allocator<node>::ptr a, Allocator<node>::ptr b) {
-  volatile _reverse_rec_SortedMerge _stack[MAX_SIZE];
+  volatile _recurse_rec_SortedMerge _stack[MAX_SIZE];
   volatile int _stack_top = 0;
 
   // initialize the stack

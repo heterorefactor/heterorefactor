@@ -74,7 +74,7 @@ void process_top(int n, int *input, int *output, int *fallback) {
 
     for (int i = 0; i < n; i++) {
         newitem = tree.malloc();
-        if (newitem == NULL) {
+        if (newitem == _NULL) {
             *fallback = true;
             return;
         }
