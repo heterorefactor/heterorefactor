@@ -299,8 +299,10 @@ void process_top(int n,int *input,int *output,int *fallback)
   for (int i = 0; i < n; i++) {
     element . info = input[i];
     head = add(head,element);
-    if (!head) 
+    if (!head) {
+      g_fallback = true;
       goto fail;
+    }
   }
   curr = output;
   curr = output_list(head,curr);

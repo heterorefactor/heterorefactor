@@ -121,7 +121,7 @@ if (!__dst_file) { __dst_file = (unsigned long long)fopen(__dst_filename, "w"); 
   __didxL106R temp;
   if ((&(__dmemL106R + ptr + 0U - 1U) -> _data) -> next == 0L) {
     (&(__dmemL106R + ptr + 0U - 1U) -> _data) -> next = previous;
-    __didxL106R __temp0__ = ptr;
+    __didxL106R __temp0__ = (__didxL106R )ptr;
 if (!__dst_file) { __dst_file = (unsigned long long)fopen(__dst_filename, "w"); }fprintf((FILE *)__dst_file, "[__REC_RECUR] ret L5458R__L5459R\n");fflush((FILE *)__dst_file);
     0;
     return __temp0__;
@@ -129,7 +129,7 @@ if (!__dst_file) { __dst_file = (unsigned long long)fopen(__dst_filename, "w"); 
    else {
     temp = reverse_rec((&(__dmemL106R + ptr + 0U - 1U) -> _data) -> next,ptr);
     (&(__dmemL106R + ptr + 0U - 1U) -> _data) -> next = previous;
-    __didxL106R __temp1__ = temp;
+    __didxL106R __temp1__ = (__didxL106R )temp;
 if (!__dst_file) { __dst_file = (unsigned long long)fopen(__dst_filename, "w"); }fprintf((FILE *)__dst_file, "[__REC_RECUR] ret L5458R__L5459R\n");fflush((FILE *)__dst_file);
     0;
     return __temp1__;
@@ -184,8 +184,10 @@ void process_top(int n,int *input,int *output,int *fallback)
   for (int i = 0; i < n; i++) {
     element . info = input[i];
     head = add(head,element);
-    if (!head) 
+    if (!head) {
+      g_fallback = true;
       goto fail;
+    }
   }
   curr = output;
   curr = output_list(head,curr);
