@@ -48,6 +48,7 @@ int insert_node(node *root, char *str, int substring_index) {
         int idx = ch - 'a';
         if (!root->next[idx]) {
             root->next[idx] = new_node();
+            if (!root->next[idx]) return 0;
             node_count += 1;
         }
 

@@ -483,10 +483,14 @@ int insert_node(__didxclass_node root,__didxc str,int substring_index)
     goto __rect_func_L0_L5464R__L5465R;
   }
    else {
-    __rect_packed_var_L5464R__L5465R[0 + __rect_packed_top_L5464R__L5465R] . local3 >= 'a' && __rect_packed_var_L5464R__L5465R[0 + __rect_packed_top_L5464R__L5465R] . local3 <= 'z'?(static_cast < void  >  (0)) : __assert_fail("ch >= 'a' && ch <= 'z'","hetero-2GzSKP-kernel.cpp",53,__PRETTY_FUNCTION__);
+    __rect_packed_var_L5464R__L5465R[0 + __rect_packed_top_L5464R__L5465R] . local3 >= 'a' && __rect_packed_var_L5464R__L5465R[0 + __rect_packed_top_L5464R__L5465R] . local3 <= 'z'?(static_cast < void  >  (0)) : __assert_fail("ch >= 'a' && ch <= 'z'","hetero-MNimTc-kernel.cpp",53,__PRETTY_FUNCTION__);
     __rect_packed_var_L5464R__L5465R[0 + __rect_packed_top_L5464R__L5465R] . local4 = __rect_packed_var_L5464R__L5465R[0 + __rect_packed_top_L5464R__L5465R] . local3 - 'a';
     if (!(&(__dmemclass_node + __rect_packed_var_L5464R__L5465R[0 + __rect_packed_top_L5464R__L5465R] . local0 + 0U - 1U) -> _data) -> next[__rect_packed_var_L5464R__L5465R[0 + __rect_packed_top_L5464R__L5465R] . local4]) {
       (&(__dmemclass_node + __rect_packed_var_L5464R__L5465R[0 + __rect_packed_top_L5464R__L5465R] . local0 + 0U - 1U) -> _data) -> next[__rect_packed_var_L5464R__L5465R[0 + __rect_packed_top_L5464R__L5465R] . local4] = new_node();
+      if (!(&(__dmemclass_node + __rect_packed_var_L5464R__L5465R[0 + __rect_packed_top_L5464R__L5465R] . local0 + 0U - 1U) -> _data) -> next[__rect_packed_var_L5464R__L5465R[0 + __rect_packed_top_L5464R__L5465R] . local4]) {
+        __rect_packed_var_L5464R__L5465R[0 + __rect_packed_top_L5464R__L5465R] . _return = 0;
+        goto __rect_func_L0_L5464R__L5465R;
+      }
       node_count += 1;
     }
     if (__rect_packed_top_L5464R__L5465R + 1U == 256U) {;
@@ -554,7 +558,7 @@ void query_AhoCorasick(__didxclass_node root,char *query,int *substring_indexes,
     char ch = query[offset];
     if (ch == '%') 
       break; 
-    ch >= 'a' && ch <= 'z'?(static_cast < void  >  (0)) : __assert_fail("ch >= 'a' && ch <= 'z'","hetero-2GzSKP-kernel.cpp",108,__PRETTY_FUNCTION__);
+    ch >= 'a' && ch <= 'z'?(static_cast < void  >  (0)) : __assert_fail("ch >= 'a' && ch <= 'z'","hetero-MNimTc-kernel.cpp",109,__PRETTY_FUNCTION__);
     int idx = ch - 'a';
 // follow fail link if not matched in curr
     while(!(&(__dmemclass_node + curr + 0U - 1U) -> _data) -> next[idx] && curr != root)
