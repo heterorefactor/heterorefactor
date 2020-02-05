@@ -4,7 +4,7 @@ BEGIN {
 
 $1 == "[__DST_ALLOC]" &&
 $2 == "malloc" {
-    curr["mem",$3] += $4
+    curr["mem",$3] += roundup($4)
     if (max["mem",$3] < curr["mem",$3]) {
         max["mem",$3] = curr["mem",$3]
     }
@@ -13,7 +13,7 @@ $2 == "malloc" {
 
 $1 == "[__DST_ALLOC]" &&
 $2 == "free" {
-    curr["mem",$3] -= $4
+    curr["mem",$3] -= roundup($4)
 }
 
 $1 == "[__REC_RECUR]" &&
@@ -28,6 +28,16 @@ $2 == "call" {
 $1 == "[__REC_RECUR]" &&
 $2 == "ret" {
     curr["rec",$3] -= 1
+}
+
+function roundup(val) {
+    tmp = 1
+    logtmp = 0
+    while (tmp < val) {
+        tmp *= 2
+        logtmp += 1
+    }
+    return tmp
 }
 
 function log2(val) {
