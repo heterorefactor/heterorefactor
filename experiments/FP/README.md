@@ -6,8 +6,10 @@ This is the implementation of differential execution-based probabilistic verific
 - If you do not have a Xilinx Vivado HLS environment but you are interested in how to reproduce the results manually, please go to "Manual Verification" folder in each subject program, and follow the instructions there.
 
 ## How to use this tool
-- To reproduce the results, please go to folder KNN-l2norm and RGB2YUV
-- To run a new kernel program, please go to folder Probabilistic_Verification
+- Run HeteroRefactor with the original program to get refactored kernel
+- Go to folder Probabilistic_Verification to tune the bitwidth
+
+- To reproduce the results in paper, please go to folder KNN-l2norm and RGB2YUV
 
 ## folder structure
 - KNN-l2norm
@@ -21,4 +23,5 @@ This is the implementation of differential execution-based probabilistic verific
   - Manual Verification
   - Report
 - Probabilistic_Verification
+- Original Programs
 - README.md
