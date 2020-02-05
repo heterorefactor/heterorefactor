@@ -54,9 +54,9 @@ void AccessTransformer::set_pointer_access_loc(SgExpression *exp,
 
     auto access = SageBuilder::buildAddressOfOp(
             SageBuilder::buildArrowExp(
-                SageBuilder::buildSubtractOp(SageBuilder::buildAddOp(SageBuilder::buildAddOp(
+                SageBuilder::buildAddOp(SageBuilder::buildAddOp(
                     SageBuilder::buildVarRefExp(mem, scope),
-                    ::get_access(exp)), offset), SageBuilder::buildUnsignedIntVal(1)),
+                    ::get_access(exp)), offset),
                 SageBuilder::buildVarRefExp(actual_loc, scope)));
 
     if (auto e = isSgPntrArrRefExp(exp)) ::set_pointer_access_loc(e, access);

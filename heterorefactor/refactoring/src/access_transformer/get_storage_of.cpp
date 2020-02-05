@@ -49,7 +49,7 @@ AccessTransformer::get_storage_of(
         int struct_size = 10; // default size if no invariant availible
         if (m_type_size_mapping.find(name) !=
                 m_type_size_mapping.end()) {
-            struct_size = m_type_size_mapping[name] + 1;
+            struct_size = m_type_size_mapping[name];
         }
 
         // Build freelist union structure
@@ -68,7 +68,7 @@ AccessTransformer::get_storage_of(
         freelist_def->append_member(freelist_data);
 
         auto array_type = SageBuilder::buildArrayType(freelist_decl->get_type(),
-            SageBuilder::buildUnsignedIntVal(1 << struct_size));
+            SageBuilder::buildUnsignedIntVal((1 << struct_size) + 1));
         auto var = SageBuilder::buildInitializedName(name, array_type);
         var->set_scope(scope);
         m_storage[eqiv_type] = var;

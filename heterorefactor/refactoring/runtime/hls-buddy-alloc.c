@@ -64,12 +64,12 @@ struct MEM_TYPE {
     ACCESS_TYPE _data;
 };
 
-union MEM_TYPE ACCESS_NAME[MAX_ALLOC_ELEMENT + 1];
+struct MEM_TYPE ACCESS_NAME[MAX_ALLOC_ELEMENT + 1];
 #endif
 
 
 
-unsigned char NODE_SPLIT[(1 << (ELEMENT_LOG2 - 1)) / 8];
+unsigned char NODE_SPLIT[(1 << (ELEMENT_LOG2)) / 8];
 
 static unsigned char TEST_PARENT_SPLIT(__dst_alloc_size_t index) {
     index = (index - 1) / 2;
@@ -88,12 +88,12 @@ static void CLR_PARENT_SPLIT(__dst_alloc_size_t index) {
 
 
 
-struct __dst_alloc_list_base_t BUCKETS[ELEMENT_LOG2] = {{1, 1}};
+struct __dst_alloc_list_base_t BUCKETS[ELEMENT_LOG2 + 1] = {{1, 1}};
 
 static __dst_alloc_bucket_size_t BUCKET_FOR_REQUEST(
         __dst_alloc_size_t request) {
-    __dst_alloc_bucket_size_t bucket = ELEMENT_LOG2 -  1;
-    __dst_alloc_size_t size = 2;
+    __dst_alloc_bucket_size_t bucket = ELEMENT_LOG2;
+    __dst_alloc_size_t size = 1;
     while (size < request) {
         size <<= 1;
         bucket -= 1;
@@ -154,7 +154,7 @@ static __dst_alloc_size_t NODE_FOR_INDEX(
 
 
 void INIT() {
-    for (int i = 0; i < ELEMENT_LOG2; i++) {
+    for (int i = 0; i <= ELEMENT_LOG2; i++) {
         BUCKETS[i].prev = 0;
         BUCKETS[i].next = 0;
     }
@@ -188,7 +188,7 @@ __dst_alloc_size_t MALLOC(__dst_alloc_size_t request) {
         }
 
         ACCESS_NAME[ptr]._link.prev = request;
-        return ptr + 1;
+        return ptr;
     }
 
     return 0;
@@ -196,7 +196,6 @@ __dst_alloc_size_t MALLOC(__dst_alloc_size_t request) {
 
 void FREE(__dst_alloc_size_t ptr) {
     if (ptr == 0) return;
-    ptr -= 1;
 
     __dst_alloc_bucket_size_t bucket =
         BUCKET_FOR_REQUEST(ACCESS_NAME[ptr]._link.prev);

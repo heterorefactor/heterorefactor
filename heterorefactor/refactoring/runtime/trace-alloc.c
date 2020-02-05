@@ -55,12 +55,11 @@ __dst_alloc_size_t MALLOC(__dst_alloc_size_t request) {
     MEM_TYPE *allocated = (MEM_TYPE *)malloc(
             request * sizeof(MEM_TYPE));
     allocated[0]._link.prev = request;
-    return allocated - ACCESS_NAME + 1;
+    return allocated - ACCESS_NAME;
 }
 
 void FREE(__dst_alloc_size_t ptr) {
     if (ptr == 0) return;
-    ptr -= 1;
 
     if (!__dst_file) {
         __dst_file = (unsigned long long)fopen(__dst_filename, "w");
