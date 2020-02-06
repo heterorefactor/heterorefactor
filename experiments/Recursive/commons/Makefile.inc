@@ -19,6 +19,7 @@ runtime: invariant original_runtime refactor
 synthesis: $(addprefix $(mkfile_dir)/rpt/synthesis_log_, $(addsuffix .txt, $(testdata))) \
 		$(mkfile_dir)/rpt/synthesis_log_original.txt
 implement: $(addprefix $(mkfile_dir)/rpt/implement_log_, $(addsuffix .txt, $(testdata)))
+manual: $(mkfile_dir)/rpt/implement_log_manual.txt
 
 original_runtime: $(addprefix $(mkfile_dir)/rpt/original_run_time_, $(addsuffix .txt, $(testdata)))
 compile_time: $(mkfile_dir)/bin/original.exe $(mkfile_dir)/bin/instrument.exe
@@ -116,6 +117,24 @@ $(addprefix $(mkfile_dir)/rpt/implement_log_, $(addsuffix .txt, $(testdata))): \
 		$(mkfile_dir)/rpt/implement_log_$(@_size).txt
 	-cp $(mkfile_dir)/tmp/implement_$(@_size)/device/device/impl/report/verilog/process_top_export.rpt \
 		$(mkfile_dir)/rpt/implement_report_$(@_size).txt
+
+$(mkfile_dir)/rpt/implement_log_manual.txt: \
+		$(mkfile_dir)/src/manual-kernel.cpp
+	mkdir -p $(mkfile_dir)/rpt
+	mkdir -p $(mkfile_dir)/refactored
+	-rm -rf $(mkfile_dir)/tmp/implement_manual
+	mkdir -p $(mkfile_dir)/tmp/implement_manual
+	cp $(mkfile_dir)/src/manual-kernel.cpp \
+		$(mkfile_dir)/tmp/implement_manual/kernel.cpp
+	cp $(mkfile_dir)/../commons/impl.tcl $(mkfile_dir)/tmp/implement_manual/impl.tcl
+	# it is possible that implementation fail for large designs
+	-cd $(mkfile_dir)/tmp/implement_manual && \
+		time -o $(mkfile_dir)/rpt/implement_time_manual.txt \
+			vivado_hls -f impl.tcl
+	cp $(mkfile_dir)/tmp/implement_manual/vivado_hls.log \
+		$(mkfile_dir)/rpt/implement_log_manual.txt
+	-cp $(mkfile_dir)/tmp/implement_manual/device/device/impl/report/verilog/process_top_export.rpt \
+		$(mkfile_dir)/rpt/implement_report_manual.txt
 
 $(mkfile_dir)/bin/original.exe: \
 		$(mkfile_dir)/src/kernel.cpp \

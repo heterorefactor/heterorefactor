@@ -3,15 +3,16 @@
 
 #define MAX_SIZE 16384
 
-const int _NULL = -1;
+const long long _NULL = -1;
 template <class T>
 struct Allocator {
-    typedef int ptr;
+    typedef long long ptr;
 
     // the actual storage space
     T space[MAX_SIZE];
     // stack to store all indexes of free space
     ptr freeMemory[MAX_SIZE];
+
     // number of free mem, pointer to the top of the stack
     int noOffreeMemory;
 
@@ -51,8 +52,8 @@ struct Allocator {
  */
 typedef struct node {
     int substring_index;
-    int fail;
-    int next[26];
+    long long fail;
+    long long next[26];
 } node;
 Allocator<node> tree;
 

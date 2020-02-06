@@ -43,7 +43,7 @@ implement_clock:
 		echo kernel,size,clockperiod > $(mkfile_dir)/Report/implement_clock.txt && \
 		grep "achieved post-implementation" */rpt/implement_report* | \
 		sort -V | \
-		sed 's/^\([^0-9/]*\)[^0-9]*\([0-9]*\).txt:[^0-9]*\([0-9.]*\)$$/\1,\2,\3/' \
+		sed 's/^\([^0-9/]*\)[^0-9]*_\([a-z0-9]*\).txt:[^0-9]*\([0-9.]*\)$$/\1,\2,\3/' \
 		>> $(mkfile_dir)/Report/implement_clock.txt
 
 resource_after_impl:
@@ -52,23 +52,23 @@ resource_after_impl:
 		echo kernel,size,lut > $(mkfile_dir)/Report/implement_lut.txt && \
 		grep "LUT" */rpt/implement_report* | \
 		sort -V | \
-		sed 's/^\([^0-9/]*\)[^0-9]*\([0-9]*\).txt:[^0-9]*\([0-9.]*\)$$/\1,\2,\3/' \
+		sed 's/^\([^0-9/]*\)[^0-9]*_\([a-z0-9]*\).txt:[^0-9]*\([0-9.]*\)$$/\1,\2,\3/' \
 		>> $(mkfile_dir)/Report/implement_lut.txt
 	cd $(mkfile_dir) && \
 		echo kernel,size,ff > $(mkfile_dir)/Report/implement_ff.txt && \
 		grep "FF" */rpt/implement_report* | \
 		sort -V | \
-		sed 's/^\([^0-9/]*\)[^0-9]*\([0-9]*\).txt:[^0-9]*\([0-9.]*\)$$/\1,\2,\3/' \
+		sed 's/^\([^0-9/]*\)[^0-9]*_\([a-z0-9]*\).txt:[^0-9]*\([0-9.]*\)$$/\1,\2,\3/' \
 		>> $(mkfile_dir)/Report/implement_ff.txt
 	cd $(mkfile_dir) && \
 		echo kernel,size,dsp > $(mkfile_dir)/Report/implement_dsp.txt && \
 		grep "DSP" */rpt/implement_report* | \
 		sort -V | \
-		sed 's/^\([^0-9/]*\)[^0-9]*\([0-9]*\).txt:[^0-9]*\([0-9.]*\)$$/\1,\2,\3/' \
+		sed 's/^\([^0-9/]*\)[^0-9]*_\([a-z0-9]*\).txt:[^0-9]*\([0-9.]*\)$$/\1,\2,\3/' \
 		>> $(mkfile_dir)/Report/implement_dsp.txt
 	cd $(mkfile_dir) && \
 		echo kernel,size,bram > $(mkfile_dir)/Report/implement_bram.txt && \
 		grep "BRAM" */rpt/implement_report* | \
 		sort -V | \
-		sed 's/^\([^0-9/]*\)[^0-9]*\([0-9]*\).txt:[^0-9]*\([0-9.]*\)$$/\1,\2,\3/' \
+		sed 's/^\([^0-9/]*\)[^0-9]*_\([a-z0-9]*\).txt:[^0-9]*\([0-9.]*\)$$/\1,\2,\3/' \
 		>> $(mkfile_dir)/Report/implement_bram.txt

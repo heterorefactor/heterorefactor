@@ -32,7 +32,7 @@ struct __dst_alloc_list__dmemclass_Node
   struct Node _data;
 }
 ;
-struct __dst_alloc_list__dmemclass_Node __dmemclass_Node[1024U];
+struct __dst_alloc_list__dmemclass_Node __dmemclass_Node[1025U];
 # 1 "<stdin>"
 # 1 "<built-in>"
 # 1 "<command-line>"
@@ -55,11 +55,10 @@ __dst_alloc_size_t __dst_alloc_malloc__dmemclass_Node(__dst_alloc_size_t request
     __dst_alloc_list__dmemclass_Node *allocated = (__dst_alloc_list__dmemclass_Node *)malloc(
             request * sizeof(__dst_alloc_list__dmemclass_Node));
     allocated[0]._link.prev = request;
-    return allocated - __dmemclass_Node + 1;
+    return allocated - __dmemclass_Node;
 }
 void __dst_alloc_free__dmemclass_Node(__dst_alloc_size_t ptr) {
     if (ptr == 0) return;
-    ptr -= 1;
     if (!__dst_file) {
         __dst_file = (unsigned long long)fopen(__dst_filename, "w");
     }
@@ -79,32 +78,32 @@ __didxclass_Node MergeSort(__didxclass_Node head)
 {
 /* Base case -- length 0 or 1 */
 if (!__dst_file) { __dst_file = (unsigned long long)fopen(__dst_filename, "w"); }fprintf((FILE *)__dst_file, "[__REC_RECUR] call L5448R__L5449R\n");fflush((FILE *)__dst_file);
-  if (head == 0L || (&(__dmemclass_Node + head + 0U - 1U) -> _data) -> next == 0L) {
-    __didxclass_Node __temp0__ = head;
+  if (head == 0L || (&(__dmemclass_Node + head + 0U) -> _data) -> next == 0L) {
+    __didxclass_Node __temp0__ = (__didxclass_Node )head;
 if (!__dst_file) { __dst_file = (unsigned long long)fopen(__dst_filename, "w"); }fprintf((FILE *)__dst_file, "[__REC_RECUR] ret L5448R__L5449R\n");fflush((FILE *)__dst_file);
     0;
     return __temp0__;
   }
-  __didxclass_Node fast = (&(__dmemclass_Node + head + 0U - 1U) -> _data) -> next;
+  __didxclass_Node fast = (&(__dmemclass_Node + head + 0U) -> _data) -> next;
   __didxclass_Node slow = head;
 /* Advance 'fast' two nodes, and advance 'slow' one node */
   while(fast != 0L){
-    fast = (&(__dmemclass_Node + fast + 0U - 1U) -> _data) -> next;
+    fast = (&(__dmemclass_Node + fast + 0U) -> _data) -> next;
     if (fast != 0L) {
-      slow = (&(__dmemclass_Node + slow + 0U - 1U) -> _data) -> next;
-      fast = (&(__dmemclass_Node + fast + 0U - 1U) -> _data) -> next;
+      slow = (&(__dmemclass_Node + slow + 0U) -> _data) -> next;
+      fast = (&(__dmemclass_Node + fast + 0U) -> _data) -> next;
     }
   }
 /* 'slow' is before the midpoint in the list, so split it in two
   at that point. */
   __didxclass_Node a = head;
-  __didxclass_Node b = (&(__dmemclass_Node + slow + 0U - 1U) -> _data) -> next;
-  (&(__dmemclass_Node + slow + 0U - 1U) -> _data) -> next = 0L;
+  __didxclass_Node b = (&(__dmemclass_Node + slow + 0U) -> _data) -> next;
+  (&(__dmemclass_Node + slow + 0U) -> _data) -> next = 0L;
 /* Recursively sort the sublists */
   a = MergeSort(a);
   b = MergeSort(b);
 /* answer = merge the two sorted lists together */
-  __didxclass_Node __temp1__ = SortedMerge(a,b);
+  __didxclass_Node __temp1__ = (__didxclass_Node )(SortedMerge(a,b));
 if (!__dst_file) { __dst_file = (unsigned long long)fopen(__dst_filename, "w"); }fprintf((FILE *)__dst_file, "[__REC_RECUR] ret L5448R__L5449R\n");fflush((FILE *)__dst_file);
   0;
   return __temp1__;
@@ -119,27 +118,27 @@ if (!__dst_file) { __dst_file = (unsigned long long)fopen(__dst_filename, "w"); 
   __didxclass_Node result = 0L;
 /* Base cases */
   if (a == 0L) {
-    __didxclass_Node __temp2__ = b;
+    __didxclass_Node __temp2__ = (__didxclass_Node )b;
 if (!__dst_file) { __dst_file = (unsigned long long)fopen(__dst_filename, "w"); }fprintf((FILE *)__dst_file, "[__REC_RECUR] ret L5446R__L5447R\n");fflush((FILE *)__dst_file);
     0;
     return __temp2__;
   }
    else if (b == 0L) {
-    __didxclass_Node __temp3__ = a;
+    __didxclass_Node __temp3__ = (__didxclass_Node )a;
 if (!__dst_file) { __dst_file = (unsigned long long)fopen(__dst_filename, "w"); }fprintf((FILE *)__dst_file, "[__REC_RECUR] ret L5446R__L5447R\n");fflush((FILE *)__dst_file);
     0;
     return __temp3__;
   }
 /* Pick either a or b, and recur */
-  if ((&(__dmemclass_Node + a + 0U - 1U) -> _data) -> data <= (&(__dmemclass_Node + b + 0U - 1U) -> _data) -> data) {
+  if ((&(__dmemclass_Node + a + 0U) -> _data) -> data <= (&(__dmemclass_Node + b + 0U) -> _data) -> data) {
     result = a;
-    (&(__dmemclass_Node + result + 0U - 1U) -> _data) -> next = SortedMerge((&(__dmemclass_Node + a + 0U - 1U) -> _data) -> next,b);
+    (&(__dmemclass_Node + result + 0U) -> _data) -> next = SortedMerge((&(__dmemclass_Node + a + 0U) -> _data) -> next,b);
   }
    else {
     result = b;
-    (&(__dmemclass_Node + result + 0U - 1U) -> _data) -> next = SortedMerge(a,(&(__dmemclass_Node + b + 0U - 1U) -> _data) -> next);
+    (&(__dmemclass_Node + result + 0U) -> _data) -> next = SortedMerge(a,(&(__dmemclass_Node + b + 0U) -> _data) -> next);
   }
-  __didxclass_Node __temp4__ = result;
+  __didxclass_Node __temp4__ = (__didxclass_Node )result;
 if (!__dst_file) { __dst_file = (unsigned long long)fopen(__dst_filename, "w"); }fprintf((FILE *)__dst_file, "[__REC_RECUR] ret L5446R__L5447R\n");fflush((FILE *)__dst_file);
   0;
   return __temp4__;
@@ -150,8 +149,8 @@ if (!__dst_file) { __dst_file = (unsigned long long)fopen(__dst_filename, "w"); 
 int *printList(__didxclass_Node node,int *output)
 {
   while(node != 0L){
-     *(output++) = (&(__dmemclass_Node + node + 0U - 1U) -> _data) -> data;
-    node = (&(__dmemclass_Node + node + 0U - 1U) -> _data) -> next;
+     *(output++) = (&(__dmemclass_Node + node + 0U) -> _data) -> data;
+    node = (&(__dmemclass_Node + node + 0U) -> _data) -> next;
   }
   return output;
 }
@@ -166,9 +165,9 @@ void push(__didxclass_Node *head_ref,int new_data)
     return ;
   }
 /* put in the data */
-  (&(__dmemclass_Node + new_node + 0U - 1U) -> _data) -> data = new_data;
+  (&(__dmemclass_Node + new_node + 0U) -> _data) -> data = new_data;
 /* link the old list off the new node */
-  (&(__dmemclass_Node + new_node + 0U - 1U) -> _data) -> next =  *head_ref;
+  (&(__dmemclass_Node + new_node + 0U) -> _data) -> next =  *head_ref;
 /* move the head to point to the new node */
    *head_ref = new_node;
 }

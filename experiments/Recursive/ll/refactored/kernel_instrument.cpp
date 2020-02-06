@@ -28,7 +28,7 @@ struct __dst_alloc_list__dmemL106R
   NODE _data;
 }
 ;
-struct __dst_alloc_list__dmemL106R __dmemL106R[1024U];
+struct __dst_alloc_list__dmemL106R __dmemL106R[1025U];
 # 1 "<stdin>"
 # 1 "<built-in>"
 # 1 "<command-line>"
@@ -51,11 +51,10 @@ __dst_alloc_size_t __dst_alloc_malloc__dmemL106R(__dst_alloc_size_t request) {
     __dst_alloc_list__dmemL106R *allocated = (__dst_alloc_list__dmemL106R *)malloc(
             request * sizeof(__dst_alloc_list__dmemL106R));
     allocated[0]._link.prev = request;
-    return allocated - __dmemL106R + 1;
+    return allocated - __dmemL106R;
 }
 void __dst_alloc_free__dmemL106R(__dst_alloc_size_t ptr) {
     if (ptr == 0) return;
-    ptr -= 1;
     if (!__dst_file) {
         __dst_file = (unsigned long long)fopen(__dst_filename, "w");
     }
@@ -77,8 +76,8 @@ void init(__didxL106R *head)
 int *output_list(__didxL106R head,int *curr)
 {
   __didxL106R temp;
-  for (temp = head; temp; temp = (&(__dmemL106R + temp + 0U - 1U) -> _data) -> next) {
-     *(curr++) = (&(__dmemL106R + temp + 0U - 1U) -> _data) -> data . info;
+  for (temp = head; temp; temp = (&(__dmemL106R + temp + 0U) -> _data) -> next) {
+     *(curr++) = (&(__dmemL106R + temp + 0U) -> _data) -> data . info;
   }
   return curr;
 }
@@ -90,8 +89,8 @@ __didxL106R add(__didxL106R node,DATA data)
     g_fallback = true;
     return 0L;
   }
-  (&(__dmemL106R + temp + 0U - 1U) -> _data) -> data = data;
-  (&(__dmemL106R + temp + 0U - 1U) -> _data) -> next = node;
+  (&(__dmemL106R + temp + 0U) -> _data) -> data = data;
+  (&(__dmemL106R + temp + 0U) -> _data) -> next = node;
   node = temp;
   return node;
 }
@@ -103,15 +102,15 @@ void add_at(__didxL106R node,DATA data)
     g_fallback = true;
     return ;
   }
-  (&(__dmemL106R + temp + 0U - 1U) -> _data) -> data = data;
-  (&(__dmemL106R + temp + 0U - 1U) -> _data) -> next = (&(__dmemL106R + node + 0U - 1U) -> _data) -> next;
-  (&(__dmemL106R + node + 0U - 1U) -> _data) -> next = temp;
+  (&(__dmemL106R + temp + 0U) -> _data) -> data = data;
+  (&(__dmemL106R + temp + 0U) -> _data) -> next = (&(__dmemL106R + node + 0U) -> _data) -> next;
+  (&(__dmemL106R + node + 0U) -> _data) -> next = temp;
 }
 
 void remove_node(__didxL106R head)
 {
-  __didxL106R temp = (&(__dmemL106R + head + 0U - 1U) -> _data) -> next;
-  (&(__dmemL106R + head + 0U - 1U) -> _data) -> next = (&(__dmemL106R + (&(__dmemL106R + head + 0U - 1U) -> _data) -> next + 0U - 1U) -> _data) -> next;
+  __didxL106R temp = (&(__dmemL106R + head + 0U) -> _data) -> next;
+  (&(__dmemL106R + head + 0U) -> _data) -> next = (&(__dmemL106R + (&(__dmemL106R + head + 0U) -> _data) -> next + 0U) -> _data) -> next;
   __dst_alloc_free__dmemL106R(temp);
 }
 
@@ -119,16 +118,16 @@ __didxL106R reverse_rec(__didxL106R ptr,__didxL106R previous)
 {
 if (!__dst_file) { __dst_file = (unsigned long long)fopen(__dst_filename, "w"); }fprintf((FILE *)__dst_file, "[__REC_RECUR] call L5458R__L5459R\n");fflush((FILE *)__dst_file);
   __didxL106R temp;
-  if ((&(__dmemL106R + ptr + 0U - 1U) -> _data) -> next == 0L) {
-    (&(__dmemL106R + ptr + 0U - 1U) -> _data) -> next = previous;
+  if ((&(__dmemL106R + ptr + 0U) -> _data) -> next == 0L) {
+    (&(__dmemL106R + ptr + 0U) -> _data) -> next = previous;
     __didxL106R __temp0__ = (__didxL106R )ptr;
 if (!__dst_file) { __dst_file = (unsigned long long)fopen(__dst_filename, "w"); }fprintf((FILE *)__dst_file, "[__REC_RECUR] ret L5458R__L5459R\n");fflush((FILE *)__dst_file);
     0;
     return __temp0__;
   }
    else {
-    temp = reverse_rec((&(__dmemL106R + ptr + 0U - 1U) -> _data) -> next,ptr);
-    (&(__dmemL106R + ptr + 0U - 1U) -> _data) -> next = previous;
+    temp = reverse_rec((&(__dmemL106R + ptr + 0U) -> _data) -> next,ptr);
+    (&(__dmemL106R + ptr + 0U) -> _data) -> next = previous;
     __didxL106R __temp1__ = (__didxL106R )temp;
 if (!__dst_file) { __dst_file = (unsigned long long)fopen(__dst_filename, "w"); }fprintf((FILE *)__dst_file, "[__REC_RECUR] ret L5458R__L5459R\n");fflush((FILE *)__dst_file);
     0;
@@ -140,19 +139,19 @@ if (!__dst_file) { __dst_file = (unsigned long long)fopen(__dst_filename, "w"); 
 __didxL106R sort_list(__didxL106R head)
 {
   __didxL106R tmpPtr = head;
-  __didxL106R tmpNxt = (&(__dmemL106R + head + 0U - 1U) -> _data) -> next;
+  __didxL106R tmpNxt = (&(__dmemL106R + head + 0U) -> _data) -> next;
   DATA tmp;
   while(tmpNxt != 0L){
     while(tmpNxt != tmpPtr){
-      if ((&(__dmemL106R + tmpNxt + 0U - 1U) -> _data) -> data . info < (&(__dmemL106R + tmpPtr + 0U - 1U) -> _data) -> data . info) {
-        tmp = (&(__dmemL106R + tmpPtr + 0U - 1U) -> _data) -> data;
-        (&(__dmemL106R + tmpPtr + 0U - 1U) -> _data) -> data = (&(__dmemL106R + tmpNxt + 0U - 1U) -> _data) -> data;
-        (&(__dmemL106R + tmpNxt + 0U - 1U) -> _data) -> data = tmp;
+      if ((&(__dmemL106R + tmpNxt + 0U) -> _data) -> data . info < (&(__dmemL106R + tmpPtr + 0U) -> _data) -> data . info) {
+        tmp = (&(__dmemL106R + tmpPtr + 0U) -> _data) -> data;
+        (&(__dmemL106R + tmpPtr + 0U) -> _data) -> data = (&(__dmemL106R + tmpNxt + 0U) -> _data) -> data;
+        (&(__dmemL106R + tmpNxt + 0U) -> _data) -> data = tmp;
       }
-      tmpPtr = (&(__dmemL106R + tmpPtr + 0U - 1U) -> _data) -> next;
+      tmpPtr = (&(__dmemL106R + tmpPtr + 0U) -> _data) -> next;
     }
     tmpPtr = head;
-    tmpNxt = (&(__dmemL106R + tmpNxt + 0U - 1U) -> _data) -> next;
+    tmpNxt = (&(__dmemL106R + tmpNxt + 0U) -> _data) -> next;
   }
   return tmpPtr;
 }
@@ -192,14 +191,14 @@ void process_top(int n,int *input,int *output,int *fallback)
   curr = output;
   curr = output_list(head,curr);
    *(curr++) = - 1;
-  node = (&(__dmemL106R + (&(__dmemL106R + (&(__dmemL106R + head + 0U - 1U) -> _data) -> next + 0U - 1U) -> _data) -> next + 0U - 1U) -> _data) -> next;
+  node = (&(__dmemL106R + (&(__dmemL106R + (&(__dmemL106R + head + 0U) -> _data) -> next + 0U) -> _data) -> next + 0U) -> _data) -> next;
   element . info = 2000;
   add_at(node,element);
   if (g_fallback) 
     goto fail;
   curr = output_list(head,curr);
    *(curr++) = - 1;
-  node = (&(__dmemL106R + (&(__dmemL106R + head + 0U - 1U) -> _data) -> next + 0U - 1U) -> _data) -> next;
+  node = (&(__dmemL106R + (&(__dmemL106R + head + 0U) -> _data) -> next + 0U) -> _data) -> next;
   remove_node(node);
   head = sort_list(head);
   curr = output_list(head,curr);

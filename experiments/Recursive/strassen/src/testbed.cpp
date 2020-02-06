@@ -36,5 +36,9 @@ int main(int argc, char** argv) {
         }
     }
 
+    delete[] matA;
+    delete[] matB;
+    delete[] matC;
+
     return 0;
 }

@@ -4,17 +4,17 @@ Implementation tool: Xilinx Vivado v.2018.3
 Project:             device
 Solution:            device
 Device target:       xcvu9p-fsgd2104-3-e
-Report date:         Sat Jan 25 13:07:05 PST 2020
+Report date:         Wed Feb 05 12:44:43 PST 2020
 
 #=== Post-Implementation Resource usage ===
-CLB:           6497
-LUT:          27676
-FF:           28279
+CLB:           6424
+LUT:          27312
+FF:           28096
 DSP:             12
 BRAM:            23
 SRL:             74
 #=== Final timing ===
 CP required:    3.300
-CP achieved post-synthesis:    3.694
-CP achieved post-implementation:    3.816
+CP achieved post-synthesis:    3.409
+CP achieved post-implementation:    3.675
 Timing not met

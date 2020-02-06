@@ -3,10 +3,10 @@
 
 #define MAX_SIZE 16384
 
-const int _NULL = -1;
+const long long _NULL = -1;
 template <class T>
 struct Allocator {
-    typedef int ptr;
+    typedef long long ptr;
 
     // the actual storage space
     T space[MAX_SIZE];
@@ -43,7 +43,7 @@ struct Allocator {
 
 struct btnode {
     int value;
-    int left, right;
+    long long left, right;
 };
 typedef struct btnode node;
 Allocator<node> tree;
@@ -131,7 +131,7 @@ struct _dfs_traverse_recursion_record {
     int _location;
 };
 
-/* displaying elements using BFS traversal */
+/* displaying elements using DFS traversal */
 void dfs_traverse(Allocator<node>::ptr root) {
     volatile _dfs_traverse_recursion_record _stack[MAX_SIZE];
     volatile int _stack_top = 0;

@@ -32,7 +32,7 @@ struct __dst_alloc_list__dmemclass_Node
   struct Node _data;
 }
 ;
-struct __dst_alloc_list__dmemclass_Node __dmemclass_Node[2048U];
+struct __dst_alloc_list__dmemclass_Node __dmemclass_Node[1025U];
 # 1 "<stdin>"
 # 1 "<built-in>"
 # 1 "<command-line>"
@@ -43,7 +43,7 @@ struct __dst_alloc_list__dmemclass_Node __dmemclass_Node[2048U];
 typedef unsigned long long __dst_alloc_size_t;
 typedef unsigned char __dst_alloc_bucket_size_t;
 # 73 "<stdin>"
-unsigned char __dst_alloc_node_split__dmemclass_Node[(1 << (11 - 1)) / 8];
+unsigned char __dst_alloc_node_split__dmemclass_Node[(1 << (10)) / 8];
 static unsigned char __dst_alloc_test_parent_split__dmemclass_Node(__dst_alloc_size_t index) {
     index = (index - 1) / 2;
     return (__dst_alloc_node_split__dmemclass_Node[index / 8] >> (index % 8)) & 1;
@@ -56,11 +56,11 @@ static void __dst_alloc_clr_parent_split__dmemclass_Node(__dst_alloc_size_t inde
     index = (index - 1) / 2;
     __dst_alloc_node_split__dmemclass_Node[index / 8] &= ~(1 << (index % 8));
 }
-struct __dst_alloc_list_base_t __dst_alloc_buckets__dmemclass_Node[11] = {{1, 1}};
+struct __dst_alloc_list_base_t __dst_alloc_buckets__dmemclass_Node[10 + 1] = {{1, 1}};
 static __dst_alloc_bucket_size_t __dst_alloc_bucket_for_request__dmemclass_Node(
         __dst_alloc_size_t request) {
-    __dst_alloc_bucket_size_t bucket = 11 - 1;
-    __dst_alloc_size_t size = 2;
+    __dst_alloc_bucket_size_t bucket = 10;
+    __dst_alloc_size_t size = 1;
     while (size < request) {
         size <<= 1;
         bucket -= 1;
@@ -97,15 +97,15 @@ static __dst_alloc_size_t __dst_alloc_list_pop__dmemclass_Node(
 static __dst_alloc_size_t __dst_alloc_index_for_node__dmemclass_Node(
         __dst_alloc_size_t bucket_index,
         __dst_alloc_bucket_size_t bucket) {
-    return 1 + ((bucket_index - (1 << bucket) + 1) << (11 - bucket));
+    return 1 + ((bucket_index - (1 << bucket) + 1) << (10 - bucket));
 }
 static __dst_alloc_size_t __dst_alloc_node_for_index__dmemclass_Node(
         __dst_alloc_size_t global_index,
         __dst_alloc_bucket_size_t bucket) {
-    return ((global_index - 1) >> (11 - bucket)) + (1 << bucket) - 1;
+    return ((global_index - 1) >> (10 - bucket)) + (1 << bucket) - 1;
 }
 void __dst_alloc_init__dmemclass_Node() {
-    for (int i = 0; i < 11; i++) {
+    for (int i = 0; i <= 10; i++) {
         __dst_alloc_buckets__dmemclass_Node[i].prev = 0;
         __dst_alloc_buckets__dmemclass_Node[i].next = 0;
     }
@@ -113,7 +113,7 @@ void __dst_alloc_init__dmemclass_Node() {
 }
 __dst_alloc_size_t __dst_alloc_malloc__dmemclass_Node(__dst_alloc_size_t request) {
     request = request / sizeof(struct ::Node);
-    if (request > (1 << 11)) return 0;
+    if (request > (1 << 10)) return 0;
     __dst_alloc_bucket_size_t bucket =
         __dst_alloc_bucket_for_request__dmemclass_Node(request);
     __dst_alloc_bucket_size_t original_bucket = bucket;
@@ -132,13 +132,12 @@ __dst_alloc_size_t __dst_alloc_malloc__dmemclass_Node(__dst_alloc_size_t request
             __dst_alloc_list_push__dmemclass_Node(bucket, __dst_alloc_index_for_node__dmemclass_Node(((i) + 1), bucket));
         }
         __dmemclass_Node[ptr]._link.prev = request;
-        return ptr + 1;
+        return ptr;
     }
     return 0;
 }
 void __dst_alloc_free__dmemclass_Node(__dst_alloc_size_t ptr) {
     if (ptr == 0) return;
-    ptr -= 1;
     __dst_alloc_bucket_size_t bucket =
         __dst_alloc_bucket_for_request__dmemclass_Node(__dmemclass_Node[ptr]._link.prev);
     __dst_alloc_size_t i = __dst_alloc_node_for_index__dmemclass_Node(ptr, bucket);
@@ -189,25 +188,25 @@ __didxclass_Node MergeSort(__didxclass_Node head)
   if (3U == __rect_packed_var_L5448R__L5449R[0 + __rect_packed_top_L5448R__L5449R] . _location) 
     goto __rect_func_L3_L5448R__L5449R;
   __rect_func_L1_L5448R__L5449R:
-  if (__rect_packed_var_L5448R__L5449R[0 + __rect_packed_top_L5448R__L5449R] . local0 == 0L || (&(__dmemclass_Node + __rect_packed_var_L5448R__L5449R[0 + __rect_packed_top_L5448R__L5449R] . local0 + 0U - 1U) -> _data) -> next == 0L) {
+  if (__rect_packed_var_L5448R__L5449R[0 + __rect_packed_top_L5448R__L5449R] . local0 == 0L || (&(__dmemclass_Node + __rect_packed_var_L5448R__L5449R[0 + __rect_packed_top_L5448R__L5449R] . local0 + 0U) -> _data) -> next == 0L) {
     __rect_packed_var_L5448R__L5449R[0 + __rect_packed_top_L5448R__L5449R] . _return = __rect_packed_var_L5448R__L5449R[0 + __rect_packed_top_L5448R__L5449R] . local0;
     goto __rect_func_L0_L5448R__L5449R;
   }
-  __rect_packed_var_L5448R__L5449R[0 + __rect_packed_top_L5448R__L5449R] . local1 = (&(__dmemclass_Node + __rect_packed_var_L5448R__L5449R[0 + __rect_packed_top_L5448R__L5449R] . local0 + 0U - 1U) -> _data) -> next;
+  __rect_packed_var_L5448R__L5449R[0 + __rect_packed_top_L5448R__L5449R] . local1 = (&(__dmemclass_Node + __rect_packed_var_L5448R__L5449R[0 + __rect_packed_top_L5448R__L5449R] . local0 + 0U) -> _data) -> next;
   __rect_packed_var_L5448R__L5449R[0 + __rect_packed_top_L5448R__L5449R] . local2 = __rect_packed_var_L5448R__L5449R[0 + __rect_packed_top_L5448R__L5449R] . local0;
 /* Advance 'fast' two nodes, and advance 'slow' one node */
   while(__rect_packed_var_L5448R__L5449R[0 + __rect_packed_top_L5448R__L5449R] . local1 != 0L){
-    __rect_packed_var_L5448R__L5449R[0 + __rect_packed_top_L5448R__L5449R] . local1 = (&(__dmemclass_Node + __rect_packed_var_L5448R__L5449R[0 + __rect_packed_top_L5448R__L5449R] . local1 + 0U - 1U) -> _data) -> next;
+    __rect_packed_var_L5448R__L5449R[0 + __rect_packed_top_L5448R__L5449R] . local1 = (&(__dmemclass_Node + __rect_packed_var_L5448R__L5449R[0 + __rect_packed_top_L5448R__L5449R] . local1 + 0U) -> _data) -> next;
     if (__rect_packed_var_L5448R__L5449R[0 + __rect_packed_top_L5448R__L5449R] . local1 != 0L) {
-      __rect_packed_var_L5448R__L5449R[0 + __rect_packed_top_L5448R__L5449R] . local2 = (&(__dmemclass_Node + __rect_packed_var_L5448R__L5449R[0 + __rect_packed_top_L5448R__L5449R] . local2 + 0U - 1U) -> _data) -> next;
-      __rect_packed_var_L5448R__L5449R[0 + __rect_packed_top_L5448R__L5449R] . local1 = (&(__dmemclass_Node + __rect_packed_var_L5448R__L5449R[0 + __rect_packed_top_L5448R__L5449R] . local1 + 0U - 1U) -> _data) -> next;
+      __rect_packed_var_L5448R__L5449R[0 + __rect_packed_top_L5448R__L5449R] . local2 = (&(__dmemclass_Node + __rect_packed_var_L5448R__L5449R[0 + __rect_packed_top_L5448R__L5449R] . local2 + 0U) -> _data) -> next;
+      __rect_packed_var_L5448R__L5449R[0 + __rect_packed_top_L5448R__L5449R] . local1 = (&(__dmemclass_Node + __rect_packed_var_L5448R__L5449R[0 + __rect_packed_top_L5448R__L5449R] . local1 + 0U) -> _data) -> next;
     }
   }
 /* 'slow' is before the midpoint in the list, so split it in two
   at that point. */
   __rect_packed_var_L5448R__L5449R[0 + __rect_packed_top_L5448R__L5449R] . local3 = __rect_packed_var_L5448R__L5449R[0 + __rect_packed_top_L5448R__L5449R] . local0;
-  __rect_packed_var_L5448R__L5449R[0 + __rect_packed_top_L5448R__L5449R] . local4 = (&(__dmemclass_Node + __rect_packed_var_L5448R__L5449R[0 + __rect_packed_top_L5448R__L5449R] . local2 + 0U - 1U) -> _data) -> next;
-  (&(__dmemclass_Node + __rect_packed_var_L5448R__L5449R[0 + __rect_packed_top_L5448R__L5449R] . local2 + 0U - 1U) -> _data) -> next = 0L;
+  __rect_packed_var_L5448R__L5449R[0 + __rect_packed_top_L5448R__L5449R] . local4 = (&(__dmemclass_Node + __rect_packed_var_L5448R__L5449R[0 + __rect_packed_top_L5448R__L5449R] . local2 + 0U) -> _data) -> next;
+  (&(__dmemclass_Node + __rect_packed_var_L5448R__L5449R[0 + __rect_packed_top_L5448R__L5449R] . local2 + 0U) -> _data) -> next = 0L;
 /* Recursively sort the sublists */
   if (__rect_packed_top_L5448R__L5449R + 1U == 16U) {;
 g_fallback = true;
@@ -285,7 +284,7 @@ __didxclass_Node SortedMerge(__didxclass_Node a,__didxclass_Node b)
     goto __rect_func_L0_L5446R__L5447R;
   }
 /* Pick either a or b, and recur */
-  if ((&(__dmemclass_Node + __rect_packed_var_L5446R__L5447R[0 + __rect_packed_top_L5446R__L5447R] . local0 + 0U - 1U) -> _data) -> data <= (&(__dmemclass_Node + __rect_packed_var_L5446R__L5447R[0 + __rect_packed_top_L5446R__L5447R] . local1 + 0U - 1U) -> _data) -> data) {
+  if ((&(__dmemclass_Node + __rect_packed_var_L5446R__L5447R[0 + __rect_packed_top_L5446R__L5447R] . local0 + 0U) -> _data) -> data <= (&(__dmemclass_Node + __rect_packed_var_L5446R__L5447R[0 + __rect_packed_top_L5446R__L5447R] . local1 + 0U) -> _data) -> data) {
     __rect_packed_var_L5446R__L5447R[0 + __rect_packed_top_L5446R__L5447R] . local2 = __rect_packed_var_L5446R__L5447R[0 + __rect_packed_top_L5446R__L5447R] . local0;
     if (__rect_packed_top_L5446R__L5447R + 1U == 1024U) {;
 g_fallback = true;
@@ -294,13 +293,13 @@ g_fallback = true;
     }
     __rect_packed_var_L5446R__L5447R[0 + __rect_packed_top_L5446R__L5447R] . _location = 2U;
     __rect_packed_var_L5446R__L5447R[1 + __rect_packed_top_L5446R__L5447R] . local1 = __rect_packed_var_L5446R__L5447R[0 + __rect_packed_top_L5446R__L5447R] . local1;
-    __rect_packed_var_L5446R__L5447R[1 + __rect_packed_top_L5446R__L5447R] . local0 = (&(__dmemclass_Node + __rect_packed_var_L5446R__L5447R[0 + __rect_packed_top_L5446R__L5447R] . local0 + 0U - 1U) -> _data) -> next;
+    __rect_packed_var_L5446R__L5447R[1 + __rect_packed_top_L5446R__L5447R] . local0 = (&(__dmemclass_Node + __rect_packed_var_L5446R__L5447R[0 + __rect_packed_top_L5446R__L5447R] . local0 + 0U) -> _data) -> next;
     ++__rect_packed_top_L5446R__L5447R;
     __rect_packed_var_L5446R__L5447R[0 + __rect_packed_top_L5446R__L5447R] . _location = 1U;
     goto __rect_func_L1_L5446R__L5447R;
     __rect_func_L2_L5446R__L5447R:
     __rect_packed_var_L5446R__L5447R[0 + __rect_packed_top_L5446R__L5447R] . __rect_packed_type_L5446R__L5447R::_ret2 = (__rect_packed_var_L5446R__L5447R[1 + __rect_packed_top_L5446R__L5447R] . _return);
-    (&(__dmemclass_Node + __rect_packed_var_L5446R__L5447R[0 + __rect_packed_top_L5446R__L5447R] . local2 + 0U - 1U) -> _data) -> next = __rect_packed_var_L5446R__L5447R[0 + __rect_packed_top_L5446R__L5447R] . __rect_packed_type_L5446R__L5447R::_ret2;
+    (&(__dmemclass_Node + __rect_packed_var_L5446R__L5447R[0 + __rect_packed_top_L5446R__L5447R] . local2 + 0U) -> _data) -> next = __rect_packed_var_L5446R__L5447R[0 + __rect_packed_top_L5446R__L5447R] . __rect_packed_type_L5446R__L5447R::_ret2;
   }
    else {
     __rect_packed_var_L5446R__L5447R[0 + __rect_packed_top_L5446R__L5447R] . local2 = __rect_packed_var_L5446R__L5447R[0 + __rect_packed_top_L5446R__L5447R] . local1;
@@ -310,14 +309,14 @@ g_fallback = true;
       return __temp3__;
     }
     __rect_packed_var_L5446R__L5447R[0 + __rect_packed_top_L5446R__L5447R] . _location = 3U;
-    __rect_packed_var_L5446R__L5447R[1 + __rect_packed_top_L5446R__L5447R] . local1 = (&(__dmemclass_Node + __rect_packed_var_L5446R__L5447R[0 + __rect_packed_top_L5446R__L5447R] . local1 + 0U - 1U) -> _data) -> next;
+    __rect_packed_var_L5446R__L5447R[1 + __rect_packed_top_L5446R__L5447R] . local1 = (&(__dmemclass_Node + __rect_packed_var_L5446R__L5447R[0 + __rect_packed_top_L5446R__L5447R] . local1 + 0U) -> _data) -> next;
     __rect_packed_var_L5446R__L5447R[1 + __rect_packed_top_L5446R__L5447R] . local0 = __rect_packed_var_L5446R__L5447R[0 + __rect_packed_top_L5446R__L5447R] . local0;
     ++__rect_packed_top_L5446R__L5447R;
     __rect_packed_var_L5446R__L5447R[0 + __rect_packed_top_L5446R__L5447R] . _location = 1U;
     goto __rect_func_L1_L5446R__L5447R;
     __rect_func_L3_L5446R__L5447R:
     __rect_packed_var_L5446R__L5447R[0 + __rect_packed_top_L5446R__L5447R] . __rect_packed_type_L5446R__L5447R::_ret3 = (__rect_packed_var_L5446R__L5447R[1 + __rect_packed_top_L5446R__L5447R] . _return);
-    (&(__dmemclass_Node + __rect_packed_var_L5446R__L5447R[0 + __rect_packed_top_L5446R__L5447R] . local2 + 0U - 1U) -> _data) -> next = __rect_packed_var_L5446R__L5447R[0 + __rect_packed_top_L5446R__L5447R] . __rect_packed_type_L5446R__L5447R::_ret3;
+    (&(__dmemclass_Node + __rect_packed_var_L5446R__L5447R[0 + __rect_packed_top_L5446R__L5447R] . local2 + 0U) -> _data) -> next = __rect_packed_var_L5446R__L5447R[0 + __rect_packed_top_L5446R__L5447R] . __rect_packed_type_L5446R__L5447R::_ret3;
   }
   __rect_packed_var_L5446R__L5447R[0 + __rect_packed_top_L5446R__L5447R] . _return = __rect_packed_var_L5446R__L5447R[0 + __rect_packed_top_L5446R__L5447R] . local2;
   goto __rect_func_L0_L5446R__L5447R;
@@ -328,8 +327,8 @@ g_fallback = true;
 int *printList(__didxclass_Node node,int *output)
 {
   while(node != 0L){
-     *(output++) = (&(__dmemclass_Node + node + 0U - 1U) -> _data) -> data;
-    node = (&(__dmemclass_Node + node + 0U - 1U) -> _data) -> next;
+     *(output++) = (&(__dmemclass_Node + node + 0U) -> _data) -> data;
+    node = (&(__dmemclass_Node + node + 0U) -> _data) -> next;
   }
   return output;
 }
@@ -344,9 +343,9 @@ void push(__didxclass_Node *head_ref,int new_data)
     return ;
   }
 /* put in the data */
-  (&(__dmemclass_Node + new_node + 0U - 1U) -> _data) -> data = new_data;
+  (&(__dmemclass_Node + new_node + 0U) -> _data) -> data = new_data;
 /* link the old list off the new node */
-  (&(__dmemclass_Node + new_node + 0U - 1U) -> _data) -> next =  *head_ref;
+  (&(__dmemclass_Node + new_node + 0U) -> _data) -> next =  *head_ref;
 /* move the head to point to the new node */
    *head_ref = new_node;
 }

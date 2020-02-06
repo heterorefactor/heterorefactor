@@ -1,2 +1,3 @@
-0.21user 0.02system 0:00.31elapsed 74%CPU (0avgtext+0avgdata 17560maxresident)k
-0inputs+72outputs (0major+3829minor)pagefaults 0swaps
+Command terminated by signal 11
+0.02user 0.01system 0:00.22elapsed 17%CPU (0avgtext+0avgdata 17496maxresident)k
+0inputs+0outputs (0major+3775minor)pagefaults 0swaps

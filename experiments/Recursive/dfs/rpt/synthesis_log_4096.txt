@@ -6,7 +6,7 @@
 
 source /opt/tools/xilinx/Vivado/2018.3/scripts/vivado_hls/hls.tcl -notrace
 INFO: [HLS 200-10] Running '/opt/tools/xilinx/Vivado/2018.3/bin/unwrapped/lnx64.o/vivado_hls'
-INFO: [HLS 200-10] For user 'lau' on host 'u0-lau' (Linux_x86_64 version 4.4.0-169-generic) on Sat Jan 25 10:29:39 PST 2020
+INFO: [HLS 200-10] For user 'lau' on host 'u0-lau' (Linux_x86_64 version 4.4.0-169-generic) on Wed Feb 05 11:30:07 PST 2020
 INFO: [HLS 200-10] On os Ubuntu 16.04.5 LTS
 INFO: [HLS 200-10] In directory '/home/lau/projects/dynamic/icse2020-artifacts/experiments/Recursive/dfs/tmp/synthesis_4096'
 INFO: [HLS 200-10] Creating and opening project '/home/lau/projects/dynamic/icse2020-artifacts/experiments/Recursive/dfs/tmp/synthesis_4096/device'.
@@ -18,23 +18,23 @@ INFO: [SYN 201-201] Setting up clock 'default' with a period of 3.3ns.
 INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
 INFO: [HLS 200-10] Analyzing design file 'kernel.cpp' ... 
 WARNING: [HLS 200-40] In file included from kernel.cpp:1:
-<stdin>:284:7: warning: expression result unused [-Wunused-value]
+<stdin>:283:7: warning: expression result unused [-Wunused-value]
       0;
       ^
-<stdin>:303:7: warning: expression result unused [-Wunused-value]
+<stdin>:302:7: warning: expression result unused [-Wunused-value]
       0;
       ^
-<stdin>:346:5: warning: expression result unused [-Wunused-value]
+<stdin>:345:5: warning: expression result unused [-Wunused-value]
     0;
     ^
-<stdin>:360:5: warning: expression result unused [-Wunused-value]
+<stdin>:359:5: warning: expression result unused [-Wunused-value]
     0;
     ^
 4 warnings generated.
-INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 435.004 ; gain = 0.051 ; free physical = 62725 ; free virtual = 64206
-INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 435.004 ; gain = 0.051 ; free physical = 62725 ; free virtual = 64206
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 435.000 ; gain = 0.051 ; free physical = 63321 ; free virtual = 64093
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 435.000 ; gain = 0.051 ; free physical = 63321 ; free virtual = 64093
 INFO: [HLS 200-10] Starting code transformations ...
-INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 435.004 ; gain = 0.051 ; free physical = 62723 ; free virtual = 64204
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 435.000 ; gain = 0.051 ; free physical = 63319 ; free virtual = 64091
 INFO: [HLS 200-10] Checking synthesizability ...
 INFO: [XFORM 203-602] Inlining function '__dst_alloc_list_remove__dmemL105R' into '__dst_alloc_list_pop__dmemL105R' (<stdin>:121) automatically.
 INFO: [XFORM 203-602] Inlining function '__dst_alloc_bucket_for_request__dmemL105R' into '__dst_alloc_malloc__dmemL105R' (<stdin>:145) automatically.
@@ -50,7 +50,7 @@ INFO: [XFORM 203-602] Inlining function '__dst_alloc_flip_parent_split__dmemi' i
 INFO: [XFORM 203-602] Inlining function '__dst_alloc_clr_parent_split__dmemi' into '__dst_alloc_malloc__dmemi' (<stdin>:156) automatically.
 INFO: [XFORM 203-602] Inlining function '__dst_alloc_index_for_node__dmemi' into '__dst_alloc_malloc__dmemi' (<stdin>:159) automatically.
 INFO: [XFORM 203-602] Inlining function '__dst_alloc_list_push__dmemi' into '__dst_alloc_malloc__dmemi' (<stdin>:159) automatically.
-INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 435.004 ; gain = 0.051 ; free physical = 62723 ; free virtual = 64203
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 435.000 ; gain = 0.051 ; free physical = 63319 ; free virtual = 64091
 INFO: [XFORM 203-102] Automatically partitioning small array '.str' completely based on array size.
 INFO: [XFORM 203-602] Inlining function '__dst_alloc_list_remove__dmemL105R' into '__dst_alloc_list_pop__dmemL105R' (<stdin>:121) automatically.
 INFO: [XFORM 203-602] Inlining function '__dst_alloc_node_for_index__dmemL105R' into '__dst_alloc_malloc__dmemL105R' (<stdin>:152) automatically.
@@ -67,11 +67,11 @@ INFO: [XFORM 203-602] Inlining function '__dst_alloc_index_for_node__dmemi' into
 INFO: [XFORM 203-602] Inlining function '__dst_alloc_list_push__dmemi' into '__dst_alloc_malloc__dmemi' (<stdin>:159) automatically.
 INFO: [XFORM 203-602] Inlining function '__dst_alloc_list_pop__dmemL105R' into '__dst_alloc_malloc__dmemL105R' (<stdin>:148) automatically.
 INFO: [XFORM 203-602] Inlining function '__dst_alloc_list_pop__dmemi' into '__dst_alloc_malloc__dmemi' (<stdin>:148) automatically.
-INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 562.953 ; gain = 128.000 ; free physical = 62703 ; free virtual = 64183
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 562.949 ; gain = 128.000 ; free physical = 63299 ; free virtual = 64071
 WARNING: [XFORM 203-631] Renaming function '__dst_alloc_malloc__dmemi' to '__dst_alloc_malloc__' (<stdin>:79:10)
 WARNING: [XFORM 203-631] Renaming function '__dst_alloc_malloc__dmemL105R' to '__dst_alloc_malloc__.1' (<stdin>:79:10)
-INFO: [HLS 200-444] Inferring multiple bus burst write of variable length on port 'gmem' (<stdin>:235:5). These data requests might be further partitioned to multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings.
-INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:10 ; elapsed = 00:00:12 . Memory (MB): peak = 586.953 ; gain = 152.000 ; free physical = 62670 ; free virtual = 64151
+INFO: [HLS 200-444] Inferring multiple bus burst write of variable length on port 'gmem' (<stdin>:234:5). These data requests might be further partitioned to multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings.
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:10 ; elapsed = 00:00:12 . Memory (MB): peak = 562.949 ; gain = 128.000 ; free physical = 63269 ; free virtual = 64042
 INFO: [HLS 200-10] Starting hardware synthesis ...
 INFO: [HLS 200-10] Synthesizing 'process_top' ...
 WARNING: [SYN 201-103] Legalizing function name '__dst_alloc_malloc__.1' to 'p_dst_alloc_malloc_1'.
@@ -83,83 +83,83 @@ INFO: [HLS 200-42] -- Implementing module 'p_dst_alloc_malloc_1'
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [SCHED 204-11] Starting scheduling ...
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111]  Elapsed time: 12.5 seconds; current allocated memory: 107.818 MB.
+INFO: [HLS 200-111]  Elapsed time: 12.12 seconds; current allocated memory: 107.285 MB.
 INFO: [HLS 200-434] Only 0 loops out of a total 2 loops have been pipelined in this design.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111]  Elapsed time: 0.28 seconds; current allocated memory: 108.286 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.24 seconds; current allocated memory: 107.732 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-42] -- Implementing module 'insert' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [SCHED 204-11] Starting scheduling ...
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111]  Elapsed time: 0.45 seconds; current allocated memory: 108.903 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.41 seconds; current allocated memory: 108.308 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111]  Elapsed time: 0.3 seconds; current allocated memory: 109.480 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.26 seconds; current allocated memory: 108.834 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-42] -- Implementing module 'p_dst_alloc_malloc_s' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [SCHED 204-11] Starting scheduling ...
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111]  Elapsed time: 0.46 seconds; current allocated memory: 109.885 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.42 seconds; current allocated memory: 109.249 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111]  Elapsed time: 0.21 seconds; current allocated memory: 110.420 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.37 seconds; current allocated memory: 109.740 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-42] -- Implementing module 'dfs_traverse' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [SCHED 204-11] Starting scheduling ...
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111]  Elapsed time: 0.42 seconds; current allocated memory: 110.858 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.38 seconds; current allocated memory: 110.170 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111]  Elapsed time: 0.21 seconds; current allocated memory: 111.298 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.19 seconds; current allocated memory: 110.584 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-42] -- Implementing module 'process_top' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [SCHED 204-11] Starting scheduling ...
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111]  Elapsed time: 0.33 seconds; current allocated memory: 111.601 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.26 seconds; current allocated memory: 110.841 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111]  Elapsed time: 0.66 seconds; current allocated memory: 112.145 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.5 seconds; current allocated memory: 111.374 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'p_dst_alloc_malloc_1' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [RTGEN 206-100] Finished creating RTL model for 'p_dst_alloc_malloc_1'.
-INFO: [HLS 200-111]  Elapsed time: 0.56 seconds; current allocated memory: 113.003 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.42 seconds; current allocated memory: 112.208 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'insert' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [RTGEN 206-100] Finished creating RTL model for 'insert'.
-INFO: [HLS 200-111]  Elapsed time: 0.62 seconds; current allocated memory: 116.239 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.52 seconds; current allocated memory: 115.331 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'p_dst_alloc_malloc_s' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [RTGEN 206-100] Finished creating RTL model for 'p_dst_alloc_malloc_s'.
-INFO: [HLS 200-111]  Elapsed time: 0.49 seconds; current allocated memory: 120.287 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.41 seconds; current allocated memory: 119.070 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'dfs_traverse' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 WARNING: [RTGEN 206-101] Register 'rear' is power-on initialization.
 INFO: [RTGEN 206-100] Finished creating RTL model for 'dfs_traverse'.
-INFO: [HLS 200-111]  Elapsed time: 0.67 seconds; current allocated memory: 123.488 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.58 seconds; current allocated memory: 122.206 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'process_top' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
@@ -175,7 +175,7 @@ WARNING: [RTGEN 206-101] Global scalar 'root' will not be exposed as RTL port.
 WARNING: [RTGEN 206-101] Register 'queue' is power-on initialization.
 INFO: [RTGEN 206-100] Bundling port 'return', 'n', 'input_r', 'output_r' and 'fallback' to AXI-Lite port control.
 INFO: [RTGEN 206-100] Finished creating RTL model for 'process_top'.
-INFO: [HLS 200-111]  Elapsed time: 0.84 seconds; current allocated memory: 127.398 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.81 seconds; current allocated memory: 125.955 MB.
 INFO: [RTMG 210-278] Implementing memory 'p_dst_alloc_malloc_1_p_dst_alloc_buckets_1_ram (RAM)' using distributed RAMs with power-on initialization.
 INFO: [RTMG 210-278] Implementing memory 'p_dst_alloc_malloc_1_p_dmemL105R_link_pr_ram (RAM)' using block RAMs with power-on initialization.
 INFO: [RTMG 210-278] Implementing memory 'p_dst_alloc_malloc_1_p_dst_alloc_node_spl_1_ram (RAM)' using block RAMs with power-on initialization.
@@ -184,9 +184,9 @@ INFO: [RTMG 210-278] Implementing memory 'insert_p_rect_packed_var_L5_1_ram (RAM
 INFO: [RTMG 210-278] Implementing memory 'insert_p_rect_packed_var_L5_2_ram (RAM)' using distributed RAMs.
 INFO: [RTMG 210-278] Implementing memory 'process_top_p_dmemL105R_data_ri_ram (RAM)' using block RAMs with power-on initialization.
 INFO: [RTMG 210-278] Implementing memory 'process_top_p_dmemL105R_data_va_ram (RAM)' using block RAMs with power-on initialization.
-INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:16 ; elapsed = 00:00:23 . Memory (MB): peak = 586.953 ; gain = 152.000 ; free physical = 62622 ; free virtual = 64119
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:16 ; elapsed = 00:00:21 . Memory (MB): peak = 642.949 ; gain = 208.000 ; free physical = 63222 ; free virtual = 64011
 INFO: [SYSC 207-301] Generating SystemC RTL for process_top.
 INFO: [VHDL 208-304] Generating VHDL RTL for process_top.
 INFO: [VLOG 209-307] Generating Verilog RTL for process_top.
-INFO: [HLS 200-112] Total elapsed time: 22.91 seconds; peak allocated memory: 127.398 MB.
-INFO: [Common 17-206] Exiting vivado_hls at Sat Jan 25 10:30:01 2020...
+INFO: [HLS 200-112] Total elapsed time: 21.56 seconds; peak allocated memory: 125.955 MB.
+INFO: [Common 17-206] Exiting vivado_hls at Wed Feb  5 11:30:28 2020...

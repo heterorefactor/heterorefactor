@@ -3,10 +3,10 @@
 
 #define MAX_SIZE 16384
 
-const int _NULL = -1;
+const long long _NULL = -1;
 template <class T>
 struct Allocator {
-  typedef int ptr;
+  typedef long long ptr;
 
   // the actual storage space
   T space[MAX_SIZE];

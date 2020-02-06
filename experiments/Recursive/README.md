@@ -118,7 +118,7 @@ There are some other reports available under `[kernel]/rpt/`:
   instrumentation code of a certain kernel size.
 * `[kernel]/rpt/refactoring_time_[size].txt` shows the refactoring time of a
   kernel of size `[size]`.
-* Especially, `ac/rpt/implement_raw_vivado_bug_16384.txt` shows the raw report
+* Especially, `ac/rpt/implement_raw_vivado_bug_32768.txt` shows the raw report
   file produced by Vivado instead of Vivado HLS. Because Vivado HLS has a bug
   that will result in a zero resource utilization report for some kernels, we
   extract the raw report file for your reference.
@@ -271,7 +271,7 @@ final resource ultilization is at
 `device/device/impl/report/verilog/process_top_export.rpt`. Alternatively, you
 can see `device/device/impl/verilog/report/process_top_utilization_routed.rpt`
 for the raw result from Vivado without parsing by Vivado HLS. For AC kernel of
-size 16384, you need to use this file for results due to a Vivado HLS bug.
+size 32768, you need to use this file for results due to a Vivado HLS bug.
 
 If you are a GUI user, you can simply add the corresponding
 `kernel_device_[size].cpp` file to your project and perform synthesis or

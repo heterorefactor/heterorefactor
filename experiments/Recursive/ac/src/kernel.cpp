@@ -60,8 +60,7 @@ int insert_node(node *root, char *str, int substring_index) {
  * Build Aho-Corasick state machine.
  */
 void build_AhoCorasick(node *root, int node_count) {
-    node **queue = (node **)malloc(sizeof(node *) * node_count);
-    if (!queue) { g_fallback = true; return; }
+    node *queue[16384];
 
     // initialize queue
     int head = 0, tail = 1;
@@ -86,8 +85,6 @@ void build_AhoCorasick(node *root, int node_count) {
             queue[tail++] = curr->next[i];
         }
     }
-
-    free(queue);
 }
 
 /*

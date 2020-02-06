@@ -24,7 +24,7 @@ struct __dst_alloc_list__dmemi
   int _data;
 }
 ;
-struct __dst_alloc_list__dmemi __dmemi[1024U];
+struct __dst_alloc_list__dmemi __dmemi[1025U];
 # 1 "<stdin>"
 # 1 "<built-in>"
 # 1 "<command-line>"
@@ -47,11 +47,10 @@ __dst_alloc_size_t __dst_alloc_malloc__dmemi(__dst_alloc_size_t request) {
     __dst_alloc_list__dmemi *allocated = (__dst_alloc_list__dmemi *)malloc(
             request * sizeof(__dst_alloc_list__dmemi));
     allocated[0]._link.prev = request;
-    return allocated - __dmemi + 1;
+    return allocated - __dmemi;
 }
 void __dst_alloc_free__dmemi(__dst_alloc_size_t ptr) {
     if (ptr == 0) return;
-    ptr -= 1;
     if (!__dst_file) {
         __dst_file = (unsigned long long)fopen(__dst_filename, "w");
     }
@@ -81,7 +80,7 @@ struct __dst_alloc_list__dmemL105R
   node _data;
 }
 ;
-struct __dst_alloc_list__dmemL105R __dmemL105R[1024U];
+struct __dst_alloc_list__dmemL105R __dmemL105R[1025U];
 # 1 "<stdin>"
 # 1 "<built-in>"
 # 1 "<command-line>"
@@ -104,11 +103,10 @@ __dst_alloc_size_t __dst_alloc_malloc__dmemL105R(__dst_alloc_size_t request) {
     __dst_alloc_list__dmemL105R *allocated = (__dst_alloc_list__dmemL105R *)malloc(
             request * sizeof(__dst_alloc_list__dmemL105R));
     allocated[0]._link.prev = request;
-    return allocated - __dmemL105R + 1;
+    return allocated - __dmemL105R;
 }
 void __dst_alloc_free__dmemL105R(__dst_alloc_size_t ptr) {
     if (ptr == 0) return;
-    ptr -= 1;
     if (!__dst_file) {
         __dst_file = (unsigned long long)fopen(__dst_filename, "w");
     }
@@ -157,8 +155,8 @@ void process_top(int n,int *input,int *output,int *fallback)
       g_fallback = true;
       goto fail;
     }
-    (&(__dmemL105R + newitem + 0U - 1U) -> _data) -> left = (&(__dmemL105R + newitem + 0U - 1U) -> _data) -> right = 0L;
-    (&(__dmemL105R + newitem + 0U - 1U) -> _data) -> value = input[i];
+    (&(__dmemL105R + newitem + 0U) -> _data) -> left = (&(__dmemL105R + newitem + 0U) -> _data) -> right = 0L;
+    (&(__dmemL105R + newitem + 0U) -> _data) -> value = input[i];
     if (root == 0L) {
       root = newitem;
     }
@@ -173,7 +171,7 @@ void process_top(int n,int *input,int *output,int *fallback)
   if (g_fallback) 
     goto fail;
   for (int i = 0; i < n; i++) 
-    output[i] = (&(__dmemi + queue + i - 1U) -> _data)[0U];
+    output[i] = (&(__dmemi + queue + i) -> _data)[0U];
   fail:
    *fallback = g_fallback;
 }
@@ -183,18 +181,18 @@ void process_top(int n,int *input,int *output,int *fallback)
 void insert(__didxL105R newitem,__didxL105R root)
 {
 if (!__dst_file) { __dst_file = (unsigned long long)fopen(__dst_filename, "w"); }fprintf((FILE *)__dst_file, "[__REC_RECUR] call L5447R__L5448R\n");fflush((FILE *)__dst_file);
-  if ((&(__dmemL105R + newitem + 0U - 1U) -> _data) -> value > (&(__dmemL105R + root + 0U - 1U) -> _data) -> value) {
-    if ((&(__dmemL105R + root + 0U - 1U) -> _data) -> right == 0L) 
-      (&(__dmemL105R + root + 0U - 1U) -> _data) -> right = newitem;
+  if ((&(__dmemL105R + newitem + 0U) -> _data) -> value > (&(__dmemL105R + root + 0U) -> _data) -> value) {
+    if ((&(__dmemL105R + root + 0U) -> _data) -> right == 0L) 
+      (&(__dmemL105R + root + 0U) -> _data) -> right = newitem;
      else 
-      insert(newitem,(&(__dmemL105R + root + 0U - 1U) -> _data) -> right);
+      insert(newitem,(&(__dmemL105R + root + 0U) -> _data) -> right);
 // newitem->value <= root->value
   }
    else {
-    if ((&(__dmemL105R + root + 0U - 1U) -> _data) -> left == 0L) 
-      (&(__dmemL105R + root + 0U - 1U) -> _data) -> left = newitem;
+    if ((&(__dmemL105R + root + 0U) -> _data) -> left == 0L) 
+      (&(__dmemL105R + root + 0U) -> _data) -> left = newitem;
      else 
-      insert(newitem,(&(__dmemL105R + root + 0U - 1U) -> _data) -> left);
+      insert(newitem,(&(__dmemL105R + root + 0U) -> _data) -> left);
   }
 if (!__dst_file) { __dst_file = (unsigned long long)fopen(__dst_filename, "w"); }fprintf((FILE *)__dst_file, "[__REC_RECUR] ret L5447R__L5448R\n");fflush((FILE *)__dst_file);
 }
@@ -203,12 +201,12 @@ if (!__dst_file) { __dst_file = (unsigned long long)fopen(__dst_filename, "w"); 
 void dfs_traverse(__didxL105R root)
 {
 if (!__dst_file) { __dst_file = (unsigned long long)fopen(__dst_filename, "w"); }fprintf((FILE *)__dst_file, "[__REC_RECUR] call L5449R__L5450R\n");fflush((FILE *)__dst_file);
-  if ((&(__dmemL105R + root + 0U - 1U) -> _data) -> left != 0L) {
-    dfs_traverse((&(__dmemL105R + root + 0U - 1U) -> _data) -> left);
+  if ((&(__dmemL105R + root + 0U) -> _data) -> left != 0L) {
+    dfs_traverse((&(__dmemL105R + root + 0U) -> _data) -> left);
   }
-  (&(__dmemi + queue + ++rear - 1U) -> _data)[0U] = (&(__dmemL105R + root + 0U - 1U) -> _data) -> value;
-  if ((&(__dmemL105R + root + 0U - 1U) -> _data) -> right != 0L) {
-    dfs_traverse((&(__dmemL105R + root + 0U - 1U) -> _data) -> right);
+  (&(__dmemi + queue + ++rear) -> _data)[0U] = (&(__dmemL105R + root + 0U) -> _data) -> value;
+  if ((&(__dmemL105R + root + 0U) -> _data) -> right != 0L) {
+    dfs_traverse((&(__dmemL105R + root + 0U) -> _data) -> right);
   }
 if (!__dst_file) { __dst_file = (unsigned long long)fopen(__dst_filename, "w"); }fprintf((FILE *)__dst_file, "[__REC_RECUR] ret L5449R__L5450R\n");fflush((FILE *)__dst_file);
 }

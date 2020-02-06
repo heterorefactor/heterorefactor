@@ -3,10 +3,10 @@
 
 #define MAX_SIZE 16384
 
-const int _NULL = -1;
+const long long _NULL = -1;
 template <class T>
 struct Allocator {
-    typedef int ptr;
+    typedef long long ptr;
 
     // the actual storage space
     T space[MAX_SIZE];
@@ -47,7 +47,7 @@ typedef struct {
 
 typedef struct NODE {
     DATA data;
-    int next;
+    long long next;
 } NODE;
 Allocator<NODE> list;
 
@@ -100,7 +100,7 @@ struct _reverse_rec_recursion_record {
 
 Allocator<NODE>::ptr reverse_rec(
         Allocator<NODE>::ptr ptr, Allocator<NODE>::ptr previous) {
-    volatile _reverse_rec_recursion_record _stack[MAX_SIZE];
+    volatile _reverse_rec_recursion_record _stack[MAX_SIZE*2];
     volatile int _stack_top = 0;
 
     // initialize the stack

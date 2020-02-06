@@ -6,7 +6,7 @@
 
 source /opt/tools/xilinx/Vivado/2018.3/scripts/vivado_hls/hls.tcl -notrace
 INFO: [HLS 200-10] Running '/opt/tools/xilinx/Vivado/2018.3/bin/unwrapped/lnx64.o/vivado_hls'
-INFO: [HLS 200-10] For user 'lau' on host 'u0-lau' (Linux_x86_64 version 4.4.0-169-generic) on Wed Jan 29 14:20:16 PST 2020
+INFO: [HLS 200-10] For user 'lau' on host 'u0-lau' (Linux_x86_64 version 4.4.0-169-generic) on Thu Feb 06 10:02:37 PST 2020
 INFO: [HLS 200-10] On os Ubuntu 16.04.5 LTS
 INFO: [HLS 200-10] In directory '/home/lau/projects/dynamic/icse2020-artifacts/experiments/Recursive/ac/tmp/synthesis_original'
 INFO: [HLS 200-10] Creating and opening project '/home/lau/projects/dynamic/icse2020-artifacts/experiments/Recursive/ac/tmp/synthesis_original/device'.
@@ -17,13 +17,13 @@ INFO: [HLS 200-10] Setting target device to 'xcvu9p-fsgd2104-3-e'
 INFO: [SYN 201-201] Setting up clock 'default' with a period of 3.3ns.
 INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
 INFO: [HLS 200-10] Analyzing design file 'kernel.cpp' ... 
-INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:07 ; elapsed = 00:00:09 . Memory (MB): peak = 435.000 ; gain = 0.051 ; free physical = 59608 ; free virtual = 62091
-INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:07 ; elapsed = 00:00:09 . Memory (MB): peak = 435.000 ; gain = 0.051 ; free physical = 59608 ; free virtual = 62091
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 435.000 ; gain = 0.051 ; free physical = 48421 ; free virtual = 51786
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 435.000 ; gain = 0.051 ; free physical = 48421 ; free virtual = 51786
 INFO: [HLS 200-10] Starting code transformations ...
 ERROR: [SYNCHK 200-74] Recursive functions are not supported: recursion found in the following functions 
 ERROR: [SYNCHK 200-74] 'insert_node(kernel.cpp:40) --> 'insert_node'(kernel.cpp:55:16)
 ERROR: [SYNCHK 200-74] Recursive functions are not supported: recursion found in the following functions 
-ERROR: [SYNCHK 200-74] 'delete_tree(kernel.cpp:131) --> 'delete_tree'(kernel.cpp:134:9)
+ERROR: [SYNCHK 200-74] 'delete_tree(kernel.cpp:128) --> 'delete_tree'(kernel.cpp:131:9)
 INFO: [SYNCHK 200-10] 2 error(s), 0 warning(s).
 ERROR: [HLS 200-70] Synthesizability check failed.
 command 'ap_source' returned error code
@@ -33,4 +33,4 @@ command 'ap_source' returned error code
     invoked from within
 "uplevel \#0 { source [lindex $::argv 1] } "
 
-INFO: [Common 17-206] Exiting vivado_hls at Wed Jan 29 14:20:25 2020...
+INFO: [Common 17-206] Exiting vivado_hls at Thu Feb  6 10:02:45 2020...

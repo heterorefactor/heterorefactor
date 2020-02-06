@@ -24,7 +24,7 @@ struct __dst_alloc_list__dmemi
   int _data;
 }
 ;
-struct __dst_alloc_list__dmemi __dmemi[65536U];
+struct __dst_alloc_list__dmemi __dmemi[32769U];
 # 1 "<stdin>"
 # 1 "<built-in>"
 # 1 "<command-line>"
@@ -35,7 +35,7 @@ struct __dst_alloc_list__dmemi __dmemi[65536U];
 typedef unsigned long long __dst_alloc_size_t;
 typedef unsigned char __dst_alloc_bucket_size_t;
 # 73 "<stdin>"
-unsigned char __dst_alloc_node_split__dmemi[(1 << (16 - 1)) / 8];
+unsigned char __dst_alloc_node_split__dmemi[(1 << (15)) / 8];
 static unsigned char __dst_alloc_test_parent_split__dmemi(__dst_alloc_size_t index) {
     index = (index - 1) / 2;
     return (__dst_alloc_node_split__dmemi[index / 8] >> (index % 8)) & 1;
@@ -48,11 +48,11 @@ static void __dst_alloc_clr_parent_split__dmemi(__dst_alloc_size_t index) {
     index = (index - 1) / 2;
     __dst_alloc_node_split__dmemi[index / 8] &= ~(1 << (index % 8));
 }
-struct __dst_alloc_list_base_t __dst_alloc_buckets__dmemi[16] = {{1, 1}};
+struct __dst_alloc_list_base_t __dst_alloc_buckets__dmemi[15 + 1] = {{1, 1}};
 static __dst_alloc_bucket_size_t __dst_alloc_bucket_for_request__dmemi(
         __dst_alloc_size_t request) {
-    __dst_alloc_bucket_size_t bucket = 16 - 1;
-    __dst_alloc_size_t size = 2;
+    __dst_alloc_bucket_size_t bucket = 15;
+    __dst_alloc_size_t size = 1;
     while (size < request) {
         size <<= 1;
         bucket -= 1;
@@ -89,15 +89,15 @@ static __dst_alloc_size_t __dst_alloc_list_pop__dmemi(
 static __dst_alloc_size_t __dst_alloc_index_for_node__dmemi(
         __dst_alloc_size_t bucket_index,
         __dst_alloc_bucket_size_t bucket) {
-    return 1 + ((bucket_index - (1 << bucket) + 1) << (16 - bucket));
+    return 1 + ((bucket_index - (1 << bucket) + 1) << (15 - bucket));
 }
 static __dst_alloc_size_t __dst_alloc_node_for_index__dmemi(
         __dst_alloc_size_t global_index,
         __dst_alloc_bucket_size_t bucket) {
-    return ((global_index - 1) >> (16 - bucket)) + (1 << bucket) - 1;
+    return ((global_index - 1) >> (15 - bucket)) + (1 << bucket) - 1;
 }
 void __dst_alloc_init__dmemi() {
-    for (int i = 0; i < 16; i++) {
+    for (int i = 0; i <= 15; i++) {
         __dst_alloc_buckets__dmemi[i].prev = 0;
         __dst_alloc_buckets__dmemi[i].next = 0;
     }
@@ -105,7 +105,7 @@ void __dst_alloc_init__dmemi() {
 }
 __dst_alloc_size_t __dst_alloc_malloc__dmemi(__dst_alloc_size_t request) {
     request = request / sizeof(int);
-    if (request > (1 << 16)) return 0;
+    if (request > (1 << 15)) return 0;
     __dst_alloc_bucket_size_t bucket =
         __dst_alloc_bucket_for_request__dmemi(request);
     __dst_alloc_bucket_size_t original_bucket = bucket;
@@ -124,13 +124,12 @@ __dst_alloc_size_t __dst_alloc_malloc__dmemi(__dst_alloc_size_t request) {
             __dst_alloc_list_push__dmemi(bucket, __dst_alloc_index_for_node__dmemi(((i) + 1), bucket));
         }
         __dmemi[ptr]._link.prev = request;
-        return ptr + 1;
+        return ptr;
     }
     return 0;
 }
 void __dst_alloc_free__dmemi(__dst_alloc_size_t ptr) {
     if (ptr == 0) return;
-    ptr -= 1;
     __dst_alloc_bucket_size_t bucket =
         __dst_alloc_bucket_for_request__dmemi(__dmemi[ptr]._link.prev);
     __dst_alloc_size_t i = __dst_alloc_node_for_index__dmemi(ptr, bucket);
@@ -162,7 +161,7 @@ struct __dst_alloc_list__dmemL105R
   node _data;
 }
 ;
-struct __dst_alloc_list__dmemL105R __dmemL105R[65536U];
+struct __dst_alloc_list__dmemL105R __dmemL105R[32769U];
 # 1 "<stdin>"
 # 1 "<built-in>"
 # 1 "<command-line>"
@@ -173,7 +172,7 @@ struct __dst_alloc_list__dmemL105R __dmemL105R[65536U];
 typedef unsigned long long __dst_alloc_size_t;
 typedef unsigned char __dst_alloc_bucket_size_t;
 # 73 "<stdin>"
-unsigned char __dst_alloc_node_split__dmemL105R[(1 << (16 - 1)) / 8];
+unsigned char __dst_alloc_node_split__dmemL105R[(1 << (15)) / 8];
 static unsigned char __dst_alloc_test_parent_split__dmemL105R(__dst_alloc_size_t index) {
     index = (index - 1) / 2;
     return (__dst_alloc_node_split__dmemL105R[index / 8] >> (index % 8)) & 1;
@@ -186,11 +185,11 @@ static void __dst_alloc_clr_parent_split__dmemL105R(__dst_alloc_size_t index) {
     index = (index - 1) / 2;
     __dst_alloc_node_split__dmemL105R[index / 8] &= ~(1 << (index % 8));
 }
-struct __dst_alloc_list_base_t __dst_alloc_buckets__dmemL105R[16] = {{1, 1}};
+struct __dst_alloc_list_base_t __dst_alloc_buckets__dmemL105R[15 + 1] = {{1, 1}};
 static __dst_alloc_bucket_size_t __dst_alloc_bucket_for_request__dmemL105R(
         __dst_alloc_size_t request) {
-    __dst_alloc_bucket_size_t bucket = 16 - 1;
-    __dst_alloc_size_t size = 2;
+    __dst_alloc_bucket_size_t bucket = 15;
+    __dst_alloc_size_t size = 1;
     while (size < request) {
         size <<= 1;
         bucket -= 1;
@@ -227,15 +226,15 @@ static __dst_alloc_size_t __dst_alloc_list_pop__dmemL105R(
 static __dst_alloc_size_t __dst_alloc_index_for_node__dmemL105R(
         __dst_alloc_size_t bucket_index,
         __dst_alloc_bucket_size_t bucket) {
-    return 1 + ((bucket_index - (1 << bucket) + 1) << (16 - bucket));
+    return 1 + ((bucket_index - (1 << bucket) + 1) << (15 - bucket));
 }
 static __dst_alloc_size_t __dst_alloc_node_for_index__dmemL105R(
         __dst_alloc_size_t global_index,
         __dst_alloc_bucket_size_t bucket) {
-    return ((global_index - 1) >> (16 - bucket)) + (1 << bucket) - 1;
+    return ((global_index - 1) >> (15 - bucket)) + (1 << bucket) - 1;
 }
 void __dst_alloc_init__dmemL105R() {
-    for (int i = 0; i < 16; i++) {
+    for (int i = 0; i <= 15; i++) {
         __dst_alloc_buckets__dmemL105R[i].prev = 0;
         __dst_alloc_buckets__dmemL105R[i].next = 0;
     }
@@ -243,7 +242,7 @@ void __dst_alloc_init__dmemL105R() {
 }
 __dst_alloc_size_t __dst_alloc_malloc__dmemL105R(__dst_alloc_size_t request) {
     request = request / sizeof(::node);
-    if (request > (1 << 16)) return 0;
+    if (request > (1 << 15)) return 0;
     __dst_alloc_bucket_size_t bucket =
         __dst_alloc_bucket_for_request__dmemL105R(request);
     __dst_alloc_bucket_size_t original_bucket = bucket;
@@ -262,13 +261,12 @@ __dst_alloc_size_t __dst_alloc_malloc__dmemL105R(__dst_alloc_size_t request) {
             __dst_alloc_list_push__dmemL105R(bucket, __dst_alloc_index_for_node__dmemL105R(((i) + 1), bucket));
         }
         __dmemL105R[ptr]._link.prev = request;
-        return ptr + 1;
+        return ptr;
     }
     return 0;
 }
 void __dst_alloc_free__dmemL105R(__dst_alloc_size_t ptr) {
     if (ptr == 0) return;
-    ptr -= 1;
     __dst_alloc_bucket_size_t bucket =
         __dst_alloc_bucket_for_request__dmemL105R(__dmemL105R[ptr]._link.prev);
     __dst_alloc_size_t i = __dst_alloc_node_for_index__dmemL105R(ptr, bucket);
@@ -319,8 +317,8 @@ void process_top(int n,int *input,int *output,int *fallback)
       g_fallback = true;
       goto fail;
     }
-    (&(__dmemL105R + newitem + 0U - 1U) -> _data) -> left = (&(__dmemL105R + newitem + 0U - 1U) -> _data) -> right = 0L;
-    (&(__dmemL105R + newitem + 0U - 1U) -> _data) -> value = input[i];
+    (&(__dmemL105R + newitem + 0U) -> _data) -> left = (&(__dmemL105R + newitem + 0U) -> _data) -> right = 0L;
+    (&(__dmemL105R + newitem + 0U) -> _data) -> value = input[i];
     if (root == 0L) {
       root = newitem;
     }
@@ -335,7 +333,7 @@ void process_top(int n,int *input,int *output,int *fallback)
   if (g_fallback) 
     goto fail;
   for (int i = 0; i < n; i++) 
-    output[i] = (&(__dmemi + queue + i - 1U) -> _data)[0U];
+    output[i] = (&(__dmemi + queue + i) -> _data)[0U];
   fail:
    *fallback = g_fallback;
 }
@@ -369,16 +367,16 @@ void insert(__didxL105R newitem,__didxL105R root)
   if (3U == __rect_packed_var_L5447R__L5448R[0 + __rect_packed_top_L5447R__L5448R] . _location) 
     goto __rect_func_L3_L5447R__L5448R;
   __rect_func_L1_L5447R__L5448R:
-  if ((&(__dmemL105R + __rect_packed_var_L5447R__L5448R[0 + __rect_packed_top_L5447R__L5448R] . local0 + 0U - 1U) -> _data) -> value > (&(__dmemL105R + __rect_packed_var_L5447R__L5448R[0 + __rect_packed_top_L5447R__L5448R] . local1 + 0U - 1U) -> _data) -> value) {
-    if ((&(__dmemL105R + __rect_packed_var_L5447R__L5448R[0 + __rect_packed_top_L5447R__L5448R] . local1 + 0U - 1U) -> _data) -> right == 0L) 
-      (&(__dmemL105R + __rect_packed_var_L5447R__L5448R[0 + __rect_packed_top_L5447R__L5448R] . local1 + 0U - 1U) -> _data) -> right = __rect_packed_var_L5447R__L5448R[0 + __rect_packed_top_L5447R__L5448R] . local0;
+  if ((&(__dmemL105R + __rect_packed_var_L5447R__L5448R[0 + __rect_packed_top_L5447R__L5448R] . local0 + 0U) -> _data) -> value > (&(__dmemL105R + __rect_packed_var_L5447R__L5448R[0 + __rect_packed_top_L5447R__L5448R] . local1 + 0U) -> _data) -> value) {
+    if ((&(__dmemL105R + __rect_packed_var_L5447R__L5448R[0 + __rect_packed_top_L5447R__L5448R] . local1 + 0U) -> _data) -> right == 0L) 
+      (&(__dmemL105R + __rect_packed_var_L5447R__L5448R[0 + __rect_packed_top_L5447R__L5448R] . local1 + 0U) -> _data) -> right = __rect_packed_var_L5447R__L5448R[0 + __rect_packed_top_L5447R__L5448R] . local0;
      else {
       if (__rect_packed_top_L5447R__L5448R + 1U == 64U) {;
 g_fallback = true;
         return ;
       }
       __rect_packed_var_L5447R__L5448R[0 + __rect_packed_top_L5447R__L5448R] . _location = 2U;
-      __rect_packed_var_L5447R__L5448R[1 + __rect_packed_top_L5447R__L5448R] . local1 = (&(__dmemL105R + __rect_packed_var_L5447R__L5448R[0 + __rect_packed_top_L5447R__L5448R] . local1 + 0U - 1U) -> _data) -> right;
+      __rect_packed_var_L5447R__L5448R[1 + __rect_packed_top_L5447R__L5448R] . local1 = (&(__dmemL105R + __rect_packed_var_L5447R__L5448R[0 + __rect_packed_top_L5447R__L5448R] . local1 + 0U) -> _data) -> right;
       __rect_packed_var_L5447R__L5448R[1 + __rect_packed_top_L5447R__L5448R] . local0 = __rect_packed_var_L5447R__L5448R[0 + __rect_packed_top_L5447R__L5448R] . local0;
       ++__rect_packed_top_L5447R__L5448R;
       __rect_packed_var_L5447R__L5448R[0 + __rect_packed_top_L5447R__L5448R] . _location = 1U;
@@ -389,15 +387,15 @@ g_fallback = true;
 // newitem->value <= root->value
   }
    else {
-    if ((&(__dmemL105R + __rect_packed_var_L5447R__L5448R[0 + __rect_packed_top_L5447R__L5448R] . local1 + 0U - 1U) -> _data) -> left == 0L) 
-      (&(__dmemL105R + __rect_packed_var_L5447R__L5448R[0 + __rect_packed_top_L5447R__L5448R] . local1 + 0U - 1U) -> _data) -> left = __rect_packed_var_L5447R__L5448R[0 + __rect_packed_top_L5447R__L5448R] . local0;
+    if ((&(__dmemL105R + __rect_packed_var_L5447R__L5448R[0 + __rect_packed_top_L5447R__L5448R] . local1 + 0U) -> _data) -> left == 0L) 
+      (&(__dmemL105R + __rect_packed_var_L5447R__L5448R[0 + __rect_packed_top_L5447R__L5448R] . local1 + 0U) -> _data) -> left = __rect_packed_var_L5447R__L5448R[0 + __rect_packed_top_L5447R__L5448R] . local0;
      else {
       if (__rect_packed_top_L5447R__L5448R + 1U == 64U) {;
 g_fallback = true;
         return ;
       }
       __rect_packed_var_L5447R__L5448R[0 + __rect_packed_top_L5447R__L5448R] . _location = 3U;
-      __rect_packed_var_L5447R__L5448R[1 + __rect_packed_top_L5447R__L5448R] . local1 = (&(__dmemL105R + __rect_packed_var_L5447R__L5448R[0 + __rect_packed_top_L5447R__L5448R] . local1 + 0U - 1U) -> _data) -> left;
+      __rect_packed_var_L5447R__L5448R[1 + __rect_packed_top_L5447R__L5448R] . local1 = (&(__dmemL105R + __rect_packed_var_L5447R__L5448R[0 + __rect_packed_top_L5447R__L5448R] . local1 + 0U) -> _data) -> left;
       __rect_packed_var_L5447R__L5448R[1 + __rect_packed_top_L5447R__L5448R] . local0 = __rect_packed_var_L5447R__L5448R[0 + __rect_packed_top_L5447R__L5448R] . local0;
       ++__rect_packed_top_L5447R__L5448R;
       __rect_packed_var_L5447R__L5448R[0 + __rect_packed_top_L5447R__L5448R] . _location = 1U;
@@ -435,27 +433,27 @@ void dfs_traverse(__didxL105R root)
   if (3U == __rect_packed_var_L5449R__L5450R[0 + __rect_packed_top_L5449R__L5450R] . _location) 
     goto __rect_func_L3_L5449R__L5450R;
   __rect_func_L1_L5449R__L5450R:
-  if ((&(__dmemL105R + __rect_packed_var_L5449R__L5450R[0 + __rect_packed_top_L5449R__L5450R] . local0 + 0U - 1U) -> _data) -> left != 0L) {
+  if ((&(__dmemL105R + __rect_packed_var_L5449R__L5450R[0 + __rect_packed_top_L5449R__L5450R] . local0 + 0U) -> _data) -> left != 0L) {
     if (__rect_packed_top_L5449R__L5450R + 1U == 64U) {;
 g_fallback = true;
       return ;
     }
     __rect_packed_var_L5449R__L5450R[0 + __rect_packed_top_L5449R__L5450R] . _location = 2U;
-    __rect_packed_var_L5449R__L5450R[1 + __rect_packed_top_L5449R__L5450R] . local0 = (&(__dmemL105R + __rect_packed_var_L5449R__L5450R[0 + __rect_packed_top_L5449R__L5450R] . local0 + 0U - 1U) -> _data) -> left;
+    __rect_packed_var_L5449R__L5450R[1 + __rect_packed_top_L5449R__L5450R] . local0 = (&(__dmemL105R + __rect_packed_var_L5449R__L5450R[0 + __rect_packed_top_L5449R__L5450R] . local0 + 0U) -> _data) -> left;
     ++__rect_packed_top_L5449R__L5450R;
     __rect_packed_var_L5449R__L5450R[0 + __rect_packed_top_L5449R__L5450R] . _location = 1U;
     goto __rect_func_L1_L5449R__L5450R;
     __rect_func_L2_L5449R__L5450R:
     0;
   }
-  (&(__dmemi + queue + ++rear - 1U) -> _data)[0U] = (&(__dmemL105R + __rect_packed_var_L5449R__L5450R[0 + __rect_packed_top_L5449R__L5450R] . local0 + 0U - 1U) -> _data) -> value;
-  if ((&(__dmemL105R + __rect_packed_var_L5449R__L5450R[0 + __rect_packed_top_L5449R__L5450R] . local0 + 0U - 1U) -> _data) -> right != 0L) {
+  (&(__dmemi + queue + ++rear) -> _data)[0U] = (&(__dmemL105R + __rect_packed_var_L5449R__L5450R[0 + __rect_packed_top_L5449R__L5450R] . local0 + 0U) -> _data) -> value;
+  if ((&(__dmemL105R + __rect_packed_var_L5449R__L5450R[0 + __rect_packed_top_L5449R__L5450R] . local0 + 0U) -> _data) -> right != 0L) {
     if (__rect_packed_top_L5449R__L5450R + 1U == 64U) {;
 g_fallback = true;
       return ;
     }
     __rect_packed_var_L5449R__L5450R[0 + __rect_packed_top_L5449R__L5450R] . _location = 3U;
-    __rect_packed_var_L5449R__L5450R[1 + __rect_packed_top_L5449R__L5450R] . local0 = (&(__dmemL105R + __rect_packed_var_L5449R__L5450R[0 + __rect_packed_top_L5449R__L5450R] . local0 + 0U - 1U) -> _data) -> right;
+    __rect_packed_var_L5449R__L5450R[1 + __rect_packed_top_L5449R__L5450R] . local0 = (&(__dmemL105R + __rect_packed_var_L5449R__L5450R[0 + __rect_packed_top_L5449R__L5450R] . local0 + 0U) -> _data) -> right;
     ++__rect_packed_top_L5449R__L5450R;
     __rect_packed_var_L5449R__L5450R[0 + __rect_packed_top_L5449R__L5450R] . _location = 1U;
     goto __rect_func_L1_L5449R__L5450R;
