@@ -7,5 +7,5 @@ RUN  apt-get -y install gawk git wget tar bzip2 gcc automake autoconf \
 COPY . /app
 RUN  make -C /app/heterorefactor/libraries -j 16
 RUN  make -C /app/heterorefactor -j 16
-RUN  apt-get -y time
+RUN  apt-get -y install time perl-doc man-db
 RUN  ln -s /app/heterorefactor/refactoring/build/heterorefactor /usr/bin
